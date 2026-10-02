@@ -1,0 +1,17 @@
+GET http://localhost:3000/test-db
+
+#####
+### Create account
+POST http://localhost:3000/accounts
+Content-Type: application/json
+
+{
+    "email": "phuc2006@example.com",
+    "password_hash": "12345",
+    "full_name": "Phuc 12345",
+    "role": "learner",
+    "status": "active"
+}
+
+### Get all accounts
+GET http://localhost:3000/accounts
