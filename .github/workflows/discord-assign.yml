@@ -1,0 +1,24 @@
+name: Discord - Task mới
+on:
+  issues:
+    types: [assigned]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Gửi ping
+        env:
+          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GH_USER: ${{ github.event.assignee.login }}
+          TITLE: ${{ github.event.issue.title }}
+          URL: ${{ github.event.issue.html_url }}
+          BODY: ${{ github.event.issue.body }}
+        run: |
+          ID=$(jq -r --arg u "$GH_USER" '.[$u] // empty' .github/discord-users.json)
+          if [ -n "$ID" ]; then MENTION="<@$ID>"; else MENTION="**$GH_USER**"; fi
+          DL=$(echo "$BODY" | grep -oP 'Hạn chót:\*\*\s*\K[0-9]{4}-[0-9]{2}-[0-9]{2}' | head -1)
+          MSG="📌 $MENTION có task mới: **$TITLE**"$'\n'"Hạn chót: ${DL:-chưa ghi}"$'\n'"$URL"
+          jq -n --arg c "$MSG" '{content:$c, allowed_mentions:{parse:["users"]}}' \
+            | curl -sS -H "Content-Type: application/json" -d @- "$WEBHOOK"
