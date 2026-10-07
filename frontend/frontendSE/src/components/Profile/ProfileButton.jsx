@@ -7,7 +7,8 @@ export default function ProfileButton() {
     // Temporary data — later get this from login/authentication
     const user = {
         name: "Phuc",
-        role: "admin"
+        role: "learner",
+        status: "Online"
     };
     const navigate = useNavigate();
     function handleMyAccount()
@@ -25,6 +26,10 @@ export default function ProfileButton() {
     function handleAdmin()
     {
         navigate("/admin-board");
+    }
+    function applyInstructor()
+    {
+        navigate("/apply-instructor")
     }
 
 
@@ -44,12 +49,16 @@ export default function ProfileButton() {
 
                     <div className="profile-info">
                         <strong>{user.name}</strong> <br></br>
-                        Role: <span>{user.role}</span>
+                        Role: <span>{user.role}</span> <br></br>
+                        Status: <span>{user.status}</span>
                     </div>
 
                     <button onClick={handleMyAccount}>My Account</button>
                     <button onClick={handleHistory}>History</button>
                     <button onClick={handleNotifications}>Notifications</button>
+                    {user.role === "learner" && (
+                        <button onClick={applyInstructor}>Apply to be instructor</button>
+                    )}
 
                     {user.role === "admin" && (
                         <button onClick={handleAdmin}>Admin Dashboard</button>
