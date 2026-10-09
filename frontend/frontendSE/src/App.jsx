@@ -1,26 +1,17 @@
-import CoursePage from './pages/CoursePage';
-import Header from './components/Header';
-import { getCourseById } from './data/courses';
-import './components/Header.css';
-import HomePage from './pages/HomePage';
-import ProfileButton from "./components/Profile/ProfileButton"
+// import { getCourseById } from './data/courses';
+import './components/Homepage/Header.css';
 import { BrowserRouter } from "react-router-dom";
 import AppRoutes from "./routes"
 
 
 function App() {
-  const [collection, courseId] = window.location.pathname.split('/').filter(Boolean);
-  const course = collection === 'courses' ? getCourseById(courseId) : null;
+  // const [collection, courseId] = window.location.pathname.split('/').filter(Boolean);
+  // const course = collection === 'courses' ? getCourseById(courseId) : null;
 
   return (
     <>
-      <Header />
-      <main>
-        {course ? <CoursePage course={course} /> : <HomePage />}
-      </main>
       <BrowserRouter>
-      <ProfileButton></ProfileButton>
-      <AppRoutes></AppRoutes>
+        <AppRoutes />
       </BrowserRouter>
     </>
 
@@ -28,4 +19,3 @@ function App() {
 }
 
 export default App;
-    

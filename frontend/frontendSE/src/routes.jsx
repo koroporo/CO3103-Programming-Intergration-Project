@@ -6,6 +6,8 @@ import Notifications from "./pages/ProfilePage/Notifications";
 import AdminBoard from "./pages/ProfilePage/AdminBoard";
 import ApplyInstructor from "./pages/ProfilePage/ApplyInstructor";
 import LoginPage from "./pages/Loginpage/Loginpage";
+import Header from "./components/Homepage/Header";
+import HomePage from "./pages/Homepage/HomePage";
 
 
 export default function AppRoutes() {
@@ -17,6 +19,7 @@ export default function AppRoutes() {
                 <Route path="/admin-board" element={<AdminBoard></AdminBoard>}/>
                 <Route path="/apply-instructor" element={<ApplyInstructor></ApplyInstructor>}></Route>
                 <Route path="/login-page" element={<LoginPage></LoginPage>}></Route>
+                <Route path="/" element={<><Header></Header><HomePage></HomePage></>}></Route>
             </Routes>
     );
 }

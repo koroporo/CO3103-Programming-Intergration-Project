@@ -1,9 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
-
 export default function LoginPage() {
+
+const navigate = useNavigate();
+
+
+
 return ( <div className="login-page"> <form className="login-form"> <h1>Log In</h1>
 
-```
     <label htmlFor="email">Email</label>
     <input
       id="email"
@@ -20,7 +24,7 @@ return ( <div className="login-page"> <form className="login-form"> <h1>Log In</
       required
     />
 
-    <button type="submit">Log In</button>
+    <button type="submit" onClick={()=>navigate("/")}>Log In</button>
   </form>
 </div>
 );
