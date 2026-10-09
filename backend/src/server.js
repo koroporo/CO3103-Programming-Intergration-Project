@@ -1,26 +1,27 @@
 const express = require("express");
 const pool = require("./db");
+const courseRoutes = require("./routes/courseRoutes");
 
 const app = express();
 app.use(express.json());
+app.use("/api/courses", courseRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "Backend is running" });
 });
 
-app.get("/accounts", async (req, res) => {
-  try {
-    const result = await pool.query("SELECT * FROM accounts ORDER BY id");
-
-    res.json(result.rows);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Failed to get accounts" });
-  }
-});
-
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+async function startServer() {
+  try {
+    await pool.query("SELECT 1");
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Failed to connect to the database:", error.message);
+    process.exitCode = 1;
+  }
+}
+
+startServer();
