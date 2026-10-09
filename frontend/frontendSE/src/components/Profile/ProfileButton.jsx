@@ -7,7 +7,7 @@ export default function ProfileButton() {
     // Temporary data — later get this from login/authentication
     const user = {
         name: "Phuc",
-        role: "learner",
+        role: "admin",
         status: "Online"
     };
     const navigate = useNavigate();
