@@ -1,0 +1,45 @@
+name: Discord - Nhắc deadline
+on:
+  schedule:
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: read
+  contents: read
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Quét task sắp hạn
+        env:
+          GH_TOKEN: ${{ github.token }}
+          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          TODAY=$(TZ=Asia/Ho_Chi_Minh date +%F)
+          gh issue list --state open --limit 200 --json title,url,body,assignees > issues.json
+          jq -c '.[]' issues.json | while read -r row; do
+            BODY=$(echo "$row" | jq -r '.body // ""')
+            DL=$(echo "$BODY" | grep -oP 'Hạn chót:\*\*\s*\K[0-9]{4}-[0-9]{2}-[0-9]{2}' | head -1)
+            [ -z "$DL" ] && continue
+            LEFT=$(( ( $(date -d "$DL" +%s) - $(date -d "$TODAY" +%s) ) / 86400 ))
+            [ "$LEFT" -gt 1 ] && continue
+
+            if [ "$LEFT" -lt 0 ]; then STATUS="đã trễ $((-LEFT)) ngày"
+            elif [ "$LEFT" -eq 0 ]; then STATUS="hết hạn hôm nay"
+            else STATUS="hết hạn ngày mai"; fi
+
+            MENTIONS=""
+            for u in $(echo "$row" | jq -r '.assignees[].login'); do
+              ID=$(jq -r --arg u "$u" '.[$u] // empty' .github/discord-users.json)
+              if [ -n "$ID" ]; then MENTIONS="$MENTIONS <@$ID>"; else MENTIONS="$MENTIONS **$u**"; fi
+            done
+
+            TITLE=$(echo "$row" | jq -r '.title')
+            URL=$(echo "$row" | jq -r '.url')
+            MSG="⏰$MENTIONS task **$TITLE** $STATUS (hạn $DL)"$'\n'"$URL"
+            jq -n --arg c "$MSG" '{content:$c, allowed_mentions:{parse:["users"]}}' \
+              | curl -sS -H "Content-Type: application/json" -d @- "$WEBHOOK"
+          done
