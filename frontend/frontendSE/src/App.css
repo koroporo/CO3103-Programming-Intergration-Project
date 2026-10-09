@@ -1,0 +1,315 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  color: #172b4d;
+  background: #f7f8fc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page-shell {
+  min-height: 100vh;
+}
+
+.site-header {
+  display: flex;
+  min-height: 76px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 max(6vw, 24px);
+  background: #fff;
+  border-bottom: 1px solid #e8ebf2;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #172b4d;
+  font-size: 1.1rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 11px;
+  background: #4255d4;
+  color: #fff;
+}
+
+.logout-button {
+  padding: 9px 16px;
+  border: 1px solid #d8dcef;
+  border-radius: 9px;
+  background: #fff;
+  color: #344563;
+  cursor: pointer;
+}
+
+.hero {
+  padding: 76px 24px 64px;
+  background: linear-gradient(130deg, #edf0ff, #f4f7ff 55%, #f5f2ff);
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: #5865c9;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.hero h1 {
+  max-width: 760px;
+  margin: 0 auto;
+  color: #172b4d;
+  font-size: clamp(2.25rem, 5vw, 3.8rem);
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+}
+
+.hero-copy {
+  margin: 18px auto 30px;
+  color: #5e6c84;
+  font-size: 1.08rem;
+}
+
+.search-form {
+  display: flex;
+  max-width: 620px;
+  gap: 10px;
+  margin: 0 auto;
+  padding: 8px;
+  border: 1px solid #e0e4f0;
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 0 12px 35px #283a7620;
+}
+
+.search-form input {
+  min-width: 0;
+  flex: 1;
+  padding: 12px 14px;
+  border: 0;
+  outline: 0;
+  color: #172b4d;
+}
+
+.search-form button {
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 9px;
+  background: #4255d4;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.catalogue {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 54px 24px 80px;
+}
+
+.catalogue-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 26px;
+}
+
+.catalogue-heading h2 {
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  letter-spacing: -0.03em;
+}
+
+.result-count {
+  padding-bottom: 5px;
+  color: #6b778c;
+  font-size: 0.92rem;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 28px;
+  color: #5e6c84;
+}
+
+.pagination button {
+  padding: 9px 14px;
+  border: 1px solid #d8dcef;
+  border-radius: 8px;
+  background: #fff;
+  color: #344563;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 22px;
+}
+
+.course-card {
+  overflow: hidden;
+  border: 1px solid #e8ebf2;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 5px 18px #172b4d0a;
+}
+
+.course-image-link {
+  display: block;
+  overflow: hidden;
+  background: #e9edff;
+}
+
+.course-image,
+.course-image-placeholder {
+  width: 100%;
+  height: 180px;
+}
+
+.course-image {
+  display: block;
+  object-fit: cover;
+  transition: transform 180ms ease;
+}
+
+.course-image-link:hover .course-image {
+  transform: scale(1.03);
+}
+
+.course-image-placeholder {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #dbe2ff, #f1e8ff);
+  color: #4255a3;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.course-card-content {
+  padding: 20px;
+}
+
+.course-category {
+  margin: 0 0 9px;
+  color: #5865c9;
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.course-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.16rem;
+  line-height: 1.35;
+}
+
+.course-card h3 a {
+  color: #172b4d;
+  text-decoration: none;
+}
+
+.course-card h3 a:hover {
+  color: #4255d4;
+}
+
+.course-description {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
+  color: #5e6c84;
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.instructor-name {
+  margin: 16px 0 0;
+  color: #6b778c;
+  font-size: 0.88rem;
+}
+
+.empty-state,
+.status-message,
+.error-message {
+  padding: 18px 20px;
+  border-radius: 10px;
+  background: #fff;
+  color: #5e6c84;
+}
+
+.status-message {
+  color: #216e4e;
+}
+
+.error-message {
+  color: #ae2e24;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 560px) {
+  .hero {
+    padding: 56px 18px 44px;
+  }
+
+  .search-form {
+    gap: 4px;
+  }
+
+  .search-form input {
+    padding-inline: 10px;
+  }
+
+  .search-form button {
+    padding-inline: 14px;
+  }
+
+  .catalogue {
+    padding: 42px 18px 60px;
+  }
+}
