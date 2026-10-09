@@ -1,7 +1,10 @@
 const express = require("express");
+const cors = require("cors");
 const pool = require("./db");
+const roleApplicationsRouter = require("./routes/roleApplications");
 
 const app = express();
+app.use(cors({origin: "http://localhost:5173", credentials: true}));
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -18,7 +21,7 @@ app.get("/accounts", async (req, res) => {
     res.status(500).json({ error: "Failed to get accounts" });
   }
 });
-
+app.use("/role-applications", roleApplicationsRouter);
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
