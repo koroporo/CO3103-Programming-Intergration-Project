@@ -3,6 +3,10 @@ import Header from './components/Header';
 import { getCourseById } from './data/courses';
 import './components/Header.css';
 import HomePage from './pages/HomePage';
+import ProfileButton from "./components/Profile/ProfileButton"
+import { BrowserRouter } from "react-router-dom";
+import AppRoutes from "./routes"
+
 
 function App() {
   const [collection, courseId] = window.location.pathname.split('/').filter(Boolean);
@@ -14,8 +18,14 @@ function App() {
       <main>
         {course ? <CoursePage course={course} /> : <HomePage />}
       </main>
+      <BrowserRouter>
+      <ProfileButton></ProfileButton>
+      <AppRoutes></AppRoutes>
+      </BrowserRouter>
     </>
+
   );
 }
 
 export default App;
+    
