@@ -1,0 +1,158 @@
+.signup-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f6f8;
+}
+
+.signup-form {
+  width: 420px; /* Form rộng hơn Login page 1 chút */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+/* Nút back giống bên Login */
+.signup-form .btn-back {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  width: fit-content;
+}
+
+.signup-form .btn-back:hover {
+  color: #0f172a;
+}
+
+/* Header */
+.signup-header {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.signup-header h1 {
+  color: #8a1515; /* Màu đỏ sẫm */
+  margin: 0 0 8px 0;
+  font-size: 28px;
+}
+
+.signup-header p {
+  color: #8c8c8c;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Định dạng chung cho các nhóm input */
+.signup-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.signup-form label {
+  font-weight: 600;
+  color: #334155;
+  font-size: 14px;
+}
+
+/* Ô input nền xám nhạt */
+.signup-form input {
+  width: 100%; 
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background-color: #f8fafc;
+  font-size: 14px;
+  outline: none;
+}
+
+.signup-form input:focus {
+  border-color: #cbd5e1;
+}
+
+/* Bao bọc input Email để gắn nút Verify */
+.email-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.email-wrapper input {
+  width: 100%;
+  padding-right: 80px; /* Chừa chỗ cho nút Verify */
+  box-sizing: border-box;
+}
+
+/* Nút Verify lồng trong input */
+.email-wrapper .btn-verify {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  border: 1px solid #cbd5e1;
+  border-radius: 20px; /* Bo tròn đều thành hình viên thuốc */
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #0f172a;
+}
+
+.email-wrapper .btn-verify:hover {
+  background-color: #f1f5f9;
+}
+
+/* Chia đôi cột cho First/Last name */
+.name-row {
+  display: flex;
+  gap: 12px;
+}
+
+.name-row .form-group {
+  flex: 1; /* Cân bằng 2 ô input đều nhau */
+}
+
+/* Căn giữa nút Sign Up */
+.submit-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.btn-signup-submit {
+  background-color: #8a1515;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 60px; /* Làm nút thuôn dài ở giữa */
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-signup-submit:hover {
+  background-color: #6b0f0f;
+}
+
+/* Dòng chữ chính sách */
+.signup-footer {
+  text-align: center;
+  color: #8c8c8c;
+  font-size: 12px;
+  margin: 12px 0 0 0;
+}
