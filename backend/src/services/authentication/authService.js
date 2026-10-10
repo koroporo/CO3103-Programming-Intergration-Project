@@ -2,16 +2,10 @@
 const crypto = require("crypto");
 const accountModels = require("../../models/Authentication/accountModels");
 const { generateToken } = require("./tokenService");
-const {
-  isValidEmail,
-  normalizeEmail,
-  isValidPassword,
-} = require("../../utils/authValidators");
-const { hashPassword } = require("../../utils/passwordUtils");
+const {isValidEmail, normalizeEmail, isValidPassword,} = require("../../utils/authValidators");
+const { hashPassword, verifyPassword } = require("../../utils/passwordUtils");
 
 
-const PASSWORD_HASH_KEY_LENGTH = 64;
-const PASSWORD_HASH_PREFIX = "scrypt";
 const RESET_TOKEN_BYTES = 32;
 const RESET_TOKEN_TTL_MINUTES = 30;
 

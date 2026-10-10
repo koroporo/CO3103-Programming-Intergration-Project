@@ -1,3 +1,7 @@
+const crypto = require("crypto");
+const PASSWORD_HASH_KEY_LENGTH = 64;
+const PASSWORD_HASH_PREFIX = "scrypt";
+
 function hashPassword(password) {
   const salt = crypto.randomBytes(16);
 

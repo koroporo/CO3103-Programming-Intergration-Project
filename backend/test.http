@@ -12,6 +12,15 @@ Content-Type: application/json
     "role": "learner",
     "status": "active"
 }
+### REGISTER
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "learner@example.com",
+  "password": "SecurePass123",
+  "full_name": "Test Learner"
+}
 
 ### Get all accounts
 GET http://localhost:3000/accounts
@@ -22,8 +31,8 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "test.learner@example.com",
-  "password": "TEMP_PASSWORD_HASH"
+  "email": "learner@example.com",
+  "password": "SecurePass123"
 }
 
 ### Login - Learner
