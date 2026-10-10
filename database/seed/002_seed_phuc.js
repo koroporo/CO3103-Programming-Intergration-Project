@@ -14,7 +14,7 @@ exports.up = (pgm) => {
     VALUES (
       2452995,
       'letrongphuc@hcmut.com',
-      'password_phuc_123456',
+      '$2b$10$.nalMYVSqyNZWOiVy6pF.ON2GhyFcWcW3Rn0/OFBmhleCnG7jssvm',
       'Le Trong Phuc',
       'learner',
       9.9,

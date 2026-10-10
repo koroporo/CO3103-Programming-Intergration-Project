@@ -1,11 +1,11 @@
 const bcrypt = require("bcryptjs");
-const accountModel = require("../../models/Authentication/accountModels");
+const accountModels = require("../../models/Authentication/accountModels");
 const { generateToken } = require("./tokenService");
 
 async function login(email, password) {
   // tìm tài khoản có email này trong database
-  const user = await accountModel.findByEmail(email);
-  console.log("Account found:", !!user);
+const user = await accountModels.findByEmail(email);
+console.log("Account found:", !!user);
 console.log("Stored password hash:", user?.password_hash);
 console.log("Account status:", user?.status);
 
@@ -15,7 +15,8 @@ console.log("Account status:", user?.status);
 
   // so sánh mật khẩu nhập vào với mã băm đã lưu
   const isMatch = await bcrypt.compare(password, user.password_hash);
-
+console.log("Password matches:", isMatch);
+console.log("Account status:", user.status);
   if (!isMatch || user.status !== "active") {
     return null;
   }

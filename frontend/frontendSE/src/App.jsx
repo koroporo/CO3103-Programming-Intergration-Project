@@ -2,6 +2,7 @@
 import './components/Homepage/Header.css';
 import { BrowserRouter } from "react-router-dom";
 import AppRoutes from "./routes"
+import { AuthProvider } from './contexts/Authentication/AuthContexts';
 
 
 function App() {
@@ -11,7 +12,9 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <AppRoutes />
+        <AuthProvider>
+          <AppRoutes></AppRoutes>
+        </AuthProvider>
       </BrowserRouter>
     </>
 
