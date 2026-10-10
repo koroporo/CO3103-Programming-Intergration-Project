@@ -58,7 +58,29 @@ function getResetTokenExpiry() {
   return new Date(Date.now() + RESET_TOKEN_TTL_MINUTES * 60 * 1000);
 }
 
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isValidPassword(password) {
+  return typeof password === "string" && password.length >= 8;
+}
+function publicAccount(account) {
+  return {
+    id: account.id,
+    email: account.email,
+    full_name: account.full_name,
+    role: account.role,
+    status: account.status,
+    created_at: account.created_at,
+  };
+}
+
 module.exports = {
+  publicAccount,
+  isValidEmail,
+  isValidPassword,
   createResetToken,
   getResetTokenExpiry,
   hashPassword,
