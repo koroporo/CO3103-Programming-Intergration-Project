@@ -15,3 +15,22 @@ Content-Type: application/json
 
 ### Get all accounts
 GET http://localhost:3000/accounts
+
+
+### Login - Test Learner
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "test.learner@example.com",
+  "password": "TEMP_PASSWORD_HASH"
+}
+
+### Login - Learner
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "letrongphuc@hcmut.com",
+  "password": "password_phuc_123456"
+}

@@ -1,10 +1,13 @@
 const bcrypt = require("bcryptjs");
-const accountModel = require("../models/accountModel");
+const accountModel = require("../../models/Authentication/accountModels");
 const { generateToken } = require("./tokenService");
 
 async function login(email, password) {
   // tìm tài khoản có email này trong database
   const user = await accountModel.findByEmail(email);
+  console.log("Account found:", !!user);
+console.log("Stored password hash:", user?.password_hash);
+console.log("Account status:", user?.status);
 
   if (!user) {
     return null; 
