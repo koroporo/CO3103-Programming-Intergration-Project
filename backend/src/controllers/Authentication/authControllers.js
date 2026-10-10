@@ -47,7 +47,36 @@ async function login(req, res) {
     });
   }
 }
+async function register(req, res) {
+  try {
+    const { email, password, full_name: fullName } = req.body;
 
+    const account = await authService.register({
+      email,
+      password,
+      fullName,
+    });
+
+    return res.status(201).json({ account });
+  } catch (error) {
+    if (error.code === "VALIDATION_ERROR") {
+      return res.status(400).json({ error: error.message });
+    }
+
+    if (error.code === "23505") {
+      return res.status(409).json({
+        error: "An account with this email already exists",
+      });
+    }
+
+    console.error("Account registration failed", error);
+
+    return res.status(500).json({
+      error: "Failed to register account",
+    });
+  }
+}
 module.exports = {
-  login
+  login,
+  register
 };
