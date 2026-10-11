@@ -1,0 +1,140 @@
+/* Container bao bọc toàn bộ nút profile và menu */
+.profile-container {
+    position: absolute; /* Đặt vị trí tuyệt đối */
+    top: 15px;          /* Cách mép trên 15px */
+    right: 20px;        /* Cách mép phải 20px */
+    display: inline-block;
+    font-family: Arial, sans-serif;
+}
+
+/* Nút bấm (trigger) chứa avatar và mũi tên */
+.profile-button-trigger {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.profile-button-trigger:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* Hiệu ứng hover nhẹ */
+}
+
+/* Biến ảnh thành hình tròn tròn trịa */
+.profile-avatar {
+    width: 40px; /* Hoặc kích thước tùy ý bạn muốn, ví dụ 50px */
+    height: 40px; /* Bắt buộc phải BẰNG với width */
+    border-radius: 50%; /* Lệnh này giúp cắt thành hình tròn */
+    object-fit: cover; /* Đảm bảo ảnh lấp đầy vòng tròn mà không bị méo */
+    border: 2px solid #ccc; /* (Tùy chọn) Thêm viền mỏng cho đẹp */
+}
+
+/* Mũi tên đi xuống nhỏ nhắn */
+.arrow-down {
+    font-size: 10px;
+    color: #555;
+    transition: transform 0.2s ease;
+}
+
+/* Khi menu mở, xoay nhẹ mũi tên (tùy chọn) */
+.profile-button-trigger[aria-expanded="true"] .arrow-down {
+    transform: rotate(180deg);
+}
+
+/* Menu popup (xổ xuống) */
+.profile-menu {
+    position: absolute;
+    top: 50px; /* Cách nút bấm */
+    right: 0;   /* Căn về bên phải */
+    background-color: #ffffff;
+    min-width: 220px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid #e0e0e0;
+    z-index: 1000;
+    overflow: hidden;
+    animation: fadeIn 0.15s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8s);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Thông tin User trong Menu */
+.profile-info {
+    padding: 14px 16px;
+    background-color: #f9f9f9;
+}
+
+.profile-info strong {
+    display: block;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.profile-meta {
+    font-size: 12px;
+    color: #666;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.status-online {
+    color: #2ecc71;
+    font-weight: bold;
+}
+
+/* Đường gạch ngang phân cách */
+.menu-divider {
+    border: 0;
+    border-top: 1px solid #eeeeee;
+    margin: 0;
+}
+
+/* Khu vực chứa các button chức năng */
+.menu-links {
+    display: flex;
+    flex-direction: column;
+    padding: 6px 0;
+}
+
+/* Các nút trong menu */
+.menu-links button {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.15s;
+}
+
+.menu-links button:hover {
+    background-color: #f5f5f5;
+    color: #0073e6; /* Đổi màu chữ khi hover nhẹ */
+}
+
+/* Riêng nút Logout */
+.menu-links .logout-btn {
+    color: #e74c3c;
+}
+
+.menu-links .logout-btn:hover {
+    background-color: #fdf2f2;
+    color: #c0392b;
+}

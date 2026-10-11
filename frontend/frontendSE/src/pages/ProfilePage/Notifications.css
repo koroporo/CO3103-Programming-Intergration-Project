@@ -1,0 +1,215 @@
+/* Container bao bọc toàn bộ màn hình */
+.noti-page-wrapper {
+    background-color: #f8fafc;
+    min-height: 100vh;
+    padding: 40px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+/* Khung chính của trang thông báo */
+.noti-container {
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Khu vực Header */
+.noti-header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+    gap: 16px;
+}
+
+.noti-header-left h1 {
+    font-size: 32px;
+    color: #1e293b;
+    margin: 0 0 8px 0;
+    font-weight: 700;
+}
+
+.noti-header-left p {
+    color: #64748b;
+    font-size: 15px;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Nút Đánh dấu tất cả đã đọc */
+.mark-all-btn {
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.mark-all-btn:hover {
+    background-color: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+/* Các Tab bộ lọc */
+.noti-filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 12px;
+}
+
+.filter-tab-btn {
+    background: none;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+.filter-tab-btn:hover {
+    background-color: #f1f5f9;
+    color: #334155;
+}
+
+.filter-tab-btn.active {
+    background-color: #e2e8f0;
+    color: #0f172a;
+    font-weight: 600;
+}
+
+/* Danh sách card */
+.noti-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Card thông báo riêng lẻ */
+.noti-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.noti-card:hover {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
+}
+
+/* Style cho loại chưa đọc, có tí màu xanh nhạt hoặc sáng hơn */
+.noti-card.unread {
+    background-color: #f8fafc;
+    border-left: 4px solid #3b82f6; /* Viền nhấn bên trái cho thông báo mới */
+}
+
+.noti-card.read {
+    opacity: 0.85;
+}
+
+/* Khung tròn của Icon */
+.noti-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.noti-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Phần chữ ở giữa */
+.noti-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-right: 12px;
+}
+
+.noti-text-desc {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.45;
+    color: #1e293b;
+    font-weight: 500;
+}
+
+/* Trạng thái chưa đọc chữ đậm hơn tí */
+.unread .noti-text-desc {
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.noti-time {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+/* Chấm tròn xanh báo chưa đọc */
+.unread-indicator {
+    width: 10px;
+    height: 10px;
+    background-color: #3b82f6;
+    border-radius: 50%;
+    position: absolute;
+    top: 24px;
+    right: 20px;
+}
+
+/* Trạng thái trống */
+.empty-noti-state {
+    text-align: center;
+    padding: 40px;
+    color: #94a3b8;
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px dashed #e2e8f0;
+}
+
+/* Tương thích điện thoại */
+@media (max-width: 640px) {
+    .noti-header-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .mark-all-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .noti-filters {
+        gap: 6px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+    }
+
+    .filter-tab-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
