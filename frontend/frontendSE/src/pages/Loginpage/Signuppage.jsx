@@ -15,7 +15,8 @@ export default function Signuppage() {
   const [message, setMessage] = useState("");
   const {loginUser} = useAuth();
 
-  async function handleSubmit(event) {
+
+async function handleSubmit(event) {
   // Prevent the browser from refreshing the page
   event.preventDefault();
 
@@ -29,29 +30,31 @@ export default function Signuppage() {
   }
 
   try {
-    const data = await register(email,password,fullname);
-   
-    setMessage("Account created successfully!");
-    try {
-          const data = await login(email, password);
-    
-          loginUser(data.user);
-          console.log('Login response:', data);
-          console.log('Token:', data.token);
-          console.log('User:', data.user);
-    
-          navigate('/');
-        } catch (error) {
-          console.error("Login failed:", error);
-        } 
+    // Step 1: Register the account
+    await register(email, password, fullname);
 
+    // Step 2: Log in using the new account
+    const data = await login(email, password);
 
+    // Step 3: Save the authenticated user in your frontend auth state
+    loginUser(data.user);
+
+    // Debugging
+    console.log("Login response:", data);
+    console.log("Token:", data.token);
+    console.log("User:", data.user);
+
+    // Step 4: Go to the customization page
     navigate("/customize");
   } catch (error) {
-    console.error("Registration failed:", error);
-    setMessage("Cannot connect to the server.");
+    console.error("Registration or login failed:", error);
+
+    setMessage(
+      error.message || "Registration or login failed. Please try again."
+    );
   }
 }
+
 
   return (
     <div className="signup-page">
