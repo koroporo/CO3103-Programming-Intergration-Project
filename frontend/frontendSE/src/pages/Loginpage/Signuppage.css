@@ -156,3 +156,28 @@
   font-size: 12px;
   margin: 12px 0 0 0;
 }
+/* Registration status message */
+.signup-form .Message {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+/* Error message */
+.signup-form .Message.error {
+  color: #8a1515;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+/* Success message */
+.signup-form .Message.success {
+  color: #166534;
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}

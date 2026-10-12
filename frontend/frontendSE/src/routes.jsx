@@ -9,6 +9,7 @@ import LoginPage from "./pages/Loginpage/Loginpage";
 import Signuppage from "./pages/Loginpage/Signuppage";
 import Header from "./components/Homepage/Header";
 import HomePage from "./pages/Homepage/HomePage";
+import CustomizePage from "./pages/Loginpage/Customizepage";
 
 
 export default function AppRoutes() {
@@ -22,6 +23,7 @@ export default function AppRoutes() {
                 <Route path="/login-page" element={<LoginPage></LoginPage>}></Route>
                 <Route path="/signup" element={<Signuppage></Signuppage>}></Route>
                 <Route path="/" element={<><Header></Header><HomePage></HomePage></>}></Route>
+                <Route path="/customize" element={<CustomizePage></CustomizePage>}></Route>
             </Routes>
     );
 }
