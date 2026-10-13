@@ -43,3 +43,6 @@ Content-Type: application/json
   "email": "letrongphuc@hcmut.com",
   "password": "password_phuc_123456"
 }
+
+### Test logout
+POST http://localhost:3000/api/auth/logout

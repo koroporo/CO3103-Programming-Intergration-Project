@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 import './Button.css';
-import { login } from '../../services/login';
+import { login } from '../../services/authServices/login';
 import { useAuth } from '../../hooks/Authentication/useAuth';
 
 export default function LoginPage() {

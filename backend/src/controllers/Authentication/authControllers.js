@@ -76,7 +76,21 @@ async function register(req, res) {
     });
   }
 }
+
+async function logout(req, res) {
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: false, // Match your local HTTP login settings
+    sameSite: "lax",
+  });
+
+  return res.status(200).json({
+    message: "Logout successful",
+  });
+}
+
 module.exports = {
   login,
-  register
+  register,
+  logout
 };
