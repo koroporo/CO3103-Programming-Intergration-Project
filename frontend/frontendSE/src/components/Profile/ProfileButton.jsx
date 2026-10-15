@@ -9,7 +9,7 @@ export default function ProfileButton() {
     // Temporary data — sau này lấy từ login/authentication
     const user = {
         name: "Phuc",
-        role: "learner",
+        role: "instructor",
         status: "Online",
         // Bạn có thể thêm link ảnh avatar ở đây, nếu không có sẽ dùng ảnh mặc định
         avatar: myAvatar // Ví dụ ảnh tạm thời, hoặc ảnh của bạn
@@ -35,6 +35,11 @@ export default function ProfileButton() {
     }
     function applyInstructor() {
         navigate("/apply-instructor");
+        setIsOpen(false);
+    }
+    function handleInstructor()
+    {
+        navigate("/instructor-studio");
         setIsOpen(false);
     }
 
@@ -80,7 +85,7 @@ export default function ProfileButton() {
                         )}
 
                         {user.role === "instructor" && (
-                            <button>Instructor Dashboard</button>
+                            <button onClick={handleInstructor}>Instructor Studio</button>
                         )}
 
                         <hr className="menu-divider" />

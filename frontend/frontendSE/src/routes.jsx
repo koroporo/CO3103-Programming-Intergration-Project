@@ -5,6 +5,7 @@ import History from "./pages/ProfilePage/History";
 import Notifications from "./pages/ProfilePage/Notifications";
 import AdminBoard from "./pages/ProfilePage/AdminBoard";
 import ApplyInstructor from "./pages/ProfilePage/ApplyInstructor";
+import InstructorStudio from "./pages/ProfilePage/InstructorStudio";
 
 export default function AppRoutes() {
     return (
@@ -14,6 +15,7 @@ export default function AppRoutes() {
                 <Route path="/notifications" element={<Notifications />} />
                 <Route path="/admin-board" element={<AdminBoard></AdminBoard>}/>
                 <Route path="/apply-instructor" element={<ApplyInstructor></ApplyInstructor>}></Route>
+                <Route path="/instructor-studio" element={<InstructorStudio></InstructorStudio>}></Route>
             </Routes>
     );
 }
