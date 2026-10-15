@@ -1,0 +1,133 @@
+/* Container chính chứa nội dung của Quiz Manager */
+.quiz-manager-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 800px;
+}
+
+/* Các section "Recently", "All Quiz" */
+.quiz-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.quiz-section-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+/* Danh sách card quiz */
+.quiz-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Từng dòng quiz */
+.quiz-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 650px;
+    padding: 4px 0;
+}
+
+.quiz-card-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Khung vuông đỏ nhạt chứa icon file */
+.quiz-icon-wrapper {
+    width: 44px;
+    height: 44px;
+    background-color: #fce8e6; /* Màu nền đỏ hồng nhạt */
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b84a48; /* Màu icon đỏ đất đồng bộ với logo */
+    flex-shrink: 0;
+}
+
+.quiz-icon-wrapper svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Thông tin chữ */
+.quiz-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.quiz-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1d4ed8; /* Màu xanh dương làm nổi bật link */
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.15s;
+}
+
+.quiz-title:hover {
+    color: #1e40af;
+}
+
+.quiz-path {
+    font-size: 13px;
+    color: #64748b;
+}
+
+/* Placeholder góc phải (hình bầu dục xám nhạt) */
+.quiz-card-right {
+    display: flex;
+    align-items: center;
+}
+
+.pill-placeholder {
+    width: 14px;
+    height: 26px;
+    background-color: #e2e8f0;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.quiz-manager-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 650px;
+    margin-bottom: 8px;
+}
+
+.create-quiz-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #b84a48;
+    color: #ffffff;
+    border: none;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.create-quiz-btn:hover {
+    background-color: #9f423e;
+}
+
+.create-quiz-btn svg {
+    width: 14px;
+    height: 14px;
+}
