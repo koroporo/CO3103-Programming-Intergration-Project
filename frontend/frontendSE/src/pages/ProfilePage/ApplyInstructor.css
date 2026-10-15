@@ -1,0 +1,223 @@
+/* Bao bọc toàn trang */
+.apply-page-wrapper {
+    background-color: #f4f7f9;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card chính của Form */
+.apply-card {
+    background-color: #ffffff;
+    max-width: 600px;
+    width: 100%;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Header */
+.apply-header {
+    margin-bottom: 24px;
+}
+
+.apply-header h1 {
+    font-size: 28px;
+    color: #111827;
+    margin: 0 0 8px 0;
+    font-weight: 700;
+}
+
+.apply-header p {
+    font-size: 15px;
+    color: #4b5563;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Các thành phần trong Form */
+.apply-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+/* Textarea */
+.form-group textarea {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 15px;
+    font-family: inherit;
+    resize: vertical;
+    color: #374151;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group textarea:focus {
+    border-color: #3b82f6;
+}
+
+/* Hộp Upload File (Dashed border) */
+.upload-box {
+    border: 1px dashed #cbd5e1;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.upload-icon-left svg {
+    width: 24px;
+    height: 24px;
+    color: #64748b;
+}
+
+.browse-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #e2e8f0;
+    color: #334155;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.browse-btn:hover {
+    background-color: #cbd5e1;
+}
+
+.browse-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.helper-text {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.file-name-selected {
+    font-size: 14px;
+    color: #059669;
+    font-weight: 500;
+}
+
+/* Checkbox nhóm kinh nghiệm */
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    border: 1px solid #d1d5db;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 15px;
+    color: #374151;
+    cursor: pointer;
+    font-weight: 400 !important;
+}
+
+.checkbox-item input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* Target Score Input */
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-icon input {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 15px;
+    outline: none;
+    color: #374151;
+}
+
+.input-icons {
+    position: absolute;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.input-icons svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Nút Submit & Cancel */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.submit-btn {
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+    background-color: #1d4ed8;
+}
+
+.cancel-btn {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.cancel-btn:hover {
+    background-color: #e2e8f0;
+}
