@@ -37,22 +37,29 @@ app.get("/accounts", async (req, res) => {
       `SELECT
         id,
         email,
-        password_hash,
         full_name,
         role,
         status,
         avatar_url,
         bio,
+        target_overall_band,
+        target_skill,
+        target_exam_date,
         created_at,
         updated_at
       FROM accounts
       ORDER BY id`
     );
 
-    res.json(result.rows);
+    return res.status(200).json({
+      accounts: result.rows,
+    });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Failed to get accounts" });
+    console.error("Failed to fetch accounts:", error);
+
+    return res.status(500).json({
+      message: "Internal server error",
+    });
   }
 });
 
@@ -65,8 +72,10 @@ app.listen(PORT, () => {
 
 //LOG IN, REGISTER 
 const authRoutes = require("./routes/Authentication/authRoutes");
+const preferencesRoutes = require("./routes/Authentication/preferencesRoutes");
 
 app.use("/api/auth", authRoutes);
+app.use("/api/preferences", preferencesRoutes);
 if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

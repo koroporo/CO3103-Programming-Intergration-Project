@@ -1,6 +1,6 @@
 import { useAuth } from '../../hooks/Authentication/useAuth';
 import LoginButton from './LoginButton';
-import NotificationBell from './NotificationBell';
+// import NotificationBell from './NotificationBell';
 import ProfileButton from '../Profile/ProfileButton';
 import SearchBar from './SearchBar';
 import './Header.css';
@@ -15,7 +15,6 @@ export default function Header() {
       </a>
       <SearchBar />
       <div className="site-header__actions">
-        {isLoggedIn && <NotificationBell />}
         {isLoggedIn ? <ProfileButton /> : <LoginButton />}
       </div>
     </header>

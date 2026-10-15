@@ -2,36 +2,53 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../services/authServices/logout";
 import { useAuth } from "../../hooks/Authentication/useAuth";
+import myAvatar from "../../assets/avt.jpg";
+import "./profilebutton.css";
 
 export default function ProfileButton() {
   const [isOpen, setIsOpen] = useState(false);
-    const { logoutUser } = useAuth();
-  // Temporary data — later get this from login/authentication
+  const { logoutUser } = useAuth();
+  const navigate = useNavigate();
+
+  // Temporary user data
   const user = {
     name: "Phuc",
-    role: "admin",
+    role: "learner",
     status: "Online",
+    avatar: myAvatar,
   };
-  const navigate = useNavigate();
+
   function handleMyAccount() {
+    setIsOpen(false);
     navigate("/my-account");
   }
+
   function handleHistory() {
+    setIsOpen(false);
     navigate("/history");
   }
+
   function handleNotifications() {
+    setIsOpen(false);
     navigate("/notifications");
   }
+
   function handleAdmin() {
+    setIsOpen(false);
     navigate("/admin-board");
   }
+
   function applyInstructor() {
+    setIsOpen(false);
     navigate("/apply-instructor");
   }
 
   async function handleLogout() {
     try {
+      console.log("Logout button clicked");
+
       await logout();
+      console.log("Logout API successful");
 
       logoutUser();
       setIsOpen(false);
@@ -43,32 +60,81 @@ export default function ProfileButton() {
 
   return (
     <div className="profile-container">
-      <button className="profile-button" onClick={() => setIsOpen(!isOpen)}>
-        👤 User Profile
+      <button
+        className="profile-button-trigger"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <img
+          src={user.avatar}
+          alt="User Avatar"
+          className="profile-avatar"
+        />
+        <span className="arrow-down">▼</span>
       </button>
 
       {isOpen && (
         <div className="profile-menu">
           <div className="profile-info">
-            <strong>{user.name}</strong> <br></br>
-            Role: <span>{user.role}</span> <br></br>
-            Status: <span>{user.status}</span>
+            <strong>{user.name}</strong>
+
+            <div className="profile-meta">
+              <span>Role: {user.role}</span>
+              <span>
+                Status:{" "}
+                <span className="status-online">
+                  {user.status}
+                </span>
+              </span>
+            </div>
           </div>
 
-          <button onClick={handleMyAccount}>My Account</button>
-          <button onClick={handleHistory}>History</button>
-          <button onClick={handleNotifications}>Notifications</button>
-          {user.role === "learner" && (
-            <button onClick={applyInstructor}>Apply to be instructor</button>
-          )}
+          <hr className="menu-divider" />
 
-          {user.role === "admin" && (
-            <button onClick={handleAdmin}>Admin Dashboard</button>
-          )}
+          <div className="menu-links">
+            <button onClick={handleMyAccount}>
+              My Account
+            </button>
 
-          {user.role === "instructor" && <button>Instructor Dashboard</button>}
+            <button onClick={handleHistory}>
+              History
+            </button>
 
-          <button onClick={handleLogout}>Logout</button>
+            <button onClick={handleNotifications}>
+              Notifications
+            </button>
+
+            {user.role === "learner" && (
+              <button onClick={applyInstructor}>
+                Apply to be instructor
+              </button>
+            )}
+
+            {user.role === "admin" && (
+              <button onClick={handleAdmin}>
+                Admin Dashboard
+              </button>
+            )}
+
+            {user.role === "instructor" && (
+              <button
+                onClick={() => {
+                  setIsOpen(false);
+                  navigate("/instructor-dashboard");
+                }}
+              >
+                Instructor Dashboard
+              </button>
+            )}
+
+            <hr className="menu-divider" />
+
+            <button
+              className="logout-btn"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          </div>
         </div>
       )}
     </div>

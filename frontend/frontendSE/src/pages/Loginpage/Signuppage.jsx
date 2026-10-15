@@ -13,6 +13,8 @@ export default function Signuppage() {
   const [secondPassword, setSecondPassword] = useState("");
   const [message, setMessage] = useState("");
   const { loginUser } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showSecondPassword, setShowSecondPassword] = useState(false);
 
   async function handleSubmit(event) {
     // Prevent the browser from refreshing the page
@@ -76,7 +78,6 @@ export default function Signuppage() {
           </svg>
           Back
         </button>
-
         {/* Tiêu đề */}
         <div className="signup-header">
           <h1>Sign Up</h1>
@@ -103,7 +104,6 @@ export default function Signuppage() {
             <input id="lastName" type="text" placeholder="Last name" required />
           </div> */}
         </div>
-
         {/* Khung nhập Email có nút Verify */}
         <div className="form-group">
           <label htmlFor="email">Email</label>
@@ -118,41 +118,62 @@ export default function Signuppage() {
               }}
               value={email}
             />
-            <button type="button" className="btn-verify">
+            {/* <button type="button" className="btn-verify">
               Verify
-            </button>
+            </button> */}
           </div>
         </div>
-
         {/* Mật khẩu */}
         <div className="form-group">
           <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            placeholder="Create a password"
-            required
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-            value={password}
-          />
-        </div>
 
+          <div className="password-wrapper">
+            <input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Create a password"
+              autoComplete="new-password"
+              required
+              onChange={(event) => setPassword(event.target.value)}
+              value={password}
+            />
+
+            <button
+              type="button"
+              className="eye-icon"
+              onClick={() => setShowPassword((previous) => !previous)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? "🙈" : "👁"}
+            </button>
+          </div>
+        </div>
         <div className="form-group">
           <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            id="confirmPassword"
-            type="password"
-            placeholder="Confirm password"
-            required
-            onChange={(event) => {
-              setSecondPassword(event.target.value);
-            }}
-            value={secondPassword}
-          />
-        </div>
 
+          <div className="password-wrapper">
+            <input
+              id="confirmPassword"
+              type={showSecondPassword ? "text" : "password"}
+              placeholder="Confirm password"
+              autoComplete="new-password"
+              required
+              onChange={(event) => setSecondPassword(event.target.value)}
+              value={secondPassword}
+            />
+
+            <button
+              type="button"
+              className="eye-icon"
+              onClick={() => setShowSecondPassword((previous) => !previous)}
+              aria-label={
+                showSecondPassword ? "Hide password" : "Show password"
+              }
+            >
+              {showSecondPassword ? "🙈" : "👁"}
+            </button>
+          </div>
+        </div>
         {/* Nút Sign Up chính giữa */}
         <div className="submit-row">
           <button type="submit" className="btn-signup-submit">

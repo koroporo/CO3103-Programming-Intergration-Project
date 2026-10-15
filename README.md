@@ -29,6 +29,11 @@ $env:DATABASE_URL="postgres://postgres:postgres@localhost:5432/english_platform"
 npx node-pg-migrate up --migrations-dir .\database\seed (dùng để seed data cho database)
 npx node-pg-migrate down --migrations-dir .\database\seed (xóa hết những data đã seed)
 
+## migrate database
+Get-Content database/migration/20261015_add_target_skill.sql | docker compose exec -T postgres psql -U postgres -d english_platform
+## verify migration 
+docker compose exec postgres psql -U postgres -d english_platform -c "SELECT column_name, data_type FROM information_schema.columns WHERE table_name = 'accounts' AND column_name = 'target_skill';"
+
 ## API tài khoản
 
 ## để send request -> phải tải VSCode extension REST client
