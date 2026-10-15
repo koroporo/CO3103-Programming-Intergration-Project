@@ -34,3 +34,12 @@ Content-Type: application/json
   "email": "letrongphuc@hcmut.com",
   "password": "password_phuc_123456"
 }
+
+### Course search
+GET http://localhost:3000/api/courses
+
+### Course search base on word
+GET http://localhost:3000/api/courses?search=ielts
+
+### Course search - error
+GET http://localhost:3000/api/courses?page=0

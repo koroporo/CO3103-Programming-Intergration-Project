@@ -45,3 +45,8 @@ app.listen(PORT, () => {
 const authRoutes = require("./routes/Authentication/authRoutes");
 
 app.use("/api/auth", authRoutes);
+
+//COURSES (search)
+const courseRoutes = require("./routes/Course/courseRoutes");
+
+app.use("/api/courses", courseRoutes);
