@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './LoginPage.css';
-import './Button.css';
-import { login } from '../../services/authServices/login';
-import { useAuth } from '../../hooks/Authentication/useAuth';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./LoginPage.css";
+import "./Button.css";
+import { login } from "../../services/authServices/login";
+import { useAuth } from "../../hooks/Authentication/useAuth";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,20 +17,19 @@ export default function LoginPage() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    setError('');
+    setError("");
     setIsLoading(true);
 
     try {
       const data = await login(email, password);
-
       loginUser(data.user);
-      console.log('Login response:', data);
-      console.log('Token:', data.token);
-      console.log('User:', data.user);
+      console.log("Login response:", data);
+      console.log("Token:", data.token);
+      console.log("User:", data.user);
 
-      navigate('/');
+      navigate("/");
     } catch (err) {
-      setError(err.message || 'Login failed. Please try again.');
+      setError(err.message || "Login failed. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -42,7 +41,7 @@ export default function LoginPage() {
         <button
           type="button"
           className="btn-back"
-          onClick={() => navigate('/')}
+          onClick={() => navigate("/")}
         >
           <svg
             width="18"
@@ -85,7 +84,7 @@ export default function LoginPage() {
           <input
             id="password"
             name="password"
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? "text" : "password"}
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             placeholder="Password"
@@ -97,7 +96,7 @@ export default function LoginPage() {
             type="button"
             className="eye-icon"
             onClick={() => setShowPassword((previous) => !previous)}
-            aria-label={showPassword ? 'Hide password' : 'Show password'}
+            aria-label={showPassword ? "Hide password" : "Show password"}
             aria-pressed={showPassword}
           >
             <svg
@@ -132,12 +131,8 @@ export default function LoginPage() {
           </p>
         )}
 
-        <button
-          className="btn-signin"
-          type="submit"
-          disabled={isLoading}
-        >
-          {isLoading ? 'Signing in...' : 'Sign In'}
+        <button className="btn-signin" type="submit" disabled={isLoading}>
+          {isLoading ? "Signing in..." : "Sign In"}
         </button>
 
         <div className="divider">
@@ -149,22 +144,22 @@ export default function LoginPage() {
             src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
             alt=""
             aria-hidden="true"
-            style={{ width: '18px', height: '18px' }}
+            style={{ width: "18px", height: "18px" }}
           />
           Continue with Google
         </button>
 
         <p className="footer-text">
-          First time here?{' '}
+          First time here?{" "}
           <span
             className="link-create"
-            onClick={() => navigate('/signup')}
+            onClick={() => navigate("/signup")}
             role="link"
             tabIndex={0}
             onKeyDown={(event) => {
-              if (event.key === 'Enter' || event.key === ' ') {
+              if (event.key === "Enter" || event.key === " ") {
                 event.preventDefault();
-                navigate('/signup');
+                navigate("/signup");
               }
             }}
           >

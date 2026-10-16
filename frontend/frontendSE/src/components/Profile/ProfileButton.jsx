@@ -7,16 +7,11 @@ import "./profilebutton.css";
 
 export default function ProfileButton() {
   const [isOpen, setIsOpen] = useState(false);
-  const { logoutUser } = useAuth();
+  const { user, logoutUser } = useAuth();
   const navigate = useNavigate();
 
-  // Temporary user data
-  const user = {
-    name: "Phuc",
-    role: "learner",
-    status: "Online",
-    avatar: myAvatar,
-  };
+  const name = user?.full_name || "User";
+  const role = user?.role || "Unknown";
 
   function handleMyAccount() {
     setIsOpen(false);
@@ -45,11 +40,7 @@ export default function ProfileButton() {
 
   async function handleLogout() {
     try {
-      console.log("Logout button clicked");
-
       await logout();
-      console.log("Logout API successful");
-
       logoutUser();
       setIsOpen(false);
       navigate("/");
@@ -58,14 +49,22 @@ export default function ProfileButton() {
     }
   }
 
+  // Avoid rendering the profile menu for an unauthenticated user.
+  if (!user) {
+    return null;
+  }
+
   return (
     <div className="profile-container">
       <button
         className="profile-button-trigger"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setIsOpen((previous) => !previous)}
+        aria-expanded={isOpen}
+        aria-haspopup="true"
+        aria-label={`Profile menu for ${name}, role ${role}`}
       >
         <img
-          src={user.avatar}
+          src={myAvatar}
           alt="User Avatar"
           className="profile-avatar"
         />
@@ -75,47 +74,33 @@ export default function ProfileButton() {
       {isOpen && (
         <div className="profile-menu">
           <div className="profile-info">
-            <strong>{user.name}</strong>
+            <strong>{name}</strong>
 
             <div className="profile-meta">
-              <span>Role: {user.role}</span>
-              <span>
-                Status:{" "}
-                <span className="status-online">
-                  {user.status}
-                </span>
-              </span>
+              <span>Role: {role}</span>
             </div>
           </div>
 
           <hr className="menu-divider" />
 
           <div className="menu-links">
-            <button onClick={handleMyAccount}>
-              My Account
-            </button>
+            <button onClick={handleMyAccount}>My Account</button>
+            <button onClick={handleHistory}>History</button>
+            <button onClick={handleNotifications}>Notifications</button>
 
-            <button onClick={handleHistory}>
-              History
-            </button>
-
-            <button onClick={handleNotifications}>
-              Notifications
-            </button>
-
-            {user.role === "learner" && (
+            {role === "learner" && (
               <button onClick={applyInstructor}>
                 Apply to be instructor
               </button>
             )}
 
-            {user.role === "admin" && (
+            {role === "admin" && (
               <button onClick={handleAdmin}>
                 Admin Dashboard
               </button>
             )}
 
-            {user.role === "instructor" && (
+            {role === "instructor" && (
               <button
                 onClick={() => {
                   setIsOpen(false);
@@ -128,10 +113,7 @@ export default function ProfileButton() {
 
             <hr className="menu-divider" />
 
-            <button
-              className="logout-btn"
-              onClick={handleLogout}
-            >
+            <button className="logout-btn" onClick={handleLogout}>
               Logout
             </button>
           </div>
