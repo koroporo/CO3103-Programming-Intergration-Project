@@ -1,14 +1,14 @@
 const courseService = require("../../services/Course/courseServices");
 
 async function searchCourses(req, res) {
-    const searchTerm = req.query.search ?? "";
-
     try {
-        const result = await courseService.searchCourses(
-            searchTerm,
-            req.query.page,
-            req.query.limit
-        );
+        const result = await courseService.searchCourses({
+            search: req.query.search ?? "",
+            skill: req.query.skill,
+            level: req.query.level,
+            page: req.query.page,
+            limit: req.query.limit
+        });
         return res.json(result);
     } catch (error) {
         if (error.statusCode === 400) {
