@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import "./ApplyInstructor.css";
 // Giữ nguyên import hàm gửi API của bạn
 import { sendInstructorApplication } from "../../services/sendInstructorApplication";
@@ -6,8 +6,8 @@ import { sendInstructorApplication } from "../../services/sendInstructorApplicat
 export default function ApplyInstructor() {
     // Các state quản lý form
     const [description, setDescription] = useState("");
-    const [experience, setExperience] = useState("");
-    const [targetScore, setTargetScore] = useState("");
+    //const [experience, setExperience] = useState("");
+    //const [targetScore, setTargetScore] = useState("");
     const [selectedFile, setSelectedFile] = useState(null);
 
     // Xử lý khi chọn file
@@ -66,7 +66,7 @@ export default function ApplyInstructor() {
                     </div>
 
                     {/* 3. TEACHING EXPERIENCE */}
-                    <div className="form-group">
+                    {/* <div className="form-group">
                         <label>Teaching Experience</label>
                         <div className="checkbox-group">
                             <label className="checkbox-item">
@@ -86,10 +86,10 @@ export default function ApplyInstructor() {
                                 <span>Over 3 years</span>
                             </label>
                         </div>
-                    </div>
+                    </div> */}
 
                     {/* 4. TARGET SCORE */}
-                    <div className="form-group">
+                    {/* <div className="form-group">
                         <label>Target IELTS Score</label>
                         <div className="input-with-icon">
                             <input 
@@ -103,7 +103,7 @@ export default function ApplyInstructor() {
                                 <svg viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     {/* BUTTONS */}
                     <div className="form-actions">
@@ -111,7 +111,6 @@ export default function ApplyInstructor() {
                         <button className="cancel-btn">Cancel</button>
                     </div>
                 </div>
-
             </div>
         </div>
     );
