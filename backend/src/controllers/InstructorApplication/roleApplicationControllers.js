@@ -1,5 +1,5 @@
 const roleApplicationServices = require(
-    "../services/roleApplicationServices"
+    "../../services/InstructorApplication/roleApplicationServices"
 );
 
 async function submitInstructorApplication(req, res) {
@@ -8,12 +8,14 @@ async function submitInstructorApplication(req, res) {
         const applicantId = req.user.id;
 
         const { application_text } = req.body;
+        const evidenceUrl = null;
 
         const application =
             await roleApplicationServices
                 .submitInstructorApplication(
                     applicantId,
-                    application_text
+                    application_text,
+                    evidenceUrl
                 );
 
         return res.status(201).json({

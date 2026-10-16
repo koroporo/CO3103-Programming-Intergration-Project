@@ -3,13 +3,15 @@ const router = express.Router();
 
 const {
     submitInstructorApplication
-} = require("../controllers/roleApplicationController");
+} = require("../../controllers/InstructorApplication/roleApplicationControllers");
 
-const requireAuth = require("../middleware/requireAuth"); // <-- this one need to be fixed
+const {
+    authenticate
+} = require("../../middleware/authentication/authMiddleware");
 
 router.post(
     "/",
-    requireAuth,
+    authenticate,
     submitInstructorApplication
 );
 

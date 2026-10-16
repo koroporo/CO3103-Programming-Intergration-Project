@@ -2,6 +2,7 @@ const { verifyToken } = require("../../services/authentication/tokenService");
 
 function authenticate(req, res, next) {
   // 1. Get the JWT from the HttpOnly cookie
+  console.log("Cookies:", req.cookies); //debug
   const token = req.cookies?.token;
 
   if (!token) {
@@ -15,6 +16,8 @@ function authenticate(req, res, next) {
 
   try {
     payload = verifyToken(token);
+    console.log("JWT verified successfully"); //debug
+    console.log("Payload:", payload); //debug
   } catch (error) {
     return res.status(401).json({
       message: "Invalid or expired token"

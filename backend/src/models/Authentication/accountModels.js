@@ -6,7 +6,7 @@ async function findByEmail(email) {
      FROM accounts
      WHERE email = $1
      LIMIT 1`,
-    [email]
+    [email],
   );
 
   return result.rows[0] || null;
@@ -14,18 +14,17 @@ async function findByEmail(email) {
 async function createAccount({ email, passwordHash, fullName }) {
   const result = await pool.query(
     `INSERT INTO accounts
-       (email, password_hash, full_name, role, status,
+       (email, password_hash, full_name, status,
         created_at, updated_at)
-     VALUES ($1, $2, $3, 'user', 'active', NOW(), NOW())
-     RETURNING id, email, full_name, role, status, created_at`,
-    [email, passwordHash, fullName]
+     VALUES ($1, $2, $3, 'active', NOW(), NOW())
+     RETURNING *;`,
+    [email, passwordHash, fullName],
   );
 
   return result.rows[0];
 }
 
-
 module.exports = {
   findByEmail,
-  createAccount
+  createAccount,
 };

@@ -25,6 +25,8 @@ Content-Type: application/json
 ### Get all accounts
 GET http://localhost:3000/accounts
 
+### Get all apllixcations
+GET http://localhost:3000/role-applications
 
 ### Login - Test Learner
 POST http://localhost:3000/api/auth/login
