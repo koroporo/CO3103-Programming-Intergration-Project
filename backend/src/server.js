@@ -16,21 +16,7 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-
-//WORKFLOW HERE
-
-app.get("/", (req, res) => {
-  res.json({ message: "Backend is running" });
-});
-app.get("/health", async (req, res) => {
-  try {
-    await pool.query("SELECT 1");
-    res.json({ status: "ok" });
-  } catch (error) {
-    console.error("Database health check failed", error);
-    res.status(503).json({ status: "error" });
-  }
-});
+// DEBUG
 app.get("/accounts", async (req, res) => {
   try {
     const result = await pool.query(
@@ -62,7 +48,128 @@ app.get("/accounts", async (req, res) => {
     });
   }
 });
+// DEBUG: Create a course
+app.post("/courses", async (req, res) => {
+  try {
+    const {
+      instructor_id,
+      category_id,
+      title,
+      slug,
+      description,
+      prerequisite_text,
+      thumbnail_url,
+      status,
+      is_featured,
+    } = req.body;
 
+    // Basic validation
+    if (
+      !instructor_id ||
+      !category_id ||
+      !title ||
+      !slug ||
+      !description ||
+      !status
+    ) {
+      return res.status(400).json({
+        message: "Missing required course fields",
+      });
+    }
+
+    const result = await pool.query(
+      `INSERT INTO courses (
+        instructor_id,
+        category_id,
+        title,
+        slug,
+        description,
+        prerequisite_text,
+        thumbnail_url,
+        status,
+        is_featured,
+        created_at,
+        updated_at
+      )
+      VALUES (
+        $1, $2, $3, $4, $5, $6, $7, $8, $9, NOW(), NOW()
+      )
+      RETURNING *`,
+      [
+        instructor_id,
+        category_id,
+        title,
+        slug,
+        description,
+        prerequisite_text ?? null,
+        thumbnail_url ?? null,
+        status,
+        is_featured ?? false,
+      ]
+    );
+
+    return res.status(201).json({
+      message: "Course created successfully",
+      course: result.rows[0],
+    });
+  } catch (error) {
+    console.error("Failed to create course:", error);
+
+    return res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+});
+// DEBUG: Get all courses
+app.get("/courses", async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT
+        id,
+        instructor_id,
+        category_id,
+        title,
+        slug,
+        description,
+        prerequisite_text,
+        thumbnail_url,
+        status,
+        is_featured,
+        created_at,
+        updated_at,
+        published_at
+      FROM courses
+      ORDER BY id`
+    );
+
+    return res.status(200).json({
+      courses: result.rows,
+    });
+  } catch (error) {
+    console.error("Failed to fetch courses:", error);
+
+    return res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+});
+
+
+
+//WORKFLOW HERE
+
+app.get("/", (req, res) => {
+  res.json({ message: "Backend is running" });
+});
+app.get("/health", async (req, res) => {
+  try {
+    await pool.query("SELECT 1");
+    res.json({ status: "ok" });
+  } catch (error) {
+    console.error("Database health check failed", error);
+    res.status(503).json({ status: "error" });
+  }
+});
 
 const PORT = process.env.PORT || 3000;
 
@@ -81,5 +188,12 @@ if (require.main === module) {
     console.log(`Server running on port ${PORT}`);
   });
 }
+
+// COURSES
+const courseRoutes = require("./routes/Courses/coursesRoutes");
+
+app.use("/api/courses", courseRoutes);
+
+
 
 module.exports = app;

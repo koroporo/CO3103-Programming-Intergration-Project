@@ -46,3 +46,24 @@ Content-Type: application/json
 
 ### Test logout
 POST http://localhost:3000/api/auth/logout
+
+
+### Post course
+POST http://localhost:3000/courses
+Content-Type: application/json
+
+{
+  "instructor_id": 3,
+  "category_id": 1,
+  "title": "Course Mastery Something",
+  "slug": "ielts-writing-task-2",
+  "description": "Learn the fundamentals of IELTS Speaking.",
+  "prerequisite_text": "Basic English knowledge",
+  "thumbnail_url": "../frontend/frontendSE/public/course-assets/academic-mastery.png",
+  "status": "published",
+  "is_featured": true
+}
+### Get course with ID 6
+GET http://localhost:3000/api/courses/6
+### GET course
+GET http://localhost:3000/courses
