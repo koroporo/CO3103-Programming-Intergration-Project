@@ -1,6 +1,7 @@
 const express = require("express");
 const crypto = require("crypto");
 const pool = require("./db");
+const courseRoutes = require("./routes/courseRoutes");
 const {
   createResetToken,
   getResetTokenExpiry,
@@ -222,6 +223,8 @@ app.get("/accounts", async (req, res) => {
     res.status(500).json({ error: "Failed to get accounts" });
   }
 });
+
+app.use("/course", courseRoutes);
 
 const PORT = process.env.PORT || 3000;
 
