@@ -219,12 +219,14 @@ if (require.main === module) {
   });
 }
 
-// COURSES
-const courseRoutes = require("./routes/Courses/coursesRoutes");
-app.use("/api/courses", courseRoutes);
+
 
 // ROLE APPLICATIONS
 const applicationRoutes = require("./routes/InstructorApplication/roleApplicationRoutes");
 app.use("/role-applications", applicationRoutes);
 
 module.exports = app;
+
+//COURSES 
+const courseRoutes = require("./routes/Course/courseRoutes");
+app.use("/api/courses", courseRoutes);

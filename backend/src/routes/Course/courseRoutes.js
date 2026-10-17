@@ -1,7 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const pool = require("../../db"); // Adjust to your PostgreSQL connection file
+const courseController = require("../../controllers/Course/courseControllers");
 
+// Search courses
+router.get("/search", courseController.searchCourses);
+
+// Load all courses to display all homepage
 router.get("/", async (req, res) => {
   try {
     const result = await pool.query(`
@@ -24,8 +29,8 @@ ORDER BY c.created_at DESC;
   }
 });
 
-// GET one course: GET /api/courses/:id
-router.get("/:id", async (req, res) => {
+// GET one course: GET /api/courses/details/:id
+router.get("/details/:id", async (req, res) => {
   try {
     const { id } = req.params;
 

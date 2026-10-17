@@ -12,7 +12,7 @@ export default function CourseDetail() {
     async function fetchCourse() {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/courses/${id}`
+          `http://localhost:3000/api/courses/details/${id}`
         );
 
         if (!response.ok) {

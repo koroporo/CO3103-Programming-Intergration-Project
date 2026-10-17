@@ -1,7 +1,7 @@
-
 import { useEffect, useState } from "react";
 import CourseCard from "../../components/Homepage/CourseCard";
 import "./HomePage.css";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   const [courses, setCourses] = useState([]);
@@ -42,7 +42,7 @@ export default function HomePage() {
       {featuredCourse && (
         <a
           className="featured-course"
-          href={`/courses/${featuredCourse.id}`}
+          href={`/courses/details/${featuredCourse.id}`}
           aria-label={`View course: ${featuredCourse.title}`}
         >
           <img
@@ -55,10 +55,7 @@ export default function HomePage() {
             <h1>{featuredCourse.title}</h1>
 
             <div className="featured-course__instructor">
-              <img
-                src="/course-assets/instructor-avatar.svg"
-                alt=""
-              />
+              <img src="/course-assets/instructor-avatar.svg" alt="" />
               <span>
                 {featuredCourse.instructor ?? featuredCourse.instructor_id}
               </span>
@@ -69,13 +66,19 @@ export default function HomePage() {
 
       <section className="course-grid" aria-label="IELTS courses">
         {courses.map((course) => (
-          <CourseCard
+          <Link
             key={course.id}
-            id={course.id}
-            thumbnail={course.thumbnail_url}
-            title={course.title}
-            instructor={course.instructor ?? course.instructor_id}
-          />
+            to={`/courses/details/${course.id}`}
+            className="course-card-link"
+            aria-label={`View course: ${course.title}`}
+          >
+            <CourseCard
+              id={course.id}
+              thumbnail={course.thumbnail_url}
+              title={course.title}
+              instructor={course.instructor ?? course.instructor_id}
+            />
+          </Link>
         ))}
       </section>
     </div>

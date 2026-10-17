@@ -11,6 +11,7 @@ import Header from "./components/Homepage/Header";
 import HomePage from "./pages/Homepage/HomePage";
 import CustomizePage from "./pages/Loginpage/Customizepage";
 import CourseDetail from "./pages/Courses/CourseDetails";
+import SearchResultsPage from "./pages/Homepage/SearchResultsPage";
 
 
 export default function AppRoutes() {
@@ -23,8 +24,9 @@ export default function AppRoutes() {
                 <Route path="/apply-instructor" element={<ApplyInstructor></ApplyInstructor>}></Route>
                 <Route path="/login-page" element={<LoginPage></LoginPage>}></Route>
                 <Route path="/signup" element={<Signuppage></Signuppage>}></Route>
+                <Route path="/courses" element={<><Header></Header><SearchResultsPage></SearchResultsPage></>}></Route>
                 <Route path="/" element={<><Header></Header><HomePage></HomePage></>}></Route>
-                <Route path="/courses/:id" element={<CourseDetail></CourseDetail>} />
+                <Route path="/courses/details/:id" element={<CourseDetail></CourseDetail>} />
                 <Route path="/customize" element={<CustomizePage></CustomizePage>}></Route>
             </Routes>
     );
