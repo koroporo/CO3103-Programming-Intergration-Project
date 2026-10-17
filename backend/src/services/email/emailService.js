@@ -1,11 +1,22 @@
-const { Resend } = require("resend");
+const nodemailer = require("nodemailer");
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_APP_PASSWORD,
+  },
+});
 
 async function sendPasswordResetEmail(email, resetLink) {
-  const { data, error } = await resend.emails.send({
-    from: "English Learning Platform <onboarding@resend.dev>",
-    to: [email],
+  const info = await transporter.sendMail({
+    from: {
+      name: "English Learning Platform",
+      address: process.env.GMAIL_USER,
+    },
+    to: email,
     subject: "Reset your password",
     text: [
       "You requested a password reset.",
@@ -24,12 +35,9 @@ async function sendPasswordResetEmail(email, resetLink) {
     `,
   });
 
-  if (error) {
-    console.error("Resend email error:", error);
-    throw new Error("Failed to send password reset email");
-  }
+  console.log("Password-reset email accepted:", info.messageId);
 
-  return data;
+  return info;
 }
 
 module.exports = { sendPasswordResetEmail };

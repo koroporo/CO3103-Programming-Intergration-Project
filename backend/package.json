@@ -20,8 +20,7 @@
     "jsonwebtoken": "^9.0.3",
     "node-pg-migrate": "^9.0.0",
     "nodemailer": "^10.1.2",
-    "pg": "^8.23.0",
-    "resend": "^6.34.1"
+    "pg": "^8.23.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
