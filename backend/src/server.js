@@ -218,7 +218,9 @@ if (require.main === module) {
     console.log(`Server running on port ${PORT}`);
   });
 }
-
+// RESET PASSWORD
+const passwordResetRoutes = require("./routes/Authentication/passwordResetRoutes");
+app.use("/auth", passwordResetRoutes);
 
 
 // ROLE APPLICATIONS

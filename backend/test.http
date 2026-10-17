@@ -17,9 +17,9 @@ POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-  "email": "learner@example.com",
-  "password": "SecurePass123",
-  "full_name": "Test Learner"
+  "email": "ltrongphuc06@gmail.com",
+  "password": "phuc2006",
+  "full_name": "Lê Trọng Phúc"
 }
 
 ### Get all accounts
@@ -42,13 +42,28 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "letrongphuc@hcmut.com",
-  "password": "password_phuc_123456"
+  "email": "ltrongphuc06@gmail.com",
+  "password": "phuc2006"
 }
 
 ### Test logout
 POST http://localhost:3000/api/auth/logout
 
+### Request password reset
+POST http://localhost:3000/auth/forgot-password
+Content-Type: application/json
+
+{
+  "email": "ltrongphuc06@gmail.com"
+}
+### Reset password
+POST http://localhost:3000/auth/reset-password
+Content-Type: application/json
+
+{
+  "token": "212c3069f6ee4316217fee7af944fe969f0b93d0409cad434d544e8045e88989",
+  "password": "NewSecurePassword123!"
+}
 
 ### Post course
 POST http://localhost:3000/courses

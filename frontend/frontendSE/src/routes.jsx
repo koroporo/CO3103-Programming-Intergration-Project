@@ -12,22 +12,48 @@ import HomePage from "./pages/Homepage/HomePage";
 import CustomizePage from "./pages/Loginpage/Customizepage";
 import CourseDetail from "./pages/Courses/CourseDetails";
 import SearchResultsPage from "./pages/Homepage/SearchResultsPage";
-
+import ResetPasswordPage from "./pages/Loginpage/ResetPasswordPage";
 
 export default function AppRoutes() {
-    return (
-            <Routes>
-                <Route path="/my-account" element={<MyAccount />} />
-                <Route path="/history" element={<History />} />
-                <Route path="/notifications" element={<Notifications />} />
-                <Route path="/admin-board" element={<AdminBoard></AdminBoard>}/>
-                <Route path="/apply-instructor" element={<ApplyInstructor></ApplyInstructor>}></Route>
-                <Route path="/login-page" element={<LoginPage></LoginPage>}></Route>
-                <Route path="/signup" element={<Signuppage></Signuppage>}></Route>
-                <Route path="/courses" element={<><Header></Header><SearchResultsPage></SearchResultsPage></>}></Route>
-                <Route path="/" element={<><Header></Header><HomePage></HomePage></>}></Route>
-                <Route path="/courses/details/:id" element={<CourseDetail></CourseDetail>} />
-                <Route path="/customize" element={<CustomizePage></CustomizePage>}></Route>
-            </Routes>
-    );
+  return (
+    <Routes>
+      <Route path="/my-account" element={<MyAccount />} />
+      <Route path="/history" element={<History />} />
+      <Route path="/notifications" element={<Notifications />} />
+      <Route path="/admin-board" element={<AdminBoard></AdminBoard>} />
+      <Route
+        path="/apply-instructor"
+        element={<ApplyInstructor></ApplyInstructor>}
+      ></Route>
+      <Route path="/login-page" element={<LoginPage></LoginPage>}></Route>
+      <Route path="/signup" element={<Signuppage></Signuppage>}></Route>
+      <Route
+        path="/courses"
+        element={
+          <>
+            <Header></Header>
+            <SearchResultsPage></SearchResultsPage>
+          </>
+        }
+      ></Route>
+      <Route
+        path="/"
+        element={
+          <>
+            <Header></Header>
+            <HomePage></HomePage>
+          </>
+        }
+      ></Route>
+      <Route
+        path="/courses/details/:id"
+        element={<CourseDetail></CourseDetail>}
+      />
+      <Route
+        path="/customize"
+        element={<CustomizePage></CustomizePage>}
+      ></Route>
+      <Route path="/reset-password" element={<ResetPasswordPage />} />
+    </Routes>
+  );
 }

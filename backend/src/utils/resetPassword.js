@@ -1,3 +1,7 @@
+const crypto = require("crypto");
+
+const RESET_TOKEN_BYTES = 32;
+const RESET_TOKEN_TTL_MINUTES = 15;
 // ==================== PASSWORD RESET ====================
 
 function createResetToken() {
