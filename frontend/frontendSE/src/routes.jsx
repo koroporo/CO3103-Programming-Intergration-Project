@@ -10,6 +10,9 @@ import Signuppage from "./pages/Loginpage/Signuppage";
 import Header from "./components/Homepage/Header";
 import HomePage from "./pages/Homepage/HomePage";
 
+import Course from "./pages/CoursePage/Course";
+import Lesson from "./pages/LessonPage/Lesson"; 
+
 
 export default function AppRoutes() {
     return (
@@ -22,6 +25,9 @@ export default function AppRoutes() {
                 <Route path="/login-page" element={<LoginPage></LoginPage>}></Route>
                 <Route path="/signup" element={<Signuppage></Signuppage>}></Route>
                 <Route path="/" element={<><Header></Header><HomePage></HomePage></>}></Route>
+                <Route path="/courses/:courseId" element={<><Header></Header><Course/></>}></Route>
+                <Route path="/courses/:courseId/:lessonId" element={<><Header></Header><Lesson/></>}></Route>
+
             </Routes>
     );
 }

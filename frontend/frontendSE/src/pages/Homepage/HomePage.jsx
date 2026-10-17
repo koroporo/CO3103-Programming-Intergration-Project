@@ -18,7 +18,7 @@ export default function HomePage() {
         <div className="featured-course__details">
           <h1>{featuredCourse.title}</h1>
           <div className="featured-course__instructor">
-            <img src="/course-assets/instructor-avatar.svg" alt="" />
+            <img src={featuredCourse.instructorThumbnail} alt="" />
             <span>{featuredCourse.instructor}</span>
           </div>
         </div>

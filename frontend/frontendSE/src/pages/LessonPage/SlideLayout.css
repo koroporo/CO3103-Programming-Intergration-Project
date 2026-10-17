@@ -1,0 +1,19 @@
+slide-layout {
+  position: relative;
+  width: 70%;
+  max-width: 1280px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;  
+  border: none;
+  background: #000;
+  border-radius: 12px;
+  overflow: auto;
+}
+
+.slide-layout iframe {
+  position: absolute;  
+  width: 70%;
+  height: 80%;
+  border: 1px solid #ccc;
+  display: block;
+}
