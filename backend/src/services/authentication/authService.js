@@ -75,7 +75,24 @@ async function register({ email, password, fullName }) {
   };
 }
 
+// GET USER DATA
+async function getCurrentUser(accountId) {
+    if (!accountId) {
+        const error = new Error("Authentication required");
+        error.statusCode = 401;
+        throw error;
+    }
 
+    const user = await accountModels.findUserById(accountId);
+
+    if (!user) {
+        const error = new Error("User not found");
+        error.statusCode = 404;
+        throw error;
+    }
+
+    return user;
+}
 
 
 
@@ -83,4 +100,5 @@ async function register({ email, password, fullName }) {
 module.exports = {
   login,
   register,
+  getCurrentUser,
 };

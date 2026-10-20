@@ -13,6 +13,7 @@ import CustomizePage from "./pages/Loginpage/Customizepage";
 import CourseDetail from "./pages/Courses/CourseDetails";
 import SearchResultsPage from "./pages/Homepage/SearchResultsPage";
 import ResetPasswordPage from "./pages/Loginpage/ResetPasswordPage";
+import ForgotPassword from "./pages/Loginpage/ForgotPassword";
 
 export default function AppRoutes() {
   return (
@@ -54,6 +55,8 @@ export default function AppRoutes() {
         element={<CustomizePage></CustomizePage>}
       ></Route>
       <Route path="/reset-password" element={<ResetPasswordPage />} />
+      <Route path="/forgot-password" element={<ForgotPassword></ForgotPassword>}></Route>
     </Routes>
+    
   );
 }

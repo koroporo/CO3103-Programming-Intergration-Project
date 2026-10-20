@@ -46,6 +46,9 @@ Content-Type: application/json
   "password": "phuc2006"
 }
 
+### Get user_data
+GET http://localhost:3000/api/auth/me
+
 ### Test logout
 POST http://localhost:3000/api/auth/logout
 
@@ -76,7 +79,7 @@ Content-Type: application/json
   "slug": "ielts-writing-task-2",
   "description": "Learn the fundamentals of IELTS Speaking.",
   "prerequisite_text": "Basic English knowledge",
-  "thumbnail_url": "../frontend/frontendSE/public/course-assets/academic-mastery.png",
+  "thumbnail_url": "/course-assets/academic-mastery.png",
   "status": "published",
   "is_featured": true
 }

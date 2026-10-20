@@ -1,4 +1,4 @@
-import React from "react";
+//import React from "react";
 import "./MyAccount.css";
 import myAvatar from "../../assets/avt.jpg";
 
@@ -7,7 +7,7 @@ export default function MyAccount()
     /* const [user, setUser] = useState(null);
     useEffect(() => {
     async function getUser() {
-        const response = await fetch("http://localhost:3000/auth/me", {
+        const response = await fetch("http://localhost:3000/api/auth/me", {
             credentials: "include"
         });
 

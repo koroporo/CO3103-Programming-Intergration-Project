@@ -14,6 +14,10 @@ export default function LoginPage() {
 
   const navigate = useNavigate();
   const { loginUser } = useAuth();
+  function handleRegister()
+  {
+    navigate("/signup");
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -136,34 +140,34 @@ export default function LoginPage() {
         </button>
 
         <div className="divider">
-          <span>OR CONTINUE WITH</span>
+          <span>FIRST TIME HERE?</span>
         </div>
 
-        <button type="button" className="btn-google">
-          <img
+        <button type="button" className="btn-google" onClick={handleRegister}>
+         {/*  <img
             src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
             alt=""
             aria-hidden="true"
             style={{ width: "18px", height: "18px" }}
-          />
-          Continue with Google
+          /> */}
+          Register new account
         </button>
 
         <p className="footer-text">
-          First time here?{" "}
+          {" "}
           <span
             className="link-create"
-            onClick={() => navigate("/signup")}
+            onClick={() => navigate("/forgot-password")}
             role="link"
             tabIndex={0}
             onKeyDown={(event) => {
               if (event.key === "Enter" || event.key === " ") {
                 event.preventDefault();
-                navigate("/signup");
+                navigate("/forgot-password");
               }
             }}
           >
-            Create an account
+            Forgot your password?
           </span>
         </p>
       </form>
