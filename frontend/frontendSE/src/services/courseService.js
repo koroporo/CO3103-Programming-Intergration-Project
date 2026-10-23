@@ -15,10 +15,10 @@ export async function getCourses({ search = "", skill = "", band = "", page = 1,
   query.set("limit", String(limit));
 
   const queryString = query.toString();
-  const response = await fetch(
-    `${API_BASE_URL}/courses${queryString ? `?${queryString}` : ""}`,
-    { signal },
-  );
+ const response = await fetch(
+  `${API_BASE_URL}/courses/search${queryString ? `?${queryString}` : ""}`,
+  { signal },
+);
 
   if (!response.ok) {
     const body = await response.json().catch(() => ({}));

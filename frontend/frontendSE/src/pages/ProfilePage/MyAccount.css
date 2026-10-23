@@ -1,0 +1,181 @@
+/* Bao bọc toàn màn hình và căn giữa Card */
+.account-page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    background-color: #f7f9fc; /* Nền xám nhạt để làm nổi bật card trắng */
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Khung Card chính chứa mọi thứ */
+.account-card {
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 900px;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    padding: 40px;
+    gap: 50px;
+}
+
+/* ============ CỘT TRÁI (AVATAR) ============ */
+.account-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    flex-shrink: 0;
+}
+
+.large-avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 24px;
+}
+
+.change-avatar-btn {
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+.change-avatar-btn:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.status-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    background-color: #22c55e; /* Màu xanh lá chuẩn */
+    border-radius: 50%;
+}
+
+.status-text {
+    font-size: 15px;
+    color: #166534;
+    font-weight: 500;
+}
+
+/* ============ CỘT PHẢI (THÔNG TIN) ============ */
+.account-content {
+    flex-grow: 1;
+}
+
+.account-header {
+    font-size: 32px;
+    color: #111827;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 35px;
+}
+
+/* Chia lưới Grid 2 cột */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 32px;
+    column-gap: 24px;
+}
+
+/* Từng khối thông tin */
+.info-box {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+/* Hình vuông bo góc chứa Icon */
+.icon-wrapper {
+    width: 48px;
+    height: 48px;
+    background-color: #f1f5f9; /* Màu nền icon xám xanh nhạt */
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #64748b; /* Màu icon */
+    flex-shrink: 0;
+}
+
+.icon-wrapper svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Phần Text bên phải Icon */
+.info-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-label {
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.info-value {
+    font-size: 18px;
+    color: #111827;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+/* Riêng phần Tag "Learner" */
+.role-badge {
+    background-color: #dbeafe; /* Nền xanh dương nhạt */
+    color: #0369a1;            /* Chữ xanh đậm */
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 16px;
+    display: inline-block;
+    align-self: flex-start;
+}
+
+/* Nếu School tên quá dài, ép nó không phá vỡ layout */
+.school-box {
+    grid-column: span 1;
+}
+
+/* ============ TƯƠNG THÍCH ĐIỆN THOẠI ============ */
+@media (max-width: 768px) {
+    .account-card {
+        flex-direction: column;
+        padding: 24px;
+        gap: 30px;
+    }
+
+    .account-sidebar {
+        width: 100%;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr; /* Về 1 cột trên điện thoại */
+    }
+}

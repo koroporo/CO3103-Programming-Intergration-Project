@@ -1,0 +1,2 @@
+ALTER TABLE accounts
+ALTER COLUMN role SET DEFAULT 'learner';

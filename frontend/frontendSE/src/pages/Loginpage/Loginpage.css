@@ -17,9 +17,15 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
+.login-form label {
+  font-weight: 600;
+  color: #334155; 
+}
+
 .login-form h1 {
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 4px; 
+  color: #8a1515; 
 }
 
 .login-form input {
@@ -35,4 +41,138 @@
   background-color: #2563eb;
   color: white;
   cursor: pointer;
+}
+
+.login-form .subtitle {
+  text-align: center;
+  color: #8c8c8c; 
+  font-size: 14px;
+  margin-top: 0;
+  margin-bottom: 0px;
+}
+
+
+.password-wrapper {
+  position: relative; 
+  display: flex;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  box-sizing: border-box; 
+  padding-right: 40px;
+}
+
+
+.eye-icon {
+  position: absolute;
+  right: 12px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  color: #6b7280; 
+  cursor: pointer; 
+  display: flex;
+  align-items: center;
+}
+
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #94a3b8; /* Màu xám nhạt */
+  font-size: 11px; /* Chữ nhỏ */
+  font-weight: 600;
+  margin: 12px 0 4px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Tạo khoảng cách giữa chữ và đường kẻ */
+.divider span {
+  padding: 0 12px;
+}
+
+/* Nút Continue with Google */
+.btn-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Khoảng cách giữa icon và chữ */
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #cbd5e1; /* Viền xám nhạt */
+  border-radius: 6px;
+  color: #0f172a; /* Màu đen */
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+/* Dòng chữ "First time you are here?" */
+.footer-text {
+  text-align: center;
+  font-size: 13px;
+  color: #64748b; /* Xám mờ */
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+/* Chữ "Create an account" màu đỏ sẫm */
+.link-create {
+  color: #8a1515; 
+  cursor: pointer;
+}
+
+
+/* Làm trong suốt nền và tạo viền xám cho nút Google */
+.login-form .btn-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Khoảng cách giữa logo Google và chữ */
+  width: 100%;
+  padding: 10px;
+  background-color: transparent; /* Nền không màu */
+  border: 1px solid #cbd5e1; /* Khung viền xám nhạt */
+  border-radius: 6px;
+  color: #0f172a; /* Chữ màu đen */
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+/* (Tùy chọn) Hiệu ứng đổi màu nền nhạt khi đưa chuột vào */
+.login-form .btn-google:hover {
+  background-color: #f8fafc; 
+}
+
+
+.login-form .btn-back {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Khoảng cách giữa icon mũi tên và chữ */
+  background: none; /* Không có nền */
+  border: none; /* Không có viền */
+  color: #64748b; /* Màu xám mờ */
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  width: fit-content; /* Nút chỉ rộng bằng chữ */
+  margin-bottom: -4px; /* Kéo nút gần lại với chữ Sign In bên dưới */
+}
+
+/* Đổi màu đậm hơn khi đưa chuột vào */
+.login-form .btn-back:hover {
+  color: #0f172a; 
 }

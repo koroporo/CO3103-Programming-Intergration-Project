@@ -4,7 +4,8 @@ const roleApplicationModels = require(
 
 async function submitInstructorApplication(
     applicantId,
-    applicationText
+    applicationText,
+    evidenceUrl
 ) {
     if (
         typeof applicationText !== "string" ||
@@ -20,7 +21,8 @@ async function submitInstructorApplication(
     const application =
         await roleApplicationModels.createRoleApplication({
             applicantId,
-            applicationText: applicationText.trim()
+            applicationText: applicationText.trim(),
+            evidenceUrl
         });
 
     return application;

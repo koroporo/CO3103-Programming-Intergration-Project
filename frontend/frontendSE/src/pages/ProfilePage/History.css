@@ -1,0 +1,257 @@
+/* Bao bọc toàn bộ trang */
+.history-page-wrapper {
+    background-color: #f8fafc;
+    min-height: 100vh;
+    padding: 40px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.history-container {
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Tiêu đề */
+.history-header {
+    margin-bottom: 24px;
+}
+
+.history-header h1 {
+    font-size: 32px;
+    color: #1e293b;
+    margin: 0 0 8px 0;
+    font-weight: 700;
+}
+
+.history-header p {
+    color: #475569;
+    font-size: 16px;
+    margin: 0;
+}
+
+/* Khu vực Filters */
+.history-filters {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-label {
+    font-size: 14px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.filter-btn {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.filter-btn:hover {
+    background-color: #f1f5f9;
+}
+
+.filter-btn.active {
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #0f172a;
+    font-weight: 600;
+}
+
+/* Danh sách Card */
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.history-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    border: 1px solid #f1f5f9;
+    transition: box-shadow 0.2s;
+}
+
+.history-card:hover {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* Bên trái card (Icon + Title) */
+.card-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 2;
+    min-width: 300px;
+}
+
+.skill-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.skill-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.attempt-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+}
+
+.attempt-info h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #0f172a;
+    line-height: 1.3;
+}
+
+.skill-badge {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Khu vực điểm số */
+.card-score {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-ring-container {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-value {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.score-value strong {
+    font-size: 14px;
+    color: #0f172a;
+    line-height: 1;
+}
+
+.score-value span {
+    font-size: 10px;
+    color: #64748b;
+}
+
+.grading-text {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* Khu vực ngày tháng */
+.card-date {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #475569;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.card-date svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Nút Action */
+.card-action {
+    flex: 0.5;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.view-details-btn {
+    background-color: #ffffff;
+    border: 1px solid #336699;
+    color: #336699;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.view-details-btn:hover {
+    background-color: #f0f7ff;
+}
+
+.no-data-msg {
+    text-align: center;
+    color: #64748b;
+    padding: 30px;
+    font-size: 16px;
+}
+
+/* Responsive cho điện thoại */
+@media (max-width: 768px) {
+    .history-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    
+    .card-left {
+        min-width: auto;
+    }
+
+    .card-score, .card-date, .card-action {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .card-action {
+        justify-content: stretch;
+    }
+
+    .view-details-btn {
+        width: 100%;
+    }
+}

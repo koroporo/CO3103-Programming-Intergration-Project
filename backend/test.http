@@ -12,18 +12,29 @@ Content-Type: application/json
     "role": "learner",
     "status": "active"
 }
+### REGISTER
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "learner@example.com",
+  "password": "SecurePass123",
+  "full_name": "Test Learner"
+}
 
 ### Get all accounts
 GET http://localhost:3000/accounts
 
+### Get all apllixcations
+GET http://localhost:3000/role-applications
 
 ### Login - Test Learner
 POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "test.learner@example.com",
-  "password": "TEMP_PASSWORD_HASH"
+  "email": "learner@example.com",
+  "password": "SecurePass123"
 }
 
 ### Login - Learner
@@ -35,6 +46,29 @@ Content-Type: application/json
   "password": "password_phuc_123456"
 }
 
+### Test logout
+POST http://localhost:3000/api/auth/logout
+
+
+### Post course
+POST http://localhost:3000/courses
+Content-Type: application/json
+
+{
+  "instructor_id": 3,
+  "category_id": 1,
+  "title": "Course Mastery Something",
+  "slug": "ielts-writing-task-2",
+  "description": "Learn the fundamentals of IELTS Speaking.",
+  "prerequisite_text": "Basic English knowledge",
+  "thumbnail_url": "../frontend/frontendSE/public/course-assets/academic-mastery.png",
+  "status": "published",
+  "is_featured": true
+}
+### Get course with ID 6
+GET http://localhost:3000/api/courses/6
+### GET course
+GET http://localhost:3000/courses
 ### Course search
 GET http://localhost:3000/api/courses
 

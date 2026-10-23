@@ -3,7 +3,7 @@ const pool = require("../../db");
 async function createRoleApplication({
     applicantId,
     applicationText,
-    evidenceUrl = null
+    evidenceUrl
 }) {
     const query = `
     INSERT INTO role_applications (

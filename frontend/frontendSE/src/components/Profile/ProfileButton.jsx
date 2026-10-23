@@ -1,78 +1,124 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../../services/authServices/logout";
+import { useAuth } from "../../hooks/Authentication/useAuth";
+import myAvatar from "../../assets/avt.jpg";
+import "./profilebutton.css";
 
 export default function ProfileButton() {
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const { user, logoutUser } = useAuth();
+  const navigate = useNavigate();
 
-    // Temporary data — later get this from login/authentication
-    const user = {
-        name: "Phuc",
-        role: "admin",
-        status: "Online"
-    };
-    const navigate = useNavigate();
-    function handleMyAccount()
-    {
-        navigate("/my-account");
+  const name = user?.full_name || "User";
+  const role = user?.role || "Unknown";
+
+  function handleMyAccount() {
+    setIsOpen(false);
+    navigate("/my-account");
+  }
+
+  function handleHistory() {
+    setIsOpen(false);
+    navigate("/history");
+  }
+
+  function handleNotifications() {
+    setIsOpen(false);
+    navigate("/notifications");
+  }
+
+  function handleAdmin() {
+    setIsOpen(false);
+    navigate("/admin-board");
+  }
+
+  function applyInstructor() {
+    setIsOpen(false);
+    navigate("/apply-instructor");
+  }
+
+  async function handleLogout() {
+    try {
+      await logout();
+      logoutUser();
+      setIsOpen(false);
+      navigate("/");
+    } catch (error) {
+      console.error("Logout error:", error);
     }
-    function handleHistory()
-    {
-        navigate("/history");
-    }
-    function handleNotifications()
-    {
-        navigate("/notifications");
-    }
-    function handleAdmin()
-    {
-        navigate("/admin-board");
-    }
-    function applyInstructor()
-    {
-        navigate("/apply-instructor")
-    }
+  }
 
+  // Avoid rendering the profile menu for an unauthenticated user.
+  if (!user) {
+    return null;
+  }
 
+  return (
+    <div className="profile-container">
+      <button
+        className="profile-button-trigger"
+        onClick={() => setIsOpen((previous) => !previous)}
+        aria-expanded={isOpen}
+        aria-haspopup="true"
+        aria-label={`Profile menu for ${name}, role ${role}`}
+      >
+        <img
+          src={myAvatar}
+          alt="User Avatar"
+          className="profile-avatar"
+        />
+        <span className="arrow-down">▼</span>
+      </button>
 
-    return (
-        <div className="profile-container">
+      {isOpen && (
+        <div className="profile-menu">
+          <div className="profile-info">
+            <strong>{name}</strong>
 
-            <button
-                className="profile-button"
-                onClick={() => setIsOpen(!isOpen)}
-            >
-                👤 User Profile
-            </button>
+            <div className="profile-meta">
+              <span>Role: {role}</span>
+            </div>
+          </div>
 
-            {isOpen && (
-                <div className="profile-menu">
+          <hr className="menu-divider" />
 
-                    <div className="profile-info">
-                        <strong>{user.name}</strong> <br></br>
-                        Role: <span>{user.role}</span> <br></br>
-                        Status: <span>{user.status}</span>
-                    </div>
+          <div className="menu-links">
+            <button onClick={handleMyAccount}>My Account</button>
+            <button onClick={handleHistory}>History</button>
+            <button onClick={handleNotifications}>Notifications</button>
 
-                    <button onClick={handleMyAccount}>My Account</button>
-                    <button onClick={handleHistory}>History</button>
-                    <button onClick={handleNotifications}>Notifications</button>
-                    {user.role === "learner" && (
-                        <button onClick={applyInstructor}>Apply to be instructor</button>
-                    )}
-
-                    {user.role === "admin" && (
-                        <button onClick={handleAdmin}>Admin Dashboard</button>
-                    )}
-
-                    {user.role === "instructor" && (
-                        <button>Instructor Dashboard</button>
-                    )}
-
-                    <button>Logout</button>
-
-                </div>
+            {role === "learner" && (
+              <button onClick={applyInstructor}>
+                Apply to be instructor
+              </button>
             )}
 
+            {role === "admin" && (
+              <button onClick={handleAdmin}>
+                Admin Dashboard
+              </button>
+            )}
+
+            {role === "instructor" && (
+              <button
+                onClick={() => {
+                  setIsOpen(false);
+                  navigate("/instructor-dashboard");
+                }}
+              >
+                Instructor Dashboard
+              </button>
+            )}
+
+            <hr className="menu-divider" />
+
+            <button className="logout-btn" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
         </div>
-    );
+      )}
+    </div>
+  );
 }

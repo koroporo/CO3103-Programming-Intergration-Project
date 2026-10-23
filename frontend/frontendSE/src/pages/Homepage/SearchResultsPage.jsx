@@ -20,8 +20,6 @@ export default function SearchResultsPage() {
 
   useEffect(() => {
     const controller = new AbortController();
-    setLoading(true);
-    setError('');
 
     getCourses({ search, skill, band, page, limit: PAGE_SIZE, signal: controller.signal })
       .then((result) => {

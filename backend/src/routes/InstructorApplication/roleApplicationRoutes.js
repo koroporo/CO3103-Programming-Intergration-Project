@@ -5,7 +5,9 @@ const {
     submitInstructorApplication
 } = require("../../controllers/InstructorApplication/roleApplicationControllers");
 
-const { authenticate } = require("../../middleware/authentication/authMiddleware"); // <-- this one need to be fixed
+const {
+    authenticate
+} = require("../../middleware/authentication/authMiddleware");
 
 router.post(
     "/",
