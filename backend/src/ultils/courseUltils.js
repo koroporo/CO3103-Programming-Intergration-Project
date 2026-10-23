@@ -236,6 +236,8 @@ function assertCourseOwner(course, user) {
 
 module.exports = {
   createError,
+  validateBody,
+  positiveId,
   validateCourse,
   validateChapter,
   validateLesson,

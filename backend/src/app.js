@@ -1,6 +1,7 @@
 const express = require("express");
 const pool = require("./db");
 const courseRoutes = require("./routes/courseRoutes");
+const enrollmentRoutes = require("./routes/enrollmentRoutes");
 const { errorHandler } = require("./middleware/errorMiddleware");
 
 const app = express();
@@ -21,6 +22,7 @@ app.get("/accounts", async (req, res) => {
 });
 
 app.use("/course", courseRoutes);
+app.use("/enrollment", enrollmentRoutes);
 app.use(errorHandler);
 
 module.exports = app;
