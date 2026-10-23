@@ -1,52 +1,81 @@
 .lesson-card {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   align-items: flex-start;
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
   color: inherit;
   text-decoration: none;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+
+.lesson-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+.lesson-card:hover h3 {
+  color: #800600;
 }
 
 .lesson-card__image {
   position: relative;
-  flex: 0 0 200px;   /* ảnh giữ nguyên 200px */
+  flex: 0 0 200px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .lesson-card__image img {
+  display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  border-radius: 8px;
-  display: block;
 }
 
 .lesson-card__duration {
   position: absolute;
-  right: 6px;
-  bottom: 6px;
-  padding: 2px 6px;
-  font-size: 12px;
-  color: #fff;
-  background: rgba(0, 0, 0, 0.75);
+  right: 8px;
+  bottom: 8px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.8);
   border-radius: 4px;
 }
 
 .lesson-card__content {
   flex: 1;
-  min-width: 0;      /* cho phép chữ xuống dòng, không đẩy vỡ bố cục */
+  min-width: 0;
 }
 
 .lesson-card__content h3 {
+  margin: 0 0 6px;
   font-size: 16px;
   font-weight: 600;
-  margin-bottom: 6px;
+  line-height: 1.35;
+  color: #111827;
+  transition: color 0.15s;
 }
 
 .lesson-card__content p {
+  margin: 0;
   font-size: 13px;
-  color: #606060;
-  line-height: 1.4;
+  line-height: 1.5;
+  color: #64748b;
 }
 
-.lesson-card:hover h3 {
-  text-decoration: underline;
+@media (max-width: 600px) {
+  .lesson-card {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .lesson-card__image {
+    flex: none;
+    width: 100%;
+  }
 }

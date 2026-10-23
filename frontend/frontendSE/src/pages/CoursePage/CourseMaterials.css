@@ -1,0 +1,17 @@
+.course-material {
+  margin-top: 16px;
+}
+
+.course-material ol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.course-material p {
+  color: #64748b;
+  font-size: 15px;
+}

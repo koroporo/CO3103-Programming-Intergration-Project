@@ -1,34 +1,36 @@
 .course-page {
   width: min(1208px, calc(100% - 48px));
-  margin: 36px auto 64px;
+  margin: 32px auto 64px;
 }
 
 .course-page__back {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 24px;
   color: #800600;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   text-decoration: none;
+  transition: opacity 0.15s;
 }
 
-.course-page__back:hover,
-.course-detail__catalog-link:hover {
+.course-page__back:hover {
+  opacity: 0.8;
   text-decoration: underline;
 }
 
-.course-page__back:focus-visible,
-.course-detail__catalog-link:focus-visible {
-  border-radius: 2px;
-  outline: 3px solid #800600;
-  outline-offset: 4px;
+.course-page__not-found {
+  padding: 48px 0;
+  text-align: center;
+  color: #64748b;
+  font-size: 18px;
 }
 
+/* ===== Course Detail Header (Hero Banner) ===== */
 .course-detail {
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.95fr);
   gap: 36px;
   align-items: start;
 }
@@ -38,30 +40,58 @@
   width: 100%;
   aspect-ratio: 793 / 446;
   object-fit: cover;
+  border-radius: 12px;
 }
 
-.course-detail__eyebrow {
-  margin: 0 0 12px;
-  color: #800600;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.course-detail__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .course-detail__content h1 {
   margin: 0;
-  font-size: clamp(26px, 3vw, 36px);
-  line-height: 1.15;
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #111827;
+}
+
+/* Category & Stat Badges */
+.course-detail__meta-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.course-detail__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: #f2f2f7;
+  border: 1px solid #e5e5ea;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1c1c1e;
+}
+
+.course-detail__tag--rating {
+  font-weight: 600;
+}
+
+.course-detail__tag-star {
+  color: #ff9500;
 }
 
 .course-detail__instructor {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 20px;
-  color: #929292;
-  font-size: 16px;
+  color: #555;
+  font-size: 15px;
 }
 
 .course-detail__instructor img {
@@ -72,27 +102,96 @@
 }
 
 .course-detail__description {
-  margin: 24px 0;
-  color: #555;
-  font-size: 17px;
+  margin: 0;
+  color: #374151;
+  font-size: 15px;
   line-height: 1.6;
 }
 
-.course-detail__catalog-link {
-  display: inline-block;
-  padding: 12px 18px;
-  border-radius: 22px;
-  background: #800600;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 700;
-  text-decoration: none;
+.course-detail__meta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  color: #4b5563;
 }
 
-@media (max-width: 700px) {
+.course-detail__duration {
+  font-weight: 500;
+  color: #111827;
+}
+
+.enroll-button-container {
+  margin-top: 8px;
+}
+
+/* ===== Prerequisite Section ===== */
+.course-detail__prerequisite-section {
+  margin-top: 32px;
+  padding: 16px 20px;
+  background: #fafafa;
+  border-left: 4px solid #800600;
+  border-radius: 4px;
+}
+
+.course-detail__prerequisite {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.course-detail__prerequisite-section p {
+  margin: 0;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+/* ===== Tabs Navigation (FixedDT Group 34 in Figma) ===== */
+.course-tabs-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 40px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.course-tabs-nav button {
+  position: relative;
+  padding: 12px 4px;
+  border: none;
+  background: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.course-tabs-nav button:hover {
+  color: #111827;
+}
+
+.course-tabs-nav button.active {
+  color: #800600;
+}
+
+.course-tabs-nav button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #800600;
+  border-radius: 2px;
+}
+
+@media (max-width: 800px) {
   .course-page {
     width: calc(100% - 32px);
-    margin: 24px auto 40px;
+    margin: 20px auto 40px;
   }
 
   .course-detail {

@@ -1,0 +1,153 @@
+/* ===== Nút chính ===== */
+.enroll-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s, opacity 0.15s;
+}
+
+.enroll-btn--primary {
+  border: none;
+  background: #8b0000;
+  color: #fff;
+}
+
+.enroll-btn--primary:hover:not(:disabled) {
+  background: #6f0000;
+}
+
+.enroll-btn--primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.enroll-btn--enrolled {
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.enroll-btn--enrolled:hover {
+  background: #f9fafb;
+}
+
+.enroll-btn__chevron {
+  font-size: 12px;
+  transition: transform 0.15s;
+}
+
+.enroll-btn__chevron--open {
+  transform: rotate(180deg);
+}
+
+/* ===== Dropdown ===== */
+.enroll-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.enroll-menu__dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 10;
+  min-width: 176px;
+  padding: 4px 0;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.enroll-menu__item {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  background: none;
+  text-align: left;
+  font-size: 14px;
+  color: #8b0000;
+  cursor: pointer;
+}
+
+.enroll-menu__item:hover {
+  background: #f9fafb;
+}
+
+/* ===== Modal hủy ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modal {
+  width: 100%;
+  max-width: 380px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal__title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.modal__text {
+  margin: 0 0 24px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #4b5563;
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.modal__btn {
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.modal__btn--ghost {
+  border: none;
+  background: none;
+  color: #4b5563;
+}
+
+.modal__btn--ghost:hover {
+  background: #f3f4f6;
+}
+
+.modal__btn--danger {
+  border: none;
+  background: #8b0000;
+  color: #fff;
+}
+
+.modal__btn--danger:hover {
+  background: #6f0000;
+}
