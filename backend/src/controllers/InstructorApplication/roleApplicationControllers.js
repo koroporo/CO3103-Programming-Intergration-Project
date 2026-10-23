@@ -1,5 +1,5 @@
 const roleApplicationServices = require(
-    "../services/roleApplicationServices"
+    "../../services/InstructorApplication/roleApplicationServices"
 );
 
 async function submitInstructorApplication(req, res) {

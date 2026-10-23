@@ -1,5 +1,5 @@
 const roleApplicationModels = require(
-    "../models/roleApplicationModels"
+    "../../models/InstructorApplication/roleApplicationModels"
 );
 
 async function submitInstructorApplication(
