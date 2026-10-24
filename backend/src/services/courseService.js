@@ -12,6 +12,11 @@ async function getCourse(id) {
   return course;
 }
 
+async function getCoursesByUserId(id) {
+  const userId = positiveId(id, "user_id");
+  return courseModel.findCoursesByUserId(userId);
+}
+
 async function getChapters(id) {
   const courseId = positiveId(id, "course_id");
   const course = await courseModel.findCourseById(courseId);
@@ -80,6 +85,7 @@ async function getMaterial(id) {
 
 module.exports = {
   getCourse,
+  getCoursesByUserId,
   getChapters,
   getChapter,
   getLessons,

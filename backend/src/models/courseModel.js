@@ -11,6 +11,20 @@ async function findCourseById(id) {
   return result.rows[0];
 }
 
+async function findCoursesByUserId(userId) {
+  const sql = `
+    SELECT courses.*, enrollments.status AS enrollment_status,
+      enrollments.enrolled_at, enrollments.last_accessed_at,
+      enrollments.withdrawn_at, enrollments.completed_at
+    FROM enrollments
+    JOIN courses ON courses.id = enrollments.course_id
+    WHERE enrollments.learner_id = $1
+    ORDER BY enrollments.enrolled_at DESC, courses.id
+  `;
+  const result = await pool.query(sql, [userId]);
+  return result.rows;
+}
+
 async function findChaptersByCourseId(courseId) {
   const sql = `
     SELECT *
@@ -85,6 +99,7 @@ async function findMaterialById(id) {
 
 module.exports = {
   findCourseById,
+  findCoursesByUserId,
   findChaptersByCourseId,
   findChapterById,
   findLessonsByChapterId,

@@ -9,6 +9,28 @@ async function getCourse(req, res) {
   });
 }
 
+async function getCoursesByUserId(req, res) {
+  try {
+    if (
+      req.user &&
+      req.user.role === "learner" &&
+      String(req.user.id) !== req.params.user_id
+    ) {
+      res.status(403).json({ message: "Forbidden: You can only access your own courses" });
+      return;
+    }
+
+    const courses = await courseService.getCoursesByUserId(req.params.user_id);
+
+    res.status(200).json({
+      message: "Courses fetched successfully",
+      data: courses
+    });
+  } catch (error) {
+    res.status(error.statusCode || 500).json({ message: error.message });
+  }
+}
+
 async function getChapters(req, res) {
   const chapters = await courseService.getChapters(req.params.id);
 
@@ -65,6 +87,7 @@ async function getMaterial(req, res) {
 
 module.exports = {
   getCourse,
+  getCoursesByUserId,
   getChapters,
   getChapter,
   getLessons,
