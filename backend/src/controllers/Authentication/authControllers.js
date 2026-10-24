@@ -1,5 +1,5 @@
-const authService = require("../../services/authentication/authService");
-const { verifyToken } = require("../../services/authentication/tokenService");
+const authService = require("../../services/Authentication/authService");
+const { verifyToken } = require("../../services/Authentication/tokenService");
 
 async function login(req, res) {
   try {

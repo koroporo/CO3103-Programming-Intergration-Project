@@ -1,4 +1,4 @@
-const { verifyToken } = require("../../services/authentication/tokenService");
+const { verifyToken } = require("../../services/Authentication/tokenService");
 
 function authenticate(req, res, next) {
   // 1. Get the JWT from the HttpOnly cookie

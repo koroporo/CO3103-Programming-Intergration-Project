@@ -3,7 +3,7 @@
 const {
   requestPasswordResetService,
   resetPasswordService,
-} = require("../../services/authentication/passwordResetService");
+} = require("../../services/Authentication/passwordResetService");
 
 async function requestPasswordReset(req, res) {
   try {
