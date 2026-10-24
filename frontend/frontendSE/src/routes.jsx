@@ -14,6 +14,7 @@ import CourseDetail from "./pages/Courses/CourseDetails";
 import SearchResultsPage from "./pages/Homepage/SearchResultsPage";
 import ResetPasswordPage from "./pages/Loginpage/ResetPasswordPage";
 import ForgotPassword from "./pages/Loginpage/ForgotPassword";
+import MyCourses from "./pages/ProfilePage/MyCourses";
 
 export default function AppRoutes() {
   return (
@@ -56,6 +57,7 @@ export default function AppRoutes() {
       ></Route>
       <Route path="/reset-password" element={<ResetPasswordPage />} />
       <Route path="/forgot-password" element={<ForgotPassword></ForgotPassword>}></Route>
+      <Route path="/my-courses" element={<MyCourses></MyCourses>}></Route>
     </Routes>
     
   );

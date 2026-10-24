@@ -37,6 +37,11 @@ export default function ProfileButton() {
     setIsOpen(false);
     navigate("/apply-instructor");
   }
+  function handleMyCourses()
+  {
+    setIsOpen(false);
+    navigate("/my-courses");
+  }
 
   async function handleLogout() {
     try {
@@ -87,6 +92,7 @@ export default function ProfileButton() {
             <button onClick={handleMyAccount}>My Account</button>
             <button onClick={handleHistory}>History</button>
             <button onClick={handleNotifications}>Notifications</button>
+            <button onClick={handleMyCourses}>My courses</button>
 
             {role === "learner" && (
               <button onClick={applyInstructor}>
