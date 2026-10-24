@@ -9,9 +9,8 @@ import InstructorStudio from "./pages/Instructor/InstructorStudio";
 import QuizManager from "./pages/Instructor/QuizManager";
 import Dashboard from "./pages/Instructor/Dashboard";
 import Course_1 from "./pages/Courses/Course_1";
-import Course_2 from "./pages/Courses/Course_2";
-import Course_3 from "./pages/Courses/Course_3";
-import QuizBuilder from "./pages/Quizzes/QuizBuilder";
+import QuizBuilder from "./pages/Quizzes/QuizBuilder/QuizBuilder";
+import QuizEditor from "./pages/Quizzes/QuizEditor/QuizEditor";
 export default function AppRoutes() {
     return (
             <Routes>
@@ -24,9 +23,8 @@ export default function AppRoutes() {
                 <Route path="/quiz-manager" element={<QuizManager></QuizManager>}></Route>
                 <Route path="/dashboard" element={<Dashboard></Dashboard>}></Route>
                 <Route path="/course-1" element={<Course_1/>} />
-                <Route path="/course-2" element={<Course_2/>} />
-                <Route path="/course-3" element={<Course_3/>} />
                 <Route path="/quiz-builder" element={<QuizBuilder></QuizBuilder>}></Route>
+                <Route path="/quiz-editor/:quizId" element={<QuizEditor></QuizEditor>}></Route>
             </Routes>
     );
 }

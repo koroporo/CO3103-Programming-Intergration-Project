@@ -75,6 +75,12 @@
     text-decoration: underline;
     cursor: pointer;
     transition: color 0.15s;
+    /* bỏ style mặc định của <button> */
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    text-align: left;
 }
 
 .quiz-title:hover {
@@ -130,4 +136,51 @@
 .create-quiz-btn svg {
     width: 14px;
     height: 14px;
+}
+/* Trạng thái Draft / Published + nút xoá bên phải mỗi quiz */
+.quiz-card-right {
+    gap: 10px;
+}
+
+.quiz-status {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background-color: #f1f5f9;
+    color: #475569;
+}
+
+.quiz-status.published {
+    background-color: #ecfdf5;
+    color: #059669;
+}
+
+.quiz-delete-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+    background: none;
+    color: #94a3b8;
+    cursor: pointer;
+}
+
+.quiz-delete-btn:hover {
+    background-color: #fef2f2;
+    color: #b84a48;
+}
+
+.quiz-delete-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.quiz-empty {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0;
 }

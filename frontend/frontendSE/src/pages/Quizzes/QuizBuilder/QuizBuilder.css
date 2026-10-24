@@ -406,3 +406,22 @@
 .action-pill-btn:hover {
     background-color: #f8fafc;
 }
+/* Thẻ kỹ năng chưa chọn thì mờ đi */
+.skill-card:not(.selected) {
+    opacity: 0.55;
+}
+
+.manual-box {
+    cursor: pointer;
+    transition: box-shadow 0.15s;
+}
+
+.manual-box:hover {
+    box-shadow: 0 0 0 3px #bbf7d0;
+}
+
+.builder-error {
+    margin: 12px 0 0;
+    font-size: 13px;
+    color: #b84a48;
+}

@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./InstructorStudio.css";
 import ielts_1 from "../../assets/ielts_1.jpg"; 
-import ielts_2 from "../../assets/ielts_2.jpg"; 
-import ielts_3 from "../../assets/ielts_3.jpg"; 
 export default function InstructorStudio({ children }) {
     const navigate = useNavigate();
     const location = useLocation();
@@ -147,33 +145,6 @@ export default function InstructorStudio({ children }) {
                                             </div>
                                         </div>
 
-                                        {/* Khóa học 2 */}
-                                        <div 
-                                            className="course-item"
-                                            onClick={() => navigate("/course-2")}
-                                            style={{ cursor: "pointer" }}
-                                        >
-                                            <div className="course-thumb">
-                                                <img src={ielts_2} alt="IELTS Listening & Reading" />
-                                            </div>
-                                            <div className="course-title">
-                                                IELTS Listening & Reading: Full Practice & Test Strategies
-                                            </div>
-                                        </div>
-
-                                        {/* Khóa học 3 */}
-                                        <div 
-                                            className="course-item"
-                                            onClick={() => navigate("/course-3")}
-                                            style={{ cursor: "pointer" }}
-                                        >
-                                            <div className="course-thumb">
-                                                <img src={ielts_3} alt="IELTS Speaking & Writing" />
-                                            </div>
-                                            <div className="course-title">
-                                                IELTS Speaking & Writing: Band 8.0 Expert Masterclass
-                                            </div>
-                                        </div>
                                 </div>
                             </section>
                         </div>

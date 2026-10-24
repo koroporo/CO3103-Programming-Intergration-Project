@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { createQuiz } from "../data/quizStorage";
+import { SKILLS } from "../data/quizDefaults";
 import "./QuizBuilder.css";
 
 export default function QuizBuilder() {
@@ -11,12 +13,26 @@ export default function QuizBuilder() {
     // State chọn các kỹ năng trong đề thi
     const [selectedSkills, setSelectedSkills] = useState(["listening", "reading", "writing", "speaking"]);
 
+    const [error, setError] = useState("");
+
     const toggleSkill = (skill) => {
+        setError("");
         if (selectedSkills.includes(skill)) {
             setSelectedSkills(selectedSkills.filter((s) => s !== skill));
         } else {
             setSelectedSkills([...selectedSkills, skill]);
         }
+    };
+
+    // Tạo đề mới với tên + kỹ năng đã chọn, rồi mở Quiz Editor ở kỹ năng đầu tiên
+    const handleCreateQuiz = () => {
+        if (selectedSkills.length === 0) {
+            setError("Select at least one skill for this test.");
+            return;
+        }
+        const skills = SKILLS.map((s) => s.key).filter((key) => selectedSkills.includes(key));
+        const quiz = createQuiz({ title: testTitle, skills });
+        navigate(`/quiz-editor/${quiz.id}`, { state: { skill: skills[0] } });
     };
 
     return (
@@ -177,6 +193,7 @@ export default function QuizBuilder() {
                             <span>3 parts</span>
                         </div>
                     </div>
+                    {error && <p className="builder-error">{error}</p>}
                 </section>
 
                 {/* SECTION 2: CHOOSE YOUR SETUP PATH */}
@@ -190,7 +207,7 @@ export default function QuizBuilder() {
                         {/* PATH 1: MANUAL */}
                         <div className="path-column">
                             <span className="path-label">Add questions manually</span>
-                            <div className="path-box manual-box">
+                            <div className="path-box manual-box" onClick={handleCreateQuiz}>
                                 <div className="plus-icon-circle">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                                         <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -201,7 +218,7 @@ export default function QuizBuilder() {
                                 <span>Add questions, topics, and tags</span>
                             </div>
 
-                            <button className="action-pill-btn green-btn">
+                            <button className="action-pill-btn green-btn" onClick={handleCreateQuiz}>
                                 <span className="dot-icon"></span>
                                 Create first question
                             </button>
