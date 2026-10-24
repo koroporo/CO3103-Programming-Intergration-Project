@@ -1,5 +1,5 @@
 const bcrypt = require("bcryptjs");
-const accountModel = require("../models/accountModel");
+const accountModel = require("../../models/Authentication/accountModel");
 const { generateToken } = require("./tokenService");
 
 async function login(email, password) {
@@ -7,7 +7,7 @@ async function login(email, password) {
   const user = await accountModel.findByEmail(email);
 
   if (!user) {
-    return null; 
+    return null;
   }
 
   // so sánh mật khẩu nhập vào với mã băm đã lưu
@@ -26,11 +26,11 @@ async function login(email, password) {
       id: user.id,
       email: user.email,
       full_name: user.full_name,
-      role: user.role
-    }
+      role: user.role,
+    },
   };
 }
 
 module.exports = {
-  login
+  login,
 };

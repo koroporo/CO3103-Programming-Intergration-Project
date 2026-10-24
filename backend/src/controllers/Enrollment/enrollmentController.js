@@ -1,4 +1,4 @@
-const enrollmentService = require("../services/enrollmentService");
+const enrollmentService = require("../../services/Enrollment/enrollmentService");
 
 async function enroll(req, res) {
   const result = await enrollmentService.enroll(req.body, req.user);

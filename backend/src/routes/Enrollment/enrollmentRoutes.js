@@ -1,7 +1,9 @@
 const express = require("express");
-const enrollmentController = require("../controllers/enrollmentController");
-const { authenticate } = require("../middleware/authMiddleware");
-const { authorizeRoles } = require("../middleware/roleMiddleware");
+const enrollmentController = require("../../controllers/Enrollment/enrollmentController");
+const { authenticate } = require("../../middleware/authentication/authMiddleware");
+const {
+  authorizeRoles,
+} = require("../../middleware/authentication/roleMiddleware");
 
 const router = express.Router();
 router.use(authenticate, authorizeRoles("learner"));

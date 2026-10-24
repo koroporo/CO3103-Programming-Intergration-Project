@@ -1,4 +1,4 @@
-const pool = require("../db");
+const pool = require("../../db");
 
 async function withTransaction(runQueries) {
   const client = await pool.connect();

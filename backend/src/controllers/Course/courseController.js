@@ -1,11 +1,11 @@
-const courseService = require("../services/courseService");
+const courseService = require("../../services/Course/courseService");
 
 async function createCourse(req, res) {
   const createdCourse = await courseService.createCourse(req.body, req.user);
 
   res.status(201).json({
     message: "Course created successfully",
-    data: createdCourse
+    data: createdCourse,
   });
 }
 
@@ -14,7 +14,7 @@ async function createChapter(req, res) {
 
   res.status(201).json({
     message: "Chapter created successfully",
-    data: createdChapter
+    data: createdChapter,
   });
 }
 
@@ -23,16 +23,19 @@ async function createLesson(req, res) {
 
   res.status(201).json({
     message: "Lesson created successfully",
-    data: createdLesson
+    data: createdLesson,
   });
 }
 
 async function createMaterial(req, res) {
-  const createdMaterial = await courseService.createMaterial(req.body, req.user);
+  const createdMaterial = await courseService.createMaterial(
+    req.body,
+    req.user,
+  );
 
   res.status(201).json({
     message: "Material created successfully",
-    data: createdMaterial
+    data: createdMaterial,
   });
 }
 
@@ -40,5 +43,5 @@ module.exports = {
   createCourse,
   createChapter,
   createLesson,
-  createMaterial
+  createMaterial,
 };

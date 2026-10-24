@@ -1,6 +1,6 @@
-const enrollmentModel = require("../models/enrollmentModel");
-const { createError, positiveId } = require("../ultils/courseUltils");
-const { validateEnrollment, validateResume, validateList } = require("../ultils/enrollmentUltils");
+const enrollmentModel = require("../../models/Enrollment/enrollmentModel");
+const { createError, positiveId } = require("../../ultils/courseUltils");
+const { validateEnrollment, validateResume, validateList } = require("../../ultils/enrollmentUltils");
 
 async function getActiveLearner(client, learnerId) {
   const learner = await enrollmentModel.lockLearner(client, learnerId);

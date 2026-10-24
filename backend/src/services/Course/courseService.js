@@ -1,12 +1,12 @@
-const courseModel = require("../models/courseModel");
+const courseModel = require("../../models/Course/courseModel");
 const {
   createError,
   validateCourse,
   validateChapter,
   validateLesson,
   validateMaterial,
-  assertCourseOwner
-} = require("../ultils/courseUltils");
+  assertCourseOwner,
+} = require("../../ultils/courseUltils");
 
 async function createCourse(body, user) {
   // bước 1 kiểm tra và lấy các metric được phép từ body.
@@ -57,5 +57,5 @@ module.exports = {
   createCourse,
   createChapter,
   createLesson,
-  createMaterial
+  createMaterial,
 };

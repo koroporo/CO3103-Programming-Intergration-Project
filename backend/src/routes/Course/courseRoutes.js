@@ -1,7 +1,9 @@
 const express = require("express");
-const courseController = require("../controllers/courseController");
-const { authenticate } = require("../middleware/authMiddleware");
-const { authorizeRoles } = require("../middleware/roleMiddleware");
+const courseController = require("../../controllers/Course/courseController");
+const { authenticate } = require("../../middleware/authentication/authMiddleware");
+const {
+  authorizeRoles,
+} = require("../../middleware/authentication/roleMiddleware");
 
 const router = express.Router();
 
@@ -10,28 +12,28 @@ router.post(
   "/post",
   authenticate,
   authorizeRoles("instructor"),
-  courseController.createCourse
+  courseController.createCourse,
 );
 
 router.post(
   "/chapter/post",
   authenticate,
   authorizeRoles("instructor"),
-  courseController.createChapter
+  courseController.createChapter,
 );
 
 router.post(
   "/lesson/post",
   authenticate,
   authorizeRoles("instructor"),
-  courseController.createLesson
+  courseController.createLesson,
 );
 
 router.post(
   "/material/post",
   authenticate,
   authorizeRoles("instructor"),
-  courseController.createMaterial
+  courseController.createMaterial,
 );
 
 module.exports = router;
