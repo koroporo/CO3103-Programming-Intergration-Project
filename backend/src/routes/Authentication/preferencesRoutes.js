@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const pool = require("../../db");
-const { authenticate } = require("../../middleware/authentication/authMiddleware");
+const {
+  authenticate,
+} = require("../../middleware/Authentication/authMiddleware");
 
 // PUT /api/preferences
 router.put("/", authenticate, async (req, res) => {
@@ -24,7 +26,7 @@ router.put("/", authenticate, async (req, res) => {
            updated_at = CURRENT_TIMESTAMP
        WHERE id = $3
        RETURNING id, target_skill, target_overall_band`,
-      [goal, level, userId]
+      [goal, level, userId],
     );
 
     if (result.rowCount === 0) {

@@ -1,6 +1,5 @@
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { sendResetRequest } from "../../services/authServices/reset";
 
 export default function ForgotPassword() {
@@ -8,8 +7,6 @@ export default function ForgotPassword() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  const navigate = useNavigate();
 
   async function handleReset(event) {
     event.preventDefault();
@@ -29,10 +26,6 @@ export default function ForgotPassword() {
 
       setMessage(data.message || "Reset request sent successfully.");
 
-      // Navigate only if the request succeeds.
-      navigate("/reset-password", {
-        state: { email: email.trim() },
-      });
     } catch (err) {
       setError(err.message || "Something went wrong.");
     } finally {

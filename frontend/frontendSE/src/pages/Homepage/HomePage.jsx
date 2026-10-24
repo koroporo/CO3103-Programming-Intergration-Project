@@ -12,7 +12,7 @@ export default function HomePage() {
   useEffect(() => {
     async function fetchCourses() {
       try {
-        const response = await fetch("http://localhost:3000/api/courses");
+        const response = await fetch("http://localhost:3000/courses");
 
         if (!response.ok) {
           throw new Error("Failed to fetch courses");

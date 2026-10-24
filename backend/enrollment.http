@@ -1,0 +1,45 @@
+@baseUrl = http://localhost:3000
+@token = REPLACE_WITH_ACTIVE_LEARNER_TOKEN
+# Course và lesson phải published; lesson thuộc đúng course.
+@courseId = 20
+@lessonId = 40
+
+### 1. Đăng ký (201 mới; 200 nếu đã có hoặc kích hoạt lại)
+# @name enroll
+POST {{baseUrl}}/enrollment/post
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "course_id": "4"
+}
+
+### 2. Danh sách khóa đang học
+GET {{baseUrl}}/enrollment/get?status=active&limit=20&offset=0
+Authorization: Bearer {{token}}
+
+### 3. Chi tiết enrollment vừa đăng ký
+GET {{baseUrl}}/enrollment/get/{{enroll.response.body.$.data.id}}
+Authorization: Bearer {{token}}
+
+### 4. Lưu bài học để tiếp tục
+PATCH {{baseUrl}}/enrollment/resume/{{enroll.response.body.$.data.id}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "lesson_id": "{{lessonId}}"
+}
+
+### 5. Rút khỏi khóa; không xóa tiến độ
+PATCH {{baseUrl}}/enrollment/withdraw/{{enroll.response.body.$.data.id}}
+Authorization: Bearer {{token}}
+
+### 6. Đăng ký lại; giữ ID enrollment và tiến độ cũ
+POST {{baseUrl}}/enrollment/post
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "course_id": "{{courseId}}"
+}

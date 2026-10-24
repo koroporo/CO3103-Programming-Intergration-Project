@@ -231,4 +231,12 @@ module.exports = app;
 
 //COURSES 
 const courseRoutes = require("./routes/Course/courseRoutes");
-app.use("/api/courses", courseRoutes);
+
+app.use("/courses", courseRoutes);
+
+//ENROLLMENT
+const enrollmentRoutes = require("./routes/Enrollment/enrollmentRoutes");
+const { errorHandler } = require("./middleware/Authentication/errorMiddleware");
+app.use("/enrollment", enrollmentRoutes);
+app.use(errorHandler);
+

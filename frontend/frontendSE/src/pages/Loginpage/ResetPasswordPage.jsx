@@ -53,7 +53,7 @@ export default function ResetPasswordPage() {
 
             if (!response.ok) {
                 throw new Error(
-                    data.message || "Unable to reset password."
+                    data.message || data.error || "Unable to reset password."
                 );
             }
 

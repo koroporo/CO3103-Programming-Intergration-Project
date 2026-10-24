@@ -2,17 +2,13 @@ const express = require("express");
 const router = express.Router();
 
 const {
-    submitInstructorApplication
+  submitInstructorApplication,
 } = require("../../controllers/InstructorApplication/roleApplicationControllers");
 
 const {
-    authenticate
-} = require("../../middleware/authentication/authMiddleware");
+  authenticate,
+} = require("../../middleware/Authentication/authMiddleware");
 
-router.post(
-    "/",
-    authenticate,
-    submitInstructorApplication
-);
+router.post("/", authenticate, submitInstructorApplication);
 
 module.exports = router;

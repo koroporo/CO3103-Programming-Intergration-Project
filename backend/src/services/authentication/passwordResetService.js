@@ -17,7 +17,7 @@ const {
   isValidEmail,
   normalizeEmail,
 } = require("../../utils/authValidators");
-const { hashPassword, verifyPassword } = require("../../utils/passwordUtils");
+const { hashPassword } = require("../../utils/passwordUtils");
 
 const GENERIC_RESPONSE = {
   message:

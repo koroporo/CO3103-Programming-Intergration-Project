@@ -53,7 +53,7 @@ router.get("/details/:id", async (req, res) => {
       FROM courses c
       JOIN accounts u ON c.instructor_id = u.id
       WHERE c.id = $1`,
-      [id]
+      [id],
     );
 
     if (result.rows.length === 0) {
@@ -68,5 +68,42 @@ router.get("/details/:id", async (req, res) => {
     res.status(500).json({ message: "Failed to fetch course" });
   }
 });
+
+// POST course
+const {
+  authenticate,
+} = require("../../middleware/Authentication/authMiddleware");
+const {
+  authorizeRoles,
+} = require("../../middleware/Authentication/roleMiddleware");
+
+// app.js đã gắn tiền tố /course, nên /post ở đây là /course/post.
+router.post(
+  "/post",
+  authenticate,
+  authorizeRoles("instructor"),
+  courseController.createCourse,
+);
+
+router.post(
+  "/chapter/post",
+  authenticate,
+  authorizeRoles("instructor"),
+  courseController.createChapter,
+);
+
+router.post(
+  "/lesson/post",
+  authenticate,
+  authorizeRoles("instructor"),
+  courseController.createLesson,
+);
+
+router.post(
+  "/material/post",
+  authenticate,
+  authorizeRoles("instructor"),
+  courseController.createMaterial,
+);
 
 module.exports = router;

@@ -1,0 +1,73 @@
+@baseUrl = http://localhost:3000
+# Thay bằng token hợp lệ từ phần đăng nhập; account phải active và có role instructor.
+@token = REPLACE_WITH_INSTRUCTOR_TOKEN
+@categoryId = 1
+
+### 1. Tạo course detail (lưu id từ response cho bước 2)
+# @name createCourse
+POST {{baseUrl}}/course/post
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "category_id": "{{categoryId}}",
+  "title": "IELTS Listening cơ bản",
+  "description": "Khóa học dành cho người bắt đầu luyện IELTS Listening.",
+  "prerequisite_text": "Có kiến thức tiếng Anh cơ bản",
+  "thumbnail_url": "courses/ielts-listening/thumbnail.jpg"
+}
+
+### 2. Tạo chapter thuộc course vừa tạo
+# @name createChapter
+POST {{baseUrl}}/course/chapter/post
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "course_id": "{{createCourse.response.body.$.data.id}}",
+  "title": "Chapter 1: Introduction",
+  "position": 1
+}
+
+### 3. Tạo lesson thuộc chapter vừa tạo (mặc định draft)
+# @name createLesson
+POST {{baseUrl}}/course/lesson/post
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "chapter_id": "{{createChapter.response.body.$.data.id}}",
+  "title": "Lesson 1: Listening overview",
+  "position": 1,
+  "is_required": true,
+  "required_watch_percentage": 80
+}
+
+### 4. Tạo material dạng text
+POST {{baseUrl}}/course/material/post
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "lesson_id": "{{createLesson.response.body.$.data.id}}",
+  "title": "Ghi chú bài học",
+  "material_type": "text",
+  "text_content": "IELTS Listening gồm 4 phần.",
+  "is_required": true,
+  "position": 1
+}
+
+### 5. Tạo material dạng file (audio/slides dùng cùng endpoint)
+POST {{baseUrl}}/course/material/post
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "lesson_id": "{{createLesson.response.body.$.data.id}}",
+  "title": "Tài liệu luyện tập",
+  "material_type": "file",
+  "resource_url": "materials/listening-practice.pdf",
+  "mime_type": "application/pdf",
+  "is_required": false,
+  "position": 2
+}
