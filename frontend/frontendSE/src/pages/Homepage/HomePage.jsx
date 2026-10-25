@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import CourseCard from "../../components/Homepage/CourseCard";
 import "./HomePage.css";
@@ -22,7 +23,9 @@ export default function HomePage() {
         const courseList = Array.isArray(data) ? data : data.courses;
 
         if (!Array.isArray(courseList)) {
-          throw new Error("The courses response has an unexpected format.");
+          throw new Error(
+            "The courses response has an unexpected format."
+          );
         }
 
         setCourses(courseList);
@@ -37,7 +40,10 @@ export default function HomePage() {
     fetchCourses();
   }, []);
 
-  if (loading) return <p>Loading courses...</p>;
+  if (loading) {
+    return <p>Loading courses...</p>;
+  }
+
   if (error) {
     return (
       <main className="home-page">
@@ -53,12 +59,12 @@ export default function HomePage() {
       {featuredCourse && (
         <a
           className="featured-course"
-          href={`/courses/details/${featuredCourse.id}`}
+          href={`/courses/${featuredCourse.id}`}
           aria-label={`View course: ${featuredCourse.title}`}
         >
           <img
             className="featured-course__image"
-            src={featuredCourse.thumbnail_url}
+            src={featuredCourse.thumbnail}
             alt=""
           />
 
@@ -66,10 +72,11 @@ export default function HomePage() {
             <h1>{featuredCourse.title}</h1>
 
             <div className="featured-course__instructor">
-              <img src="/course-assets/instructor-avatar.svg" alt="" />
-              <span>
-                {featuredCourse.instructor ?? featuredCourse.instructor_id}
-              </span>
+              <img
+                src={featuredCourse.instructorThumbnail}
+                alt=""
+              />
+              <span>{featuredCourse.instructor}</span>
             </div>
           </div>
         </a>
@@ -79,7 +86,7 @@ export default function HomePage() {
         {courses.map((course) => (
           <Link
             key={course.id}
-            to={`/courses/details/${course.id}`}
+            to={`/courses/${course.id}`}
             className="course-card-link"
             aria-label={`View course: ${course.title}`}
           >
@@ -92,6 +99,7 @@ export default function HomePage() {
           </Link>
         ))}
       </section>
+
       {courses.length === 0 && (
         <p>No courses are available yet. Please check back soon.</p>
       )}

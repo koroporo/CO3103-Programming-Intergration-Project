@@ -1,0 +1,78 @@
+.material-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: #ffffff;
+  border: 1px solid #e5e5ea;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.material-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.material-card__icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  background: #f2f2f7;
+  border-radius: 10px;
+  color: #800600;
+  font-size: 18px;
+}
+
+.material-card__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.material-card__title {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #063982;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.material-card:hover .material-card__title {
+  color: #800600;
+}
+
+.material-card__description {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #4b5563;
+}
+
+.material-card__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  background: #f2f2f7;
+  border: 1px solid #e5e5ea;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1c1c1e;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .material-card {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .material-card__badge {
+    align-self: flex-start;
+  }
+}

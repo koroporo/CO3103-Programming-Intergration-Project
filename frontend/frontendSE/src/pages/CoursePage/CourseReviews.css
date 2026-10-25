@@ -1,0 +1,11 @@
+.course-reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.course-reviews p {
+  color: #64748b;
+  font-size: 15px;
+}

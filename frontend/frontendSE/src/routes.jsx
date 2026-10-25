@@ -10,11 +10,13 @@ import Signuppage from "./pages/Loginpage/Signuppage";
 import Header from "./components/Homepage/Header";
 import HomePage from "./pages/Homepage/HomePage";
 import CustomizePage from "./pages/Loginpage/Customizepage";
-import CourseDetail from "./pages/Courses/CourseDetails";
+// import CourseDetail from "./pages/Courses (unused)/CourseDetails";
 import SearchResultsPage from "./pages/Homepage/SearchResultsPage";
 import ResetPasswordPage from "./pages/Loginpage/ResetPasswordPage";
 import ForgotPassword from "./pages/Loginpage/ForgotPassword";
 import MyCourses from "./pages/ProfilePage/MyCourses";
+import Course from "./pages/CoursePage/Course";
+import Lesson from "./pages/LessonPage/Lesson"; 
 
 export default function AppRoutes() {
   return (
@@ -47,10 +49,7 @@ export default function AppRoutes() {
           </>
         }
       ></Route>
-      <Route
-        path="/courses/details/:id"
-        element={<CourseDetail></CourseDetail>}
-      />
+      
       <Route
         path="/customize"
         element={<CustomizePage></CustomizePage>}
@@ -58,6 +57,12 @@ export default function AppRoutes() {
       <Route path="/reset-password" element={<ResetPasswordPage />} />
       <Route path="/forgot-password" element={<ForgotPassword></ForgotPassword>}></Route>
       <Route path="/my-courses" element={<MyCourses></MyCourses>}></Route>
+      {/* <Route
+        path="/courses/details/:id"
+        element={<CourseDetail></CourseDetail>}
+      /> */}
+      <Route path="/courses/:courseId" element={<><Header></Header><Course/></>}></Route>
+      <Route path="/courses/:courseId/:lessonId" element={<><Header></Header><Lesson/></>}></Route>
     </Routes>
     
   );

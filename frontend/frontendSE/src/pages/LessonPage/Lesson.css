@@ -1,0 +1,124 @@
+.lesson-page-container {
+  width: min(1208px, calc(100% - 48px));
+  margin: 28px auto 64px;
+}
+
+.lesson-page__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  color: #800600;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.lesson-page__back:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.lesson-page__header {
+  margin-bottom: 24px;
+}
+
+.lesson-page__title {
+  margin: 0 0 12px;
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight: 700;
+  color: #111827;
+}
+
+.lesson-page__instructor {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #4b5563;
+  font-size: 15px;
+}
+
+.lesson-page__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #d9d9d9;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Tabs Navigation (Frame 8: Video, Slide, Exercises, Handout) */
+.lesson-tabs-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.lesson-tabs-nav button {
+  position: relative;
+  padding: 10px 18px;
+  border: none;
+  background: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: #4b5563;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.lesson-tabs-nav button:hover {
+  color: #111827;
+}
+
+.lesson-tabs-nav button.active {
+  color: #800600;
+}
+
+.lesson-tabs-nav button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #800600;
+  border-radius: 2px;
+}
+
+/* Main Content Box */
+.lesson-content-area {
+  margin-bottom: 40px;
+}
+
+/* Comments Section */
+.lesson-comments-section {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.lesson-comments-section h2 {
+  margin: 0 0 20px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+}
+
+@media (max-width: 640px) {
+  .lesson-page-container {
+    width: calc(100% - 32px);
+    margin: 16px auto 40px;
+  }
+
+  .lesson-tabs-nav {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}

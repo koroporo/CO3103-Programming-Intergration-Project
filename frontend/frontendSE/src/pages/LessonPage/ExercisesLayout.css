@@ -1,0 +1,38 @@
+.exercises-layout {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.exercises-layout iframe {
+  display: block;
+  width: 100%;
+  min-height: 580px;
+  border: none;
+}
+
+.exercises-layout__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px;
+  text-align: center;
+}
+
+.exercises-layout__placeholder h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: #111827;
+}
+
+.exercises-layout__placeholder p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}

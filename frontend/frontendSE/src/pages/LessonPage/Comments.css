@@ -1,0 +1,64 @@
+.lesson-comments {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lesson-comments__empty {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.lesson-comments__item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid #e5e5ea;
+  border-radius: 12px;
+}
+
+.lesson-comments__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f2f2f7;
+  color: #800600;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.lesson-comments__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.lesson-comments__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.lesson-comments__user {
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827;
+}
+
+.lesson-comments__time {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.lesson-comments__text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #374151;
+}
