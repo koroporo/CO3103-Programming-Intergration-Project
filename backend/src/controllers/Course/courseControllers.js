@@ -1,11 +1,11 @@
-const courseService = require("../services/courseService");
+const courseService = require("../../services/Course/courseServices");
 
 async function getCourse(req, res) {
   const course = await courseService.getCourse(req.params.id);
 
   res.json({
     message: "Course fetched successfully",
-    data: course
+    data: course,
   });
 }
 
@@ -16,7 +16,9 @@ async function getCoursesByUserId(req, res) {
       req.user.role === "learner" &&
       String(req.user.id) !== req.params.user_id
     ) {
-      res.status(403).json({ message: "Forbidden: You can only access your own courses" });
+      res
+        .status(403)
+        .json({ message: "Forbidden: You can only access your own courses" });
       return;
     }
 
@@ -24,7 +26,7 @@ async function getCoursesByUserId(req, res) {
 
     res.status(200).json({
       message: "Courses fetched successfully",
-      data: courses
+      data: courses,
     });
   } catch (error) {
     res.status(error.statusCode || 500).json({ message: error.message });
@@ -36,7 +38,7 @@ async function getChapters(req, res) {
 
   res.json({
     message: "Chapters fetched successfully",
-    data: chapters
+    data: chapters,
   });
 }
 
@@ -45,7 +47,7 @@ async function getChapter(req, res) {
 
   res.json({
     message: "Chapter fetched successfully",
-    data: chapter
+    data: chapter,
   });
 }
 
@@ -54,7 +56,7 @@ async function getLessons(req, res) {
 
   res.json({
     message: "Lessons fetched successfully",
-    data: lessons
+    data: lessons,
   });
 }
 
@@ -63,7 +65,7 @@ async function getLesson(req, res) {
 
   res.json({
     message: "Lesson fetched successfully",
-    data: lesson
+    data: lesson,
   });
 }
 
@@ -72,7 +74,7 @@ async function getMaterials(req, res) {
 
   res.json({
     message: "Materials fetched successfully",
-    data: materials
+    data: materials,
   });
 }
 
@@ -81,7 +83,7 @@ async function getMaterial(req, res) {
 
   res.json({
     message: "Material fetched successfully",
-    data: material
+    data: material,
   });
 }
 
@@ -93,5 +95,5 @@ module.exports = {
   getLessons,
   getLesson,
   getMaterials,
-  getMaterial
+  getMaterial,
 };

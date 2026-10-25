@@ -1,5 +1,5 @@
-const courseModel = require("../models/courseModel");
-const { createError, positiveId } = require("../utils/courseUtils");
+const courseModel = require("../../models/Course/courseModels");
+const { createError, positiveId } = require("../../utils/courseUtils");
 
 async function getCourse(id) {
   const courseId = positiveId(id, "course_id");
