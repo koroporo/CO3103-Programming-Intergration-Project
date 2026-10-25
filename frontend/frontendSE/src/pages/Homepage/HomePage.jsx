@@ -19,11 +19,14 @@ export default function HomePage() {
         }
 
         const data = await response.json();
+        const courseList = Array.isArray(data) ? data : data.courses;
 
-        setCourses(data);
+        if (!Array.isArray(courseList)) {
+          throw new Error("The courses response has an unexpected format.");
+        }
 
-        // Use the first course as the featured course.
-        setFeaturedCourse(data[0] ?? null);
+        setCourses(courseList);
+        setFeaturedCourse(courseList[0] ?? null);
       } catch (err) {
         setError(err.message || "Something went wrong");
       } finally {
@@ -35,7 +38,15 @@ export default function HomePage() {
   }, []);
 
   if (loading) return <p>Loading courses...</p>;
-  if (error) return <p>{error}</p>;
+  if (error) {
+    return (
+      <main className="home-page">
+        <h1>Welcome to IELTS Trainer</h1>
+        <p>Courses are temporarily unavailable. Please try again shortly.</p>
+        <p className="home-page__error">{error}</p>
+      </main>
+    );
+  }
 
   return (
     <div className="home-page">
@@ -81,6 +92,9 @@ export default function HomePage() {
           </Link>
         ))}
       </section>
+      {courses.length === 0 && (
+        <p>No courses are available yet. Please check back soon.</p>
+      )}
     </div>
   );
 }
