@@ -1,0 +1,162 @@
+[
+  {
+    "id": "crs_001",
+    "title": "IELTS Writing Task 2: Essay Structure Masterclass",
+    "skill": "writing",
+    "author": "dolor_sit",
+    "date": "2025-09-12",
+    "status": "approved",
+    "rate": 4.7,
+    "enrolled": 1342
+  },
+  {
+    "id": "crs_002",
+    "title": "IELTS Listening: Mastering Section 3 & 4",
+    "skill": "listening",
+    "author": "adipiscing_elit",
+    "date": "2025-10-03",
+    "status": "approved",
+    "rate": 4.5,
+    "enrolled": 987
+  },
+  {
+    "id": "crs_003",
+    "title": "Speaking Part 2: Fluency and Storytelling",
+    "skill": "speaking",
+    "author": "labore_et",
+    "date": "2025-11-14",
+    "status": "approved",
+    "rate": 4.8,
+    "enrolled": 756
+  },
+  {
+    "id": "crs_004",
+    "title": "Reading Skimming and Scanning Strategies",
+    "skill": "reading",
+    "author": "ad_minim",
+    "date": "2025-12-01",
+    "status": "approved",
+    "rate": 4.2,
+    "enrolled": 613
+  },
+  {
+    "id": "crs_005",
+    "title": "IELTS 6.5+ Full Preparation Program",
+    "skill": "general",
+    "author": "nisi_ut",
+    "date": "2026-01-20",
+    "status": "approved",
+    "rate": 4.9,
+    "enrolled": 2104
+  },
+  {
+    "id": "crs_006",
+    "title": "Academic Writing Task 1: Charts and Graphs",
+    "skill": "writing",
+    "author": "dolor_sit",
+    "date": "2026-03-08",
+    "status": "pending",
+    "rate": null,
+    "enrolled": 0
+  },
+  {
+    "id": "crs_007",
+    "title": "Speaking Part 3: Discussing Abstract Ideas",
+    "skill": "speaking",
+    "author": "adipiscing_elit",
+    "date": "2026-04-17",
+    "status": "declined",
+    "rate": null,
+    "enrolled": 0
+  },
+  {
+    "id": "crs_008",
+    "title": "Vocabulary for IELTS Reading Passages",
+    "skill": "reading",
+    "author": "labore_et",
+    "date": "2026-05-02",
+    "status": "approved",
+    "rate": 3.9,
+    "enrolled": 428
+  },
+  {
+    "id": "crs_009",
+    "title": "Listening Accents: British, Australian, Canadian",
+    "skill": "listening",
+    "author": "ad_minim",
+    "date": "2026-06-11",
+    "status": "approved",
+    "rate": null,
+    "enrolled": 12
+  },
+  {
+    "id": "crs_010",
+    "title": "Grammar for Writing Band 7",
+    "skill": "writing",
+    "author": "nisi_ut",
+    "date": "2026-07-19",
+    "status": "pending",
+    "rate": null,
+    "enrolled": 0
+  },
+  {
+    "id": "crs_011",
+    "title": "Pronunciation for Speaking Band 7+",
+    "skill": "speaking",
+    "author": "dolor_sit",
+    "date": "2026-08-05",
+    "status": "approved",
+    "rate": 4.4,
+    "enrolled": 319
+  },
+  {
+    "id": "crs_012",
+    "title": "Full Mock Tests: 4 Skills Weekly",
+    "skill": "general",
+    "author": "labore_et",
+    "date": "2026-08-22",
+    "status": "declined",
+    "rate": null,
+    "enrolled": 0
+  },
+  {
+    "id": "crs_013",
+    "title": "Reading Matching Headings Question Type",
+    "skill": "reading",
+    "author": "adipiscing_elit",
+    "date": "2026-09-09",
+    "status": "approved",
+    "rate": 2.5,
+    "enrolled": 87
+  },
+  {
+    "id": "crs_014",
+    "title": "IELTS Listening: Map and Diagram Labelling",
+    "skill": "listening",
+    "author": "ad_minim",
+    "date": "2026-09-28",
+    "status": "pending",
+    "rate": null,
+    "enrolled": 0
+  },
+  {
+    "id": "crs_015",
+    "title": "Writing Task 2: Band 8 Model Essays",
+    "skill": "writing",
+    "author": "nisi_ut",
+    "date": "2026-10-10",
+    "status": "approved",
+    "rate": null,
+    "enrolled": 45
+  },
+  {
+    "id": "crs_016",
+    "title": "Speaking Mock Interview with Feedback",
+    "skill": "speaking",
+    "author": "labore_et",
+    "date": "2026-10-20",
+    "status": "pending",
+    "rate": null,
+    "enrolled": 0
+  }
+]

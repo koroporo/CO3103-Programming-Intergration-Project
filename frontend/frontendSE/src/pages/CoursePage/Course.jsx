@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { featuredCourse, courses } from "../../data/courses"; 
 import { useState } from "react";
+import SvgIcon from "../../components/Common/SvgIcon";
 import './Course.css';
 import CourseReviews from "./CourseReviews";
 import CourseSyllabus from "./CourseSyllabus";
@@ -46,7 +47,7 @@ export default function Course() {
             ))}
             {(course.rate || course.rating) && (
               <span className="course-detail__tag course-detail__tag--rating">
-                <span className="course-detail__tag-star" aria-hidden="true">★</span>
+                <SvgIcon name="star" size={14} color="#ff9500" style={{ marginRight: 4 }} />
                 {course.rate || course.rating} ({course.reviews?.length ?? 0})
               </span>
             )}

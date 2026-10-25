@@ -1,0 +1,8 @@
+.table-btn--remove {
+  background: #ffebeb;
+  color: #c92a2a;
+}
+
+.table-btn--remove:hover {
+  background: #ffd4d4;
+}

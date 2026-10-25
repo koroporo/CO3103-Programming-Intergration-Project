@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SvgIcon from "../Common/SvgIcon";
+import './ProfileButton.css';
 
 export default function ProfileButton() {
     const [isOpen, setIsOpen] = useState(false);
@@ -32,21 +34,17 @@ export default function ProfileButton() {
         navigate("/apply-instructor")
     }
 
-
-
     return (
         <div className="profile-container">
-
             <button
                 className="profile-button"
                 onClick={() => setIsOpen(!isOpen)}
             >
-                👤 User Profile
+                <SvgIcon name="user" size={16} /> User Profile
             </button>
 
             {isOpen && (
                 <div className="profile-menu">
-
                     <div className="profile-info">
                         <strong>{user.name}</strong> <br></br>
                         Role: <span>{user.role}</span> <br></br>
@@ -69,10 +67,8 @@ export default function ProfileButton() {
                     )}
 
                     <button>Logout</button>
-
                 </div>
             )}
-
         </div>
     );
 }

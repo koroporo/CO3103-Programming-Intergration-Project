@@ -9,12 +9,12 @@ import LoginPage from "./pages/Loginpage/Loginpage";
 import Signuppage from "./pages/Loginpage/Signuppage";
 import Header from "./components/Homepage/Header";
 import HomePage from "./pages/Homepage/HomePage";
-
 import Course from "./pages/CoursePage/Course";
 import Lesson from "./pages/LessonPage/Lesson"; 
 
 
-export default function AppRoutes() {
+import AdminLayout from "./pages/Admin/AdminLayout";
+export default function LearnerRoutes() {
     return (
             <Routes>
                 <Route path="/my-account" element={<MyAccount />} />
@@ -27,7 +27,14 @@ export default function AppRoutes() {
                 <Route path="/" element={<><Header></Header><HomePage></HomePage></>}></Route>
                 <Route path="/courses/:courseId" element={<><Header></Header><Course/></>}></Route>
                 <Route path="/courses/:courseId/:lessonId" element={<><Header></Header><Lesson/></>}></Route>
-
             </Routes>
+    );
+}
+
+export function AdminRoutes() {
+    return (
+        <Routes>
+            <Route path="/" element={<AdminLayout />} />
+        </Routes>
     );
 }

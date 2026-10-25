@@ -1,7 +1,7 @@
 // import { getCourseById } from './data/courses';
 import './components/Homepage/Header.css';
 import { BrowserRouter } from "react-router-dom";
-import AppRoutes from "./routes"
+import { AdminRoutes } from "./routes"
 import { AuthProvider } from './contexts/Authentication/AuthContexts';
 
 
@@ -13,7 +13,7 @@ function App() {
     <>
       <BrowserRouter>
         <AuthProvider>
-          <AppRoutes></AppRoutes>
+          <AdminRoutes />
         </AuthProvider>
       </BrowserRouter>
     </>
