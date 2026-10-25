@@ -83,7 +83,7 @@ Content-Type: application/json
   "is_featured": true
 }
 ### Get course with ID 6
-GET http://localhost:3000/api/courses/6
+GET http://localhost:3000/courses/details/2
 ### GET course
 GET http://localhost:3000/courses
 ### Course search
