@@ -1,8 +1,8 @@
 // import { getCourseById } from './data/courses';
 import './components/Homepage/Header.css';
 import { BrowserRouter } from "react-router-dom";
-import AppRoutes from "./routes"
 import { AuthProvider } from './contexts/Authentication/AuthContexts';
+import AppRoutes from "./routes"
 
 
 function App() {

@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import MyAccount from "./pages/ProfilePage/MyAccount";
 import History from "./pages/ProfilePage/History";
 import Notifications from "./pages/ProfilePage/Notifications";
-import AdminBoard from "./pages/ProfilePage/AdminBoard";
+//import AdminBoard from "./pages/ProfilePage/AdminBoard";
 import ApplyInstructor from "./pages/ProfilePage/ApplyInstructor";
 import LoginPage from "./pages/Loginpage/Loginpage";
 import Signuppage from "./pages/Loginpage/Signuppage";
@@ -17,6 +17,7 @@ import ForgotPassword from "./pages/Loginpage/ForgotPassword";
 import MyCourses from "./pages/ProfilePage/MyCourses";
 import Course from "./pages/CoursePage/Course";
 import Lesson from "./pages/LessonPage/Lesson"; 
+import AdminLayout from "./pages/Admin/AdminLayout";
 
 export default function AppRoutes() {
   return (
@@ -24,7 +25,7 @@ export default function AppRoutes() {
       <Route path="/my-account" element={<MyAccount />} />
       <Route path="/history" element={<History />} />
       <Route path="/notifications" element={<Notifications />} />
-      <Route path="/admin-board" element={<AdminBoard></AdminBoard>} />
+      <Route path="/admin-board" element={<AdminLayout></AdminLayout>} />
       <Route
         path="/apply-instructor"
         element={<ApplyInstructor></ApplyInstructor>}

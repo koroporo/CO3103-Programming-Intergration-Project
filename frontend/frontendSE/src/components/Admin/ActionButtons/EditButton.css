@@ -1,0 +1,10 @@
+
+.table-btn--edit {
+  background: #f2f2f7;
+  color: #1d1d1f;
+  border-color: #e5e5ea;
+}
+
+.table-btn--edit:hover {
+  background: #e5e5ea;
+}

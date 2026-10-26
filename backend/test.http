@@ -20,7 +20,15 @@ Content-Type: application/json
   "password": "phuc2006",
   "full_name": "Lê Trọng Phúc"
 }
+### Admin register
+POST http://localhost:3000/admin/register
+Content-Type: application/json
 
+{
+    "username": "admin1",
+    "email": "admin@example.com",
+    "password": "your-test-password"
+}
 ### Get all accounts
 GET http://localhost:3000/accounts
 

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SvgIcon from "../Common/SvgIcon";
 import './MaterialCard.css';
 
 export default function MaterialCard({ title, description, url }) {
@@ -10,11 +11,12 @@ export default function MaterialCard({ title, description, url }) {
   };
 
   const badge = getBadgeType(url, title);
+  const iconName = badge === 'LINK' ? 'link' : 'file';
 
   return (
     <Link to={url} target="_blank" rel="noopener noreferrer" className="material-card">
       <div className="material-card__icon-box" aria-hidden="true">
-        {badge === 'LINK' ? '🔗' : '📄'}
+        <SvgIcon name={iconName} size={20} color="#800600" />
       </div>
       <div className="material-card__content">
         <h3 className="material-card__title">{title}</h3>

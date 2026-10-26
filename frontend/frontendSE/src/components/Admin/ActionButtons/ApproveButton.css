@@ -1,0 +1,9 @@
+.table-btn--approve {
+  background: #e6f7ec;
+  color: #1e7e34;
+  border-color: #c3e6cb;
+}
+
+.table-btn--approve:hover {
+  background: #c9f0d6;
+}
