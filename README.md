@@ -1,21 +1,37 @@
-##setup backend (phải ở folder backend)
+## Setup
+
+### 1. Start the database
+From the project root:
+```bash
+docker compose up -d
+```
+
+### 2. Install backend dependencies
+```bash
 cd backend
 npm install
+```
 
+### 3. Run migrations
+Set the database URL (replace `YOUR_PASSWORD` with the password in your `docker-compose.yml`):
 
+PowerShell:
+```powershell
+$env:DATABASE_URL="postgres://postgres:YOUR_PASSWORD@localhost:5432/english_platform"
+npx node-pg-migrate up
+```
 
-##setup database (phải ở folder CO3101-Programming-Intergration-Project nha)
-docker compose up -d
+macOS/Linux:
+```bash
+export DATABASE_URL="postgres://postgres:YOUR_PASSWORD@localhost:5432/english_platform"
+npx node-pg-migrate up
+```
 
-##set up cho migration (ở trong folder backend)(nếu file chạy docker mọi người làm y chang thì chạy cái lệnh ở dưới)
-$env:DATABASE_URL="postgres://postgres:YOUR_PASSWORD@localhost:5432/english_platform" (unused)
-$env:DATABASE_URL="postgres://postgres:postgre@localhost:5432/english_platform"
+### 4. Seed the database
+From the project root:
+```bash
+npx node-pg-migrate up --migrations-dir ./database/seed
+```
 
-##seed database (ở folder chính) (dùng để seed data cho db)
-npx node-pg-migrate up --migrations-dir .\database\seed
-
-
-##để send request -> phải tải VSCode extension REST client
-
-
-
+### 5. Send API requests
+Install the **REST Client** extension in VS Code to run the `.http` request files.
