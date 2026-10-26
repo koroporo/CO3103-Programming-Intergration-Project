@@ -7,6 +7,7 @@ router.post("/login", authController.login);
 router.post("/register", authController.register);
 router.post("/logout", authController.logout);
 
+router.post("/adminRegister", authController.adminRegister);
 // dislplay user data
 router.get("/me", authController.getMe);
 

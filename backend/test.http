@@ -1,7 +1,7 @@
 GET http://localhost:3000/test-db
 
 #####
-### Create account
+### Create account (unused)
 POST http://localhost:3000/accounts
 Content-Type: application/json
 
@@ -19,6 +19,16 @@ Content-Type: application/json
   "email": "ltrongphuc06@gmail.com",
   "password": "phuc2006",
   "full_name": "Lê Trọng Phúc"
+}
+
+### Register an admin account
+POST http://localhost:3000/api/auth/adminRegister
+Content-Type: application/json
+
+{
+    "email": "admin@example.com",
+    "password": "AdminTest123!",
+    "full_name": "Test Administrator"
 }
 
 ### Get all accounts

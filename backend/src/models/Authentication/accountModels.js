@@ -14,14 +14,19 @@ async function findByEmail(email) {
 }
 
 // REGISTER
-async function createAccount({ email, passwordHash, fullName }) {
+async function createAccount({
+  email,
+  passwordHash,
+  fullName,
+  role = "learner",
+}) {
   const result = await pool.query(
     `INSERT INTO accounts
-       (email, password_hash, full_name, status,
+       (email, password_hash, full_name, role, status,
         created_at, updated_at)
-     VALUES ($1, $2, $3, 'active', NOW(), NOW())
+     VALUES ($1, $2, $3, $4, 'active', NOW(), NOW())
      RETURNING *;`,
-    [email, passwordHash, fullName],
+    [email, passwordHash, fullName, role],
   );
 
   return result.rows[0];
