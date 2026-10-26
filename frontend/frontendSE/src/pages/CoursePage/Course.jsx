@@ -1,10 +1,13 @@
 import { useParams, Link } from "react-router-dom";
+// import { featuredCourse, courses } from "../../data/courses";
 import { useEffect, useState } from "react";
-import './Course.css';
+import SvgIcon from "../../components/Common/SvgIcon";
+import "./Course.css";
 import CourseReviews from "./CourseReviews";
 import CourseSyllabus from "./CourseSyllabus";
 import CourseMaterials from "./CourseMaterials";
 import EnrollButton from "../../components/CoursePage/EnrollButton";
+import { useEnrollStatus } from "../../components/CoursePage/EnrollButton/useEnrollStatus";
 
 export default function Course() {
   const { courseId } = useParams();
@@ -12,7 +15,10 @@ export default function Course() {
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [activeTab, setActiveTab] = useState('syllabus');
+  const [activeTab, setActiveTab] = useState("syllabus");
+
+  //enrollment
+  const enrollment = useEnrollStatus({ courseId: course?.id });
 
   useEffect(() => {
     async function fetchCourse() {
@@ -27,14 +33,14 @@ export default function Course() {
         setError("");
 
         const response = await fetch(
-          `http://localhost:3000/courses/details/${courseId}`
+          `http://localhost:3000/courses/details/${courseId}`,
         );
 
         if (!response.ok) {
           throw new Error(
             response.status === 404
               ? "Course not found."
-              : "Failed to load course."
+              : "Failed to load course.",
           );
         }
 
@@ -88,9 +94,7 @@ export default function Course() {
       : course.instructor?.name || "Not specified";
 
   const instructorThumbnail =
-    course.instructorThumbnail ||
-    course.instructor?.thumbnail ||
-    "icons.svg";
+    course.instructorThumbnail || course.instructor?.thumbnail || "icons.svg";
 
   const tags = course.tags ?? [];
 
@@ -127,17 +131,20 @@ export default function Course() {
 
             {(course.rate || course.rating) && (
               <span className="course-detail__tag course-detail__tag--rating">
-                <span className="course-detail__tag-star" aria-hidden="true">
-                  ★
-                </span>
-                {course.rate || course.rating} ({reviews.length})
+                <SvgIcon
+                  name="star"
+                  size={14}
+                  color="#ff9500"
+                  style={{ marginRight: 4 }}
+                />
+                {course.rate || course.rating} ({course.reviews?.length ?? 0})
               </span>
             )}
           </div>
 
           <div className="course-detail__instructor">
             <img
-              src={`/${instructorThumbnail.replace(/^\//, '')}`}
+              src={`/${instructorThumbnail.replace(/^\//, "")}`}
               alt=""
               onError={(event) => {
                 event.currentTarget.style.display = "none";
@@ -165,7 +172,7 @@ export default function Course() {
           </div>
 
           <div className="enroll-button-container">
-            <EnrollButton />
+            <EnrollButton courseId={course.id} enrollment={enrollment} />
           </div>
         </div>
       </article>
@@ -179,36 +186,45 @@ export default function Course() {
 
       <nav className="course-tabs-nav" aria-label="Course section navigation">
         <button
-          onClick={() => setActiveTab('syllabus')}
-          className={activeTab === 'syllabus' ? 'active' : ''}
+          onClick={() => setActiveTab("syllabus")}
+          className={activeTab === "syllabus" ? "active" : ""}
         >
           Syllabus
         </button>
 
         <button
-          onClick={() => setActiveTab('materials')}
-          className={activeTab === 'materials' ? 'active' : ''}
+          onClick={() => setActiveTab("materials")}
+          className={activeTab === "materials" ? "active" : ""}
         >
           Materials/Links
         </button>
 
         <button
-          onClick={() => setActiveTab('reviews')}
-          className={activeTab === 'reviews' ? 'active' : ''}
+          onClick={() => setActiveTab("reviews")}
+          className={activeTab === "reviews" ? "active" : ""}
         >
           Reviews
         </button>
       </nav>
 
-      {activeTab === 'syllabus' && <CourseSyllabus courseId={course.id} />}
+      {activeTab === "syllabus" &&
+        (enrollment.status === "enrolled" ? (
+          <CourseSyllabus courseId={course.id} />
+        ) : enrollment.status === "checking" ? (
+          <p>Checking enrollment...</p>
+        ) : enrollment.status === "unauthenticated" ? (
+          <p>Please log in to access the syllabus.</p>
+        ) : enrollment.status === "error" ? (
+          <p role="alert">{enrollment.error}</p>
+        ) : (
+          <p>Enroll in this course to access the syllabus.</p>
+        ))}
 
-      {activeTab === 'materials' && (
+      {activeTab === "materials" && (
         <CourseMaterials materials={course.materials ?? []} />
       )}
 
-      {activeTab === 'reviews' && (
-        <CourseReviews reviews={reviews} />
-      )}
+      {activeTab === "reviews" && <CourseReviews reviews={reviews} />}
     </div>
   );
 }

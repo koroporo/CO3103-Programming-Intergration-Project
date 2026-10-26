@@ -1,0 +1,182 @@
+[
+  {
+    "id": "usr_001",
+    "username": "lorem_ipsum",
+    "email": "lorem.ipsum@example.com",
+    "role": "admin",
+    "joined_at": "2024-01-08",
+    "last_login": "2026-10-24T08:42:11+07:00",
+    "status": "online"
+  },
+  {
+    "id": "usr_002",
+    "username": "dolor_sit",
+    "email": "dolor.sit@example.com",
+    "role": "instructor",
+    "joined_at": "2024-02-19",
+    "last_login": "2026-10-24T07:55:03+07:00",
+    "status": "online"
+  },
+  {
+    "id": "usr_003",
+    "username": "amet_consectetur",
+    "email": "amet.consectetur@example.com",
+    "role": "learner",
+    "joined_at": "2024-03-02",
+    "last_login": "2026-10-23T21:14:37+07:00",
+    "status": "offline"
+  },
+  {
+    "id": "usr_004",
+    "username": "adipiscing_elit",
+    "email": "adipiscing.elit@example.com",
+    "role": "instructor",
+    "joined_at": "2024-03-27",
+    "last_login": "2026-10-24T09:01:58+07:00",
+    "status": "online"
+  },
+  {
+    "id": "usr_005",
+    "username": "sed_do",
+    "email": "sed.do@example.com",
+    "role": "learner",
+    "joined_at": "2024-04-11",
+    "last_login": "2026-09-30T14:20:09+07:00",
+    "status": "offline"
+  },
+  {
+    "id": "usr_006",
+    "username": "eiusmod_tempor",
+    "email": "eiusmod.tempor@example.com",
+    "role": "learner",
+    "joined_at": "2024-05-05",
+    "last_login": "2025-12-18T10:33:47+07:00",
+    "status": "deleted"
+  },
+  {
+    "id": "usr_007",
+    "username": "incididunt_ut",
+    "email": "incididunt.ut@example.com",
+    "role": "learner",
+    "joined_at": "2024-06-14",
+    "last_login": "2026-10-24T08:10:25+07:00",
+    "status": "online"
+  },
+  {
+    "id": "usr_008",
+    "username": "labore_et",
+    "email": "labore.et@example.com",
+    "role": "instructor",
+    "joined_at": "2024-07-01",
+    "last_login": "2026-10-22T16:47:02+07:00",
+    "status": "offline"
+  },
+  {
+    "id": "usr_009",
+    "username": "dolore_magna",
+    "email": "dolore.magna@example.com",
+    "role": "learner",
+    "joined_at": "2024-07-23",
+    "last_login": "2026-10-24T06:30:19+07:00",
+    "status": "online"
+  },
+  {
+    "id": "usr_010",
+    "username": "aliqua_enim",
+    "email": "aliqua.enim@example.com",
+    "role": "learner",
+    "joined_at": "2024-08-09",
+    "last_login": "2026-03-12T19:05:44+07:00",
+    "status": "deleted"
+  },
+  {
+    "id": "usr_011",
+    "username": "ad_minim",
+    "email": "ad.minim@example.com",
+    "role": "instructor",
+    "joined_at": "2024-09-16",
+    "last_login": "2026-10-24T10:12:36+07:00",
+    "status": "online"
+  },
+  {
+    "id": "usr_012",
+    "username": "veniam_quis",
+    "email": "veniam.quis@example.com",
+    "role": "learner",
+    "joined_at": "2024-10-02",
+    "last_login": "2026-10-23T11:28:51+07:00",
+    "status": "offline"
+  },
+  {
+    "id": "usr_013",
+    "username": "nostrud_exercitation",
+    "email": "nostrud.exercitation@example.com",
+    "role": "learner",
+    "joined_at": "2024-11-20",
+    "last_login": "2026-10-24T08:58:14+07:00",
+    "status": "online"
+  },
+  {
+    "id": "usr_014",
+    "username": "ullamco_laboris",
+    "email": "ullamco.laboris@example.com",
+    "role": "learner",
+    "joined_at": "2025-01-07",
+    "last_login": "2026-08-05T20:41:09+07:00",
+    "status": "offline"
+  },
+  {
+    "id": "usr_015",
+    "username": "nisi_ut",
+    "email": "nisi.ut@example.com",
+    "role": "instructor",
+    "joined_at": "2025-02-14",
+    "last_login": "2026-10-21T15:03:27+07:00",
+    "status": "offline"
+  },
+  {
+    "id": "usr_016",
+    "username": "aliquip_ex",
+    "email": "aliquip.ex@example.com",
+    "role": "learner",
+    "joined_at": "2025-03-18",
+    "last_login": "2025-11-02T09:17:40+07:00",
+    "status": "deleted"
+  },
+  {
+    "id": "usr_017",
+    "username": "ea_commodo",
+    "email": "ea.commodo@example.com",
+    "role": "learner",
+    "joined_at": "2025-04-22",
+    "last_login": "2026-10-24T09:25:03+07:00",
+    "status": "online"
+  },
+  {
+    "id": "usr_018",
+    "username": "duis_aute",
+    "email": "duis.aute@example.com",
+    "role": "learner",
+    "joined_at": "2025-06-09",
+    "last_login": "2026-10-19T13:52:18+07:00",
+    "status": "offline"
+  },
+  {
+    "id": "usr_019",
+    "username": "irure_dolor",
+    "email": "irure.dolor@example.com",
+    "role": "learner",
+    "joined_at": "2025-08-30",
+    "last_login": "2026-10-10T18:36:55+07:00",
+    "status": "offline"
+  },
+  {
+    "id": "usr_020",
+    "username": "in_reprehenderit",
+    "email": "in.reprehenderit@example.com",
+    "role": "admin",
+    "joined_at": "2025-10-01",
+    "last_login": "2026-10-24T07:02:46+07:00",
+    "status": "online"
+  }
+]

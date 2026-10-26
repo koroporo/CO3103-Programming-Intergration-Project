@@ -8,21 +8,18 @@ router.get("/search", courseController.searchCourses);
 
 // Load all courses to display all homepage
 router.get("/", async (req, res) => {
+  console.log("GET /courses route hit");
   try {
     const result = await pool.query(`
       SELECT
-    c.id,
-    c.title,
-    c.slug,
-    c.description,
-    c.thumbnail_url,
-    u.full_name AS instructor
-FROM courses c
-JOIN accounts u ON c.instructor_id = u.id
-ORDER BY c.created_at DESC;
+        c.*,
+        u.full_name AS instructor
+      FROM courses c
+      JOIN accounts u ON c.instructor_id = u.id
+      ORDER BY c.created_at DESC;
     `);
 
-    res.json(result.rows);
+    res.json({ courses: result.rows });
   } catch (error) {
     console.error("Failed to fetch courses:", error);
     res.status(500).json({ message: "Failed to fetch courses" });
@@ -108,40 +105,60 @@ router.post(
 
 
 
-// GET course
+// GET COURSE
 
 router.get(
   "/user/:user_id",
   authorizeRoles("user", "learner", "instructor", "admin"),
   courseController.getCoursesByUserId,
 );
+
+// GET course based on ID
 router.get(
   "/get/:id",
+  authenticate,
   authorizeRoles("user", "learner", "instructor", "admin"),
   courseController.getCourse,
 );
+
+// GET chapter based on ID
 router.get(
   "/chapter/get/:id",
+  authenticate,
   authorizeRoles("user", "learner", "instructor", "admin"),
   courseController.getChapter,
 );
+
+// GET chapter based on course's ID
+router.get(
+  "/:courseId/chapters",
+  authenticate,
+  authorizeRoles("user", "learner", "instructor", "admin"),
+  courseController.getChaptersByCourseId
+);
+
+
 router.get(
   "/chapter/:id/lessons",
+  authenticate,
   authorizeRoles("user", "learner", "instructor", "admin"),
   courseController.getLessons,
 );
 router.get(
   "/lesson/get/:id",
+  authenticate,
   authorizeRoles("user", "learner", "instructor", "admin"),
   courseController.getLesson,
 );
 router.get(
   "/lesson/:id/materials",
+  authenticate,
   authorizeRoles("user", "learner", "instructor", "admin"),
   courseController.getMaterials,
 );
 router.get(
   "/material/get/:id",
+  authenticate,
   authorizeRoles("user", "learner", "instructor", "admin"),
   courseController.getMaterial,
 );

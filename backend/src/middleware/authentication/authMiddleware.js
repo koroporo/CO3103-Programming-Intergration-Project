@@ -3,7 +3,14 @@ const { verifyToken } = require("../../services/Authentication/tokenService");
 function authenticate(req, res, next) {
   // 1. Get the JWT from the HttpOnly cookie
   console.log("Cookies:", req.cookies); //debug
-  const token = req.cookies?.token;
+  // Prefer the HttpOnly cookie; allow Bearer tokens for API testing.
+  const authHeader = req.headers.authorization;
+
+  const token =
+    req.cookies?.token ||
+    (authHeader?.startsWith("Bearer ")
+      ? authHeader.slice(7)
+      : null);
 
   if (!token) {
     return res.status(401).json({

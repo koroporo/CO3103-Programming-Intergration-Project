@@ -295,10 +295,14 @@ async function findChapterById(id) {
 // GET: Find lessons belonging to a chapter.
 async function findLessonsByChapterId(chapterId) {
   const sql = `
-    SELECT *
+    SELECT
+      lessons.*,
+      courses.thumbnail_url AS thumbnail_url
     FROM lessons
-    WHERE chapter_id = $1
-    ORDER BY position, id
+    JOIN chapters ON chapters.id = lessons.chapter_id
+    JOIN courses ON courses.id = chapters.course_id
+    WHERE lessons.chapter_id = $1
+    ORDER BY lessons.position, lessons.id
   `;
 
   const result = await pool.query(sql, [chapterId]);
@@ -306,6 +310,7 @@ async function findLessonsByChapterId(chapterId) {
 }
 
 // GET: Find a lesson by ID, including its chapter and course information.
+
 async function findLessonById(id) {
   const sql = `
     SELECT
@@ -313,7 +318,8 @@ async function findLessonById(id) {
       chapters.id AS chapter_id,
       chapters.title AS chapter_title,
       courses.id AS course_id,
-      courses.title AS course_title
+      courses.title AS course_title,
+      courses.thumbnail_url AS thumbnail_url
     FROM lessons
     JOIN chapters ON chapters.id = lessons.chapter_id
     JOIN courses ON courses.id = chapters.course_id
@@ -323,6 +329,7 @@ async function findLessonById(id) {
   const result = await pool.query(sql, [id]);
   return result.rows[0];
 }
+
 
 // GET: Find materials belonging to a lesson.
 async function findMaterialsByLessonId(lessonId) {

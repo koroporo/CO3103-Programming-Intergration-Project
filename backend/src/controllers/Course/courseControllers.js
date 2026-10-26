@@ -1,4 +1,5 @@
 const courseService = require("../../services/Course/courseServices");
+const pool = require("../../db");
 
 async function searchCourses(req, res) {
     try {
@@ -147,6 +148,37 @@ async function getMaterial(req, res) {
   });
 }
 
+async function getChaptersByCourseId(req, res) {
+  try {
+    const { courseId } = req.params;
+
+    const result = await pool.query(
+      `SELECT
+         ch.id,
+         ch.course_id,
+         ch.title,
+         ch.position,
+         c.title AS course_title
+       FROM chapters ch
+       JOIN courses c ON c.id = ch.course_id
+       WHERE ch.course_id = $1
+       ORDER BY ch.position`,
+      [courseId]
+    );
+
+    return res.status(200).json({
+      message: "Chapters fetched successfully",
+      data: result.rows
+    });
+  } catch (error) {
+    console.error("Error fetching chapters:", error);
+
+    return res.status(500).json({
+      message: "Failed to fetch chapters"
+    });
+  }
+}
+
 module.exports = {
   getCourse,
   getCoursesByUserId,
@@ -156,6 +188,7 @@ module.exports = {
   getLesson,
   getMaterials,
   getMaterial,
+  getChaptersByCourseId,
   searchCourses,
   createCourse,
   createChapter,

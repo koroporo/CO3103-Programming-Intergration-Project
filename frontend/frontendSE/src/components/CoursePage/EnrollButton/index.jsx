@@ -1,39 +1,83 @@
+
 import { useState } from "react";
-import { useEnrollStatus } from "./useEnrollStatus";
-import EnrollMenu from "./EnrollMenu";
+// import { useEnrollStatus } from "./useEnrollStatus";
 import CancelCourseModal from "./CancelCourseModal";
 import "./EnrollButton.css";
 
-export default function EnrollButton(props) {
-  const { status, enroll, cancelCourse } = useEnrollStatus(props);
+export default function EnrollButton({ courseId, enrollment }) {
+  const {
+    status,
+    enrollmentStatus,
+    error,
+    enroll,
+    cancelCourse,
+  } = enrollment;
+
   const [showCancelModal, setShowCancelModal] = useState(false);
 
- 
-    // return (
-    //   <button
-    //     type="button"
-    //     onClick={enroll}
-    //     disabled={status === "loading"}
-    //     className="enroll-btn enroll-btn--primary"
-    //   >
-    //     {status === "loading" ? "Đang xử lý..." : "Enroll Now"}
-    //   </button>
-    // );
-  
+  if (status === "checking") {
+    return <p>Checking enrollment...</p>;
+  }
+
+  if (status === "unauthenticated") {
+    return <p>Please log in to enroll in this course.</p>;
+  }
+
+  if (status === "error") {
+    return <p role="alert">{error}</p>;
+  }
+
+  if (status === "loading") {
+    return <button disabled>Processing...</button>;
+  }
+
+  if (status === "enrolled") {
+    return (
+      <div className="enroll-actions">
+        <button
+          type="button"
+          className="enroll-btn enroll-btn--enrolled"
+          disabled
+        >
+          {enrollmentStatus === "completed" ? "Course Completed" : "Enrolled"}
+        </button>
+
+        {enrollmentStatus === "active" && (
+          <button
+            type="button"
+            className="enroll-btn enroll-btn--cancel"
+            onClick={() => setShowCancelModal(true)}
+          >
+            Cancel Course
+          </button>
+        )}
+
+        {showCancelModal && (
+          <CancelCourseModal
+            onClose={() => setShowCancelModal(false)}
+            onConfirm={async () => {
+              setShowCancelModal(false);
+              await cancelCourse();
+            }}
+          />
+        )}
+
+        {error && <p role="alert">{error}</p>}
+      </div>
+    );
+  }
 
   return (
-    <>
-      <EnrollMenu onCancelClick={() => setShowCancelModal(true)} />
+    <div className="enroll-actions">
+      <button
+        type="button"
+        className="enroll-btn enroll-btn--primary"
+        onClick={enroll}
+      >
+        Enroll Now
+      </button>
 
-      {showCancelModal && (
-        <CancelCourseModal
-          onClose={() => setShowCancelModal(false)}
-          onConfirm={() => {
-            setShowCancelModal(false);
-            cancelCourse();
-          }}
-        />
-      )}
-    </>
+      {error && <p role="alert">{error}</p>}
+    </div>
   );
 }

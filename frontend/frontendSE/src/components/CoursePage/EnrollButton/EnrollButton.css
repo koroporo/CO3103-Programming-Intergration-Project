@@ -151,3 +151,35 @@
 .modal__btn--danger:hover {
   background: #6f0000;
 }
+
+.enroll-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.enroll-btn--primary {
+  background-color: #dc2626;
+  color: white;
+}
+
+.enroll-btn--primary:hover {
+  background-color: #b91c1c;
+}
+
+.enroll-btn--enrolled {
+  background-color: #e5e7eb;
+  color: #1f2937;
+  cursor: default;
+}
+
+.enroll-btn--cancel {
+  background-color: white;
+  color: #dc2626;
+  border: 1px solid #dc2626;
+}
+
+.enroll-btn--cancel:hover {
+  background-color: #fef2f2;
+}

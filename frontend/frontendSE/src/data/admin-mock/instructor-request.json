@@ -1,0 +1,263 @@
+[
+  {
+    "id": "req_001",
+    "user_id": "usr_003",
+    "username": "amet_consectetur",
+    "status": "pending",
+    "submitted_at": "2026-10-18T09:15:00+07:00",
+    "reviewed_at": null,
+    "reviewed_by": null,
+    "admin_note": null,
+    "motivation": "I scored well on IELTS and have been helping classmates with their writing for two years. I want to share a structured approach to Task 2.",
+    "skills": "writing",
+    "ielts_overall": 7.5,
+    "ielts_listening": 7.0,
+    "ielts_reading": 7.5,
+    "ielts_writing": 8.0,
+    "ielts_speaking": 7.0,
+    "experience_years": 2,
+    "proof_links": [
+      "https://cdn.example.com/mock/proofs/req_001_ielts.pdf",
+      "https://cdn.example.com/mock/proofs/req_001_letter.jpg"
+    ]
+  },
+  {
+    "id": "req_002",
+    "user_id": "usr_007",
+    "username": "incididunt_ut",
+    "status": "pending",
+    "submitted_at": "2026-10-20T14:42:00+07:00",
+    "reviewed_at": null,
+    "reviewed_by": null,
+    "admin_note": null,
+    "motivation": "I have taught speaking classes at a language centre and want to build a full Part 2 and Part 3 course.",
+    "skills": "speaking, general",
+    "ielts_overall": 8.0,
+    "ielts_listening": 8.0,
+    "ielts_reading": 8.5,
+    "ielts_writing": 7.5,
+    "ielts_speaking": 8.0,
+    "experience_years": 4,
+    "proof_links": [
+      "https://cdn.example.com/mock/proofs/req_002_ielts.pdf",
+      "https://cdn.example.com/mock/proofs/req_002_tesol.pdf"
+    ]
+  },
+  {
+    "id": "req_003",
+    "user_id": "usr_013",
+    "username": "nostrud_exercitation",
+    "status": "pending",
+    "submitted_at": "2026-10-22T19:05:00+07:00",
+    "reviewed_at": null,
+    "reviewed_by": null,
+    "admin_note": null,
+    "motivation": "I passed IELTS last year and want to help learners with listening strategies.",
+    "skills": "listening, reading",
+    "ielts_overall": 7.0,
+    "ielts_listening": 7.5,
+    "ielts_reading": 7.0,
+    "ielts_writing": 6.5,
+    "ielts_speaking": 6.5,
+    "experience_years": 1,
+    "proof_links": [
+      "https://cdn.example.com/mock/proofs/req_003_ielts.png"
+    ]
+  },
+  {
+    "id": "req_004",
+    "user_id": "usr_018",
+    "username": "duis_aute",
+    "status": "pending",
+    "submitted_at": "2026-10-23T08:30:00+07:00",
+    "reviewed_at": null,
+    "reviewed_by": null,
+    "admin_note": null,
+    "motivation": "Six years of teaching English at secondary schools. I want to create a full-program course for band 6.5 and above.",
+    "skills": "general",
+    "ielts_overall": 8.5,
+    "ielts_listening": 8.5,
+    "ielts_reading": 9.0,
+    "ielts_writing": 8.0,
+    "ielts_speaking": 8.5,
+    "experience_years": 6,
+    "proof_links": [
+      "https://cdn.example.com/mock/proofs/req_004_degree.pdf",
+      "https://cdn.example.com/mock/proofs/req_004_ielts.jpg",
+      "https://cdn.example.com/mock/proofs/req_004_reference.pdf"
+    ]
+  },
+  {
+    "id": "req_005",
+    "user_id": "usr_005",
+    "username": "sed_do",
+    "status": "approved",
+    "submitted_at": "2026-03-02T10:00:00+07:00",
+    "reviewed_at": "2026-03-05T16:20:00+07:00",
+    "reviewed_by": "usr_001",
+    "admin_note": "All proofs verified. Welcome aboard.",
+    "motivation": "I want to share my reading strategies that helped me reach band 7.5.",
+    "skills": "reading",
+    "ielts_overall": 7.5,
+    "ielts_listening": 7.5,
+    "ielts_reading": 8.0,
+    "ielts_writing": 7.0,
+    "ielts_speaking": 7.0,
+    "experience_years": 3,
+    "proof_links": [
+      "https://cdn.example.com/mock/proofs/req_005_ielts.pdf",
+      "https://cdn.example.com/mock/proofs/req_005_letter.pdf"
+    ]
+  },
+  {
+    "id": "req_006",
+    "user_id": "usr_009",
+    "username": "dolore_magna",
+    "status": "approved",
+    "submitted_at": "2026-04-06T13:10:00+07:00",
+    "reviewed_at": "2026-04-10T11:45:00+07:00",
+    "reviewed_by": "usr_020",
+    "admin_note": null,
+    "motivation": "I have a degree in education and want to teach writing and listening to students preparing for IELTS.",
+    "skills": "writing, listening",
+    "ielts_overall": 8.0,
+    "ielts_listening": 8.5,
+    "ielts_reading": 8.0,
+    "ielts_writing": 7.5,
+    "ielts_speaking": 7.5,
+    "experience_years": 5,
+    "proof_links": [
+      "https://cdn.example.com/mock/proofs/req_006_degree.pdf",
+      "https://cdn.example.com/mock/proofs/req_006_ielts.pdf"
+    ]
+  },
+  {
+    "id": "req_007",
+    "user_id": "usr_012",
+    "username": "veniam_quis",
+    "status": "approved",
+    "submitted_at": "2026-06-14T17:25:00+07:00",
+    "reviewed_at": "2026-06-18T10:05:00+07:00",
+    "reviewed_by": "usr_001",
+    "admin_note": "Strong speaking background.",
+    "motivation": "I coach students for speaking exams and want to publish a Part 2 pronunciation course.",
+    "skills": "speaking",
+    "ielts_overall": 7.5,
+    "ielts_listening": 7.0,
+    "ielts_reading": 7.5,
+    "ielts_writing": 7.0,
+    "ielts_speaking": 8.0,
+    "experience_years": 2,
+    "proof_links": [
+      "https://cdn.example.com/mock/proofs/req_007_ielts.jpg"
+    ]
+  },
+  {
+    "id": "req_008",
+    "user_id": "usr_017",
+    "username": "ea_commodo",
+    "status": "approved",
+    "submitted_at": "2026-07-28T07:50:00+07:00",
+    "reviewed_at": "2026-08-01T15:30:00+07:00",
+    "reviewed_by": "usr_020",
+    "admin_note": null,
+    "motivation": "Eight years of teaching and two years running a test-prep centre. I want to build a complete writing and general program.",
+    "skills": "general, writing",
+    "ielts_overall": 9.0,
+    "ielts_listening": 9.0,
+    "ielts_reading": 9.0,
+    "ielts_writing": 8.5,
+    "ielts_speaking": 9.0,
+    "experience_years": 8,
+    "proof_links": [
+      "https://cdn.example.com/mock/proofs/req_008_degree.pdf",
+      "https://cdn.example.com/mock/proofs/req_008_teaching.pdf",
+      "https://cdn.example.com/mock/proofs/req_008_letter.pdf"
+    ]
+  },
+  {
+    "id": "req_009",
+    "user_id": "usr_014",
+    "username": "ullamco_laboris",
+    "status": "declined",
+    "submitted_at": "2026-05-16T21:00:00+07:00",
+    "reviewed_at": "2026-05-20T09:10:00+07:00",
+    "reviewed_by": "usr_001",
+    "admin_note": "IELTS certificate is expired and no teaching experience was provided.",
+    "motivation": "I enjoy speaking English and want to help others gain confidence.",
+    "skills": "speaking",
+    "ielts_overall": 6.5,
+    "ielts_listening": 6.5,
+    "ielts_reading": 6.0,
+    "ielts_writing": 6.0,
+    "ielts_speaking": 7.0,
+    "experience_years": 0,
+    "proof_links": [
+      "https://cdn.example.com/mock/proofs/req_009_ielts.pdf"
+    ]
+  },
+  {
+    "id": "req_010",
+    "user_id": "usr_019",
+    "username": "irure_dolor",
+    "status": "declined",
+    "submitted_at": "2026-07-03T12:40:00+07:00",
+    "reviewed_at": "2026-07-07T14:15:00+07:00",
+    "reviewed_by": "usr_020",
+    "admin_note": "The uploaded ID card is unreadable. Please resubmit with a clear scan.",
+    "motivation": "I want to teach writing to students who need band 7 for university applications.",
+    "skills": "writing, reading",
+    "ielts_overall": 6.0,
+    "ielts_listening": 6.0,
+    "ielts_reading": 6.5,
+    "ielts_writing": 5.5,
+    "ielts_speaking": 6.0,
+    "experience_years": 1,
+    "proof_links": [
+      "https://cdn.example.com/mock/proofs/req_010_id.jpg",
+      "https://cdn.example.com/mock/proofs/req_010_ielts.pdf"
+    ]
+  },
+  {
+    "id": "req_011",
+    "user_id": "usr_003",
+    "username": "amet_consectetur",
+    "status": "declined",
+    "submitted_at": "2026-02-10T11:00:00+07:00",
+    "reviewed_at": "2026-02-18T16:00:00+07:00",
+    "reviewed_by": "usr_001",
+    "admin_note": "Experience letter does not match the years stated in the application.",
+    "motivation": "I have taught a few friends IELTS writing and would like to do this more formally.",
+    "skills": "writing",
+    "ielts_overall": 7.0,
+    "ielts_listening": 7.0,
+    "ielts_reading": 7.0,
+    "ielts_writing": 7.5,
+    "ielts_speaking": 6.5,
+    "experience_years": 3,
+    "proof_links": [
+      "https://cdn.example.com/mock/proofs/req_011_letter.pdf"
+    ]
+  },
+  {
+    "id": "req_012",
+    "user_id": "usr_013",
+    "username": "nostrud_exercitation",
+    "status": "declined",
+    "submitted_at": "2026-06-01T18:20:00+07:00",
+    "reviewed_at": "2026-06-04T09:40:00+07:00",
+    "reviewed_by": "usr_020",
+    "admin_note": "Overall band score is below the minimum requirement of 7.0 for this program.",
+    "motivation": "I took IELTS twice and want to start teaching listening to beginners.",
+    "skills": "listening",
+    "ielts_overall": 6.5,
+    "ielts_listening": 6.5,
+    "ielts_reading": 6.5,
+    "ielts_writing": 6.0,
+    "ielts_speaking": 6.5,
+    "experience_years": 0,
+    "proof_links": [
+      "https://cdn.example.com/mock/proofs/req_012_ielts.pdf"
+    ]
+  }
+]

@@ -121,7 +121,7 @@ app.post("/courses", async (req, res) => {
   }
 });
 // DEBUG: Get all courses
-app.get("/courses", async (req, res) => {
+/* app.get("/courses", async (req, res) => {
   try {
     const result = await pool.query(
       `SELECT
@@ -152,7 +152,7 @@ app.get("/courses", async (req, res) => {
       message: "Internal server error",
     });
   }
-});
+}); */
  // DEBUG: Get all role applications
 app.get("/role-applications", async (req, res) => {
   try {
@@ -183,7 +183,11 @@ app.get("/role-applications", async (req, res) => {
     });
   }
 });
-
+// DEBUG
+app.use((req, res, next) => {
+  console.log("Incoming request:", req.method, req.originalUrl);
+  next();
+});
 
 
 //WORKFLOW HERE

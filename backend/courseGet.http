@@ -1,0 +1,37 @@
+@baseUrl = http://localhost:3000/courses
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIzIiwicm9sZSI6ImxlYXJuZXIiLCJpYXQiOjE3OTMwMjIyMDksImV4cCI6MTc5MzAyMzEwOX0.PdlNWmkEHCKkLIX1uj7kuIYJHoWH4NFX7eiEgUGiLd8
+### Login - Learner
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "ltrongphuc06@gmail.com",
+  "password": "phuc2006"
+}
+### 1. Get course details — course ID 6
+GET {{baseUrl}}/get/6
+Authorization: Bearer {{token}}
+
+### 2. Get chapter details — replace with a real chapter ID
+GET {{baseUrl}}/chapter/get/2
+Authorization: Bearer {{token}}
+
+### Get chapters belonging to course 7
+GET {{baseUrl}}/7/chapters
+Authorization: Bearer {{token}}
+
+### 3. Get lessons in a chapter — replace with a real chapter ID
+GET {{baseUrl}}/chapter/13/lessons
+Authorization: Bearer {{token}}
+
+### 4. Get lesson details — replace with a real lesson ID
+GET {{baseUrl}}/lesson/get/LESSON_ID
+Authorization: Bearer {{token}}
+
+### 5. Get materials for a lesson — replace with a real lesson ID
+GET {{baseUrl}}/lesson/LESSON_ID/materials
+Authorization: Bearer {{token}}
+
+### 6. Get one material — replace with a real material ID
+GET {{baseUrl}}/material/get/MATERIAL_ID
+Authorization: Bearer {{token}}

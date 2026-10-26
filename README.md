@@ -37,6 +37,9 @@ docker compose exec postgres psql -U postgres -d english_platform -c "SELECT col
 
 ## API tài khoản
 
+### test sql
+docker exec -it english_platform_db psql -U postgres -d english_platform
+
 ## để send request -> phải tải VSCode extension REST client
 ## fix lỗi bị error do sai password của docker postgre
 -> do postgresql của máy chạy song song với docker postgresql trên cùng port 5432, vào window powershell với quyền admin chạy lệnh
