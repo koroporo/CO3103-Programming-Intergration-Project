@@ -23,7 +23,7 @@ const values = [
     applicantId,
     "instructor",
     applicationText,
-    evidenceUrl || null,
+    evidenceUrl,
     "pending"
 ];
 

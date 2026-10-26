@@ -86,32 +86,24 @@ Content-Type: application/json
 GET http://localhost:3000/courses/details/2
 ### GET course
 GET http://localhost:3000/courses
-### Course search
-GET http://localhost:3000/api/courses
 
 ### Course search base on word
-GET http://localhost:3000/api/courses?search=ielts
+GET http://localhost:3000/courses/search?search=ielts
 
 ### Course search - error
-GET http://localhost:3000/api/courses?page=0
+GET http://localhost:3000/courses/search?page=0
 
 ### Filter - skill only
-GET http://localhost:3000/api/courses?skill=reading
+GET http://localhost:3000/courses/search?skill=reading
 
-### Filter - listening B2
-GET http://localhost:3000/api/courses?skill=listening&level=b2
+### Band filter - listening 5.5
+GET http://localhost:3000/courses/search?skill=listening&band=5.5
 
-### Filter - listening C1
-GET http://localhost:3000/api/courses?skill=listening&level=c1
+### Band filter - reading 6
+GET http://localhost:3000/courses/search?skill=reading&band=6
 
-### Filter - reading B2
-GET http://localhost:3000/api/courses?skill=reading&level=b2
+### Band filter - error: band without skill
+GET http://localhost:3000/courses/search?band=6
 
-### Filter - listening A2 (no result)
-GET http://localhost:3000/api/courses?skill=listening&level=a2
-
-### Filter - error: level without skill
-GET http://localhost:3000/api/courses?level=b2
-
-### Filter - error: wrong skill
-GET http://localhost:3000/api/courses?skill=cooking
+### Band filter - error: wrong step
+GET http://localhost:3000/courses/search?skill=listening&band=6.3

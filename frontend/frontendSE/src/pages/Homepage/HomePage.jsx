@@ -2,13 +2,21 @@
 import { useEffect, useState } from "react";
 import CourseCard from "../../components/Homepage/CourseCard";
 import "./HomePage.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import CourseFilter from "../../components/Homepage/CourseFilter";
 
 export default function HomePage() {
+  const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const [featuredCourse, setFeaturedCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  function handleFilterChange(name, value) {
+    const params = new URLSearchParams();
+    if (value) params.set(name, value);
+    navigate(`/courses?${params.toString()}`);
+  }
 
   useEffect(() => {
     async function fetchCourses() {
@@ -29,7 +37,7 @@ export default function HomePage() {
         }
 
         setCourses(courseList);
-        setFeaturedCourse(courseList[0] ?? null);
+        setFeaturedCourse(courseList.find((c) => c.is_featured) ?? courseList[0] ?? null);
       } catch (err) {
         setError(err.message || "Something went wrong");
       } finally {
@@ -64,7 +72,7 @@ export default function HomePage() {
         >
           <img
             className="featured-course__image"
-            src={featuredCourse.thumbnail}
+            src={featuredCourse.thumbnail_url}
             alt=""
           />
 
@@ -72,15 +80,18 @@ export default function HomePage() {
             <h1>{featuredCourse.title}</h1>
 
             <div className="featured-course__instructor">
-              <img
-                src={featuredCourse.instructorThumbnail}
-                alt=""
-              />
-              <span>{featuredCourse.instructor}</span>
+              <img src="/course-assets/instructor-avatar.svg" alt="" />
+            <span>
+              {featuredCourse.instructor ?? featuredCourse.instructor_id}
+              </span>
             </div>
           </div>
         </a>
       )}
+      
+      <section aria-label="Filter courses">
+        <CourseFilter skill="" band="" onChange={handleFilterChange} />
+      </section>
 
       <section className="course-grid" aria-label="IELTS courses">
         {courses.map((course) => (

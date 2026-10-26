@@ -5,7 +5,7 @@ async function searchCourses(req, res) {
         const result = await courseService.searchCourses({
             search: req.query.search ?? "",
             skill: req.query.skill,
-            level: req.query.level,
+            band: req.query.band,
             page: req.query.page,
             limit: req.query.limit
         });
