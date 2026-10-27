@@ -15,3 +15,76 @@ Content-Type: application/json
 
 ### Get all accounts
 GET http://localhost:3000/accounts
+
+###
+### Assessment endpoints
+### Replace these with valid JWTs for active instructor and learner accounts.
+@instructorToken = replace-with-instructor-jwt
+@learnerToken = replace-with-learner-jwt
+
+### Instructor: get owned courses, lessons, and linked skills
+GET http://localhost:3000/assessments/authoring-data
+Authorization: Bearer {{instructorToken}}
+
+### Instructor: publish a four-option lesson quiz
+POST http://localhost:3000/assessments
+Authorization: Bearer {{instructorToken}}
+Content-Type: application/json
+
+{
+  "title": "Lesson 1 quiz",
+  "course_id": "1",
+  "lesson_id": "1",
+  "time_limit_seconds": 1800,
+  "max_attempts": 3,
+  "passing_percent": 70,
+  "questions": [
+    {
+      "prompt": "Choose the correct answer.",
+      "skill_id": "1",
+      "options": [
+        { "text": "Option A", "is_correct": true },
+        { "text": "Option B", "is_correct": false },
+        { "text": "Option C", "is_correct": false },
+        { "text": "Option D", "is_correct": false }
+      ]
+    }
+  ]
+}
+
+### Learner: list published quizzes in active enrollments
+GET http://localhost:3000/assessments
+Authorization: Bearer {{learnerToken}}
+
+### Learner: start/resume attempt
+POST http://localhost:3000/assessments/1/attempts
+Authorization: Bearer {{learnerToken}}
+Content-Type: application/json
+
+{}
+
+### Learner: save an answer and submit
+PUT http://localhost:3000/assessments/attempts/1/answers
+Authorization: Bearer {{learnerToken}}
+Content-Type: application/json
+
+{
+  "answers": [
+    { "attempt_question_id": "1", "selected_option_id": "1" }
+  ]
+}
+
+###
+POST http://localhost:3000/assessments/attempts/1/submit
+Authorization: Bearer {{learnerToken}}
+Content-Type: application/json
+
+{}
+
+### Learner: inspect attempt history and answer-by-answer result
+GET http://localhost:3000/assessments/attempts/history
+Authorization: Bearer {{learnerToken}}
+
+###
+GET http://localhost:3000/assessments/attempts/1/result
+Authorization: Bearer {{learnerToken}}

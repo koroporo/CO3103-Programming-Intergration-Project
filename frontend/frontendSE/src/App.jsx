@@ -1,8 +1,7 @@
-function App() {
+import AssessmentPage from './pages/AssessmentPage'
 
-  return (
-    <></>
-  )
+function App() {
+  return <AssessmentPage />
 }
 
 export default App
