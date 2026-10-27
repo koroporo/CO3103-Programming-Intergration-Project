@@ -1,4 +1,4 @@
-const pool = require("../db");
+const pool = require("../../db");
 
 async function findCategoryById(id) {
   const sql = "SELECT id FROM categories WHERE id = $1";

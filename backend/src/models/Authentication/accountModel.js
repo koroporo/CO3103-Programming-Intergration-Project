@@ -1,4 +1,4 @@
-const pool = require("../db");
+const pool = require("../../db");
 
 async function findById(id) {
   // chỉ đọc những trường middleware cần để kiểm tra quyền

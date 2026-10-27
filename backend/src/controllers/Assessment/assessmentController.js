@@ -1,4 +1,4 @@
-const assessmentService = require("../services/assessmentService");
+const assessmentService = require("../../services/Assessment/assessmentService");
 
 async function getAuthoringData(req, res) {
   const courses = await assessmentService.getAuthoringData(req.user.id);

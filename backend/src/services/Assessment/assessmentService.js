@@ -1,10 +1,10 @@
-const pool = require("../db");
-const { createError, assertCourseOwner } = require("../ultils/courseUltils");
+const pool = require("../../db");
+const { createError, assertCourseOwner } = require("../../ultils/courseUltils");
 const {
   positiveId,
   validateAssessmentInput,
   validateAnswers
-} = require("./assessmentValidation");
+} = require("../assessmentValidation");
 const { gradeAttempt } = require("./assessmentRules");
 
 async function withTransaction(callback) {

@@ -6,7 +6,7 @@ const {
   validateLesson,
   validateMaterial,
   assertCourseOwner
-} = require("../ultils/courseUltils");
+} = require("../../ultils/courseUltils");
 
 async function createCourse(body, user) {
   // bước 1 kiểm tra và lấy các metric được phép từ body.
