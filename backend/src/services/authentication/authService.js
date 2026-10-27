@@ -43,9 +43,7 @@ async function register({ email, password, fullName }) {
     typeof fullName !== "string" ||
     !fullName.trim()
   ) {
-    const error = new Error(
-      "A valid email, name, and password of at least 8 characters are required",
-    );
+    const error = new Error("A valid email, name, and password of at least 8 characters are required");
     error.code = "VALIDATION_ERROR";
     throw error;
   }
