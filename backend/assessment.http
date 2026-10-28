@@ -1,0 +1,25 @@
+@baseUrl = http://localhost:3000/assessment
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIzIiwicm9sZSI6ImxlYXJuZXIiLCJpYXQiOjE3OTMxOTQyODAsImV4cCI6MTc5MzE5NTE4MH0.mZw76k702z3RIF4hNeOzDX6i7MAapkdjC3S9DmLgBHM
+### Login - Learner
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "ltrongphuc06@gmail.com",
+  "password": "phuc2006"
+}
+
+### Submit writing
+POST http://localhost:3000/assessment/submit
+Content-Type: application/json
+Cookie: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIzIiwicm9sZSI6ImxlYXJuZXIiLCJpYXQiOjE3OTMxOTc2ODUsImV4cCI6MTc5MzE5ODU4NX0._5i5I-wtZ-OrtNkP6LulphWGdWjpvlNn0M7X8K-h_Rk
+
+{
+  "assessmentId": 1,
+  "answers": [
+    {
+      "questionId": 1,
+      "text": "I believe online learning is effective because it offers flexibility and access to many learning resources."
+    }
+  ]
+}

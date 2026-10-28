@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 
 export default function WritingAssignment({
@@ -8,8 +9,24 @@ export default function WritingAssignment({
 }) {
   const [essay, setEssay] = useState(initialAnswer);
   const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
+  // Support the field names returned by your backend.
+  const assessmentId = assessment?.assessment_id ?? assessment?.id;
+  const questionId = assessment?.question_id;
+  const title =
+    assessment?.assessment_title ?? assessment?.title ?? "Writing Assignment";
+  const prompt = assessment?.prompt;
+  const dueAt = assessment?.due_at ?? assessment?.dueAt;
+  const instructions = assessment?.instructions;
+
+  const isAlreadySubmitted =
+    submitted ||
+    ["submitted", "awaiting_grading", "graded"].includes(
+      submissionStatus,
+    );
 
   const wordCount = essay.trim()
     ? essay.trim().split(/\s+/).length
@@ -18,26 +35,39 @@ export default function WritingAssignment({
   async function handleSubmit(event) {
     event.preventDefault();
 
+    setError("");
+    setSuccess("");
+
     if (!essay.trim()) {
       setError("Please write your essay before submitting.");
       return;
     }
 
-    if (!onSubmit) {
-      setError("Submission is not connected to the backend yet.");
+    if (!assessmentId || !questionId) {
+      setError("The assignment or question ID is missing.");
+      return;
+    }
+
+    if (typeof onSubmit !== "function") {
+      setError("The submission API has not been connected.");
       return;
     }
 
     try {
       setSubmitting(true);
-      setError("");
-      setSuccess("");
 
+      // Match the POST /assessment/submit API contract.
       await onSubmit({
-        assessmentId: assessment.id,
-        answer: essay,
+        assessmentId,
+        answers: [
+          {
+            questionId,
+            text: essay.trim(),
+          },
+        ],
       });
 
+      setSubmitted(true);
       setSuccess("Your essay has been submitted successfully.");
     } catch (err) {
       setError(err.message || "Failed to submit your essay.");
@@ -48,23 +78,27 @@ export default function WritingAssignment({
 
   return (
     <section className="writing-assignment">
-      <h2>{assessment.title}</h2>
+      <h2>{title}</h2>
 
-      {assessment.instructions && (
-        <p>{assessment.instructions}</p>
-      )}
+      {instructions && <p>{instructions}</p>}
 
-      {assessment.prompt && (
+      {prompt && (
         <div className="writing-assignment__prompt">
           <h3>Writing task</h3>
-          <p>{assessment.prompt}</p>
+          <p>{prompt}</p>
         </div>
       )}
 
-      {assessment.dueAt && (
+      {dueAt && (
         <p>
           <strong>Due:</strong>{" "}
-          {new Date(assessment.dueAt).toLocaleString()}
+          {new Date(dueAt).toLocaleString()}
+        </p>
+      )}
+
+      {assessment.max_points != null && (
+        <p>
+          <strong>Maximum points:</strong> {assessment.max_points}
         </p>
       )}
 
@@ -74,38 +108,40 @@ export default function WritingAssignment({
         </p>
       )}
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="writing-essay">
-          Your essay
-        </label>
-
-        <textarea
-          id="writing-essay"
-          value={essay}
-          onChange={(event) => setEssay(event.target.value)}
-          placeholder="Write your IELTS essay here..."
-          rows={14}
-          disabled={submitting || submissionStatus === "submitted"}
-        />
-
-        <p className="writing-assignment__word-count">
-          Word count: {wordCount}
+      {isAlreadySubmitted ? (
+        <p role="status">
+          This essay has already been submitted. You cannot submit it again.
         </p>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <label htmlFor={`writing-essay-${assessmentId}`}>
+            Your essay
+          </label>
 
-        {error && <p role="alert">{error}</p>}
-        {success && <p role="status">{success}</p>}
+          <textarea
+            id={`writing-essay-${assessmentId}`}
+            value={essay}
+            onChange={(event) => setEssay(event.target.value)}
+            placeholder="Write your IELTS essay here..."
+            rows={14}
+            disabled={submitting}
+          />
 
-        <button
-          type="submit"
-          disabled={
-            submitting ||
-            !essay.trim() ||
-            submissionStatus === "submitted"
-          }
-        >
-          {submitting ? "Submitting..." : "Submit essay"}
-        </button>
-      </form>
+          <p className="writing-assignment__word-count">
+            Word count: {wordCount}
+          </p>
+
+          {error && <p role="alert">{error}</p>}
+          {success && <p role="status">{success}</p>}
+
+          <button
+            type="submit"
+            disabled={submitting || !essay.trim()}
+          >
+            {submitting ? "Submitting..." : "Submit essay"}
+          </button>
+        </form>
+      )}
     </section>
   );
 }

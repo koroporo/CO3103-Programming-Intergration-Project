@@ -19,7 +19,7 @@ app.use(cookieParser());
 // PATH
 app.use(
   "/lesson-assets",
-  express.static(path.join(__dirname, "lesson-assets"))
+  express.static(path.join(__dirname, "..", "lesson-assets"))
 );
 
 // DEBUG
@@ -249,4 +249,9 @@ const enrollmentRoutes = require("./routes/Enrollment/enrollmentRoutes");
 const { errorHandler } = require("./middleware/Authentication/errorMiddleware");
 app.use("/enrollment", enrollmentRoutes);
 app.use(errorHandler);
+
+//ASSESSMENT
+const assessmentRoutes = require("./routes/Assessment/assessmentRoutes");
+
+app.use("/assessment", assessmentRoutes);
 

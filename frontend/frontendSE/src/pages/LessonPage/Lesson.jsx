@@ -5,6 +5,7 @@ import Comments from "./Comments";
 import VideoLayout from "./VideoLayout";
 import SlideLayout from "./SlideLayout";
 import ExercisesLayout from "./ExercisesLayout";
+import WritingAssignment from "../../components/Lesson/WritingAssignment";
 import "./Lesson.css";
 
 // Your backend serves lesson assets from localhost:3000.
@@ -17,7 +18,24 @@ function getAssetUrl(url) {
 
   return `http://localhost:3000${url.startsWith("/") ? "" : "/"}${url}`;
 }
+async function submitWritingAssignment(payload) {
+  const response = await fetch("http://localhost:3000/assessment/submit", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(payload),
+  });
 
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.message || "Failed to submit writing assignment.");
+  }
+
+  return result.data;
+}
 export default function Lesson() {
   const { courseId, lessonId } = useParams();
 
@@ -191,11 +209,19 @@ export default function Lesson() {
           ))}
 
         {activeTab === "writing" && (
-          <p>
-            {lesson.writingAssignments?.length
-              ? "Writing assignments are available, but submission integration is not connected yet."
-              : "No writing assignments are available for this lesson."}
-          </p>
+          <div className="lesson-writing-assignments">
+            {lesson.writingAssignments?.length ? (
+              lesson.writingAssignments.map((assignment) => (
+                <WritingAssignment
+                  key={`${assignment.assessment_id}-${assignment.question_id}`}
+                  assessment={assignment}
+                  onSubmit={submitWritingAssignment}
+                />
+              ))
+            ) : (
+              <p>No writing assignments are available for this lesson.</p>
+            )}
+          </div>
         )}
       </div>
 
