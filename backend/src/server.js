@@ -2,6 +2,7 @@ const express = require("express");
 const crypto = require("crypto");
 const pool = require("./db");
 const cors = require("cors");
+const path = require("path");
 const cookieParser = require("cookie-parser");
 
 
@@ -15,6 +16,11 @@ app.use(cors({
 
 app.use(express.json());
 app.use(cookieParser());
+// PATH
+app.use(
+  "/lesson-assets",
+  express.static(path.join(__dirname, "lesson-assets"))
+);
 
 // DEBUG
 app.get("/accounts", async (req, res) => {

@@ -179,6 +179,24 @@ async function getChaptersByCourseId(req, res) {
   }
 }
 
+async function getLessonContent(req, res) {
+  try {
+    const lesson = await courseService.getLessonContent(
+      req.params.courseId,
+      req.params.lessonId,
+    );
+
+    return res.json({
+      message: "Lesson content fetched successfully",
+      data: lesson,
+    });
+  } catch (error) {
+    return res.status(error.statusCode || 500).json({
+      message: error.message || "Failed to fetch lesson content",
+    });
+  }
+}
+
 module.exports = {
   getCourse,
   getCoursesByUserId,
@@ -194,4 +212,5 @@ module.exports = {
   createChapter,
   createLesson,
   createMaterial,
+  getLessonContent,
 };

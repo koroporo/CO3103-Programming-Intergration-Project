@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:3000/courses
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIzIiwicm9sZSI6ImxlYXJuZXIiLCJpYXQiOjE3OTMwMjIyMDksImV4cCI6MTc5MzAyMzEwOX0.PdlNWmkEHCKkLIX1uj7kuIYJHoWH4NFX7eiEgUGiLd8
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIzIiwicm9sZSI6ImxlYXJuZXIiLCJpYXQiOjE3OTMxOTQyODAsImV4cCI6MTc5MzE5NTE4MH0.mZw76k702z3RIF4hNeOzDX6i7MAapkdjC3S9DmLgBHM
 ### Login - Learner
 POST http://localhost:3000/api/auth/login
 Content-Type: application/json
@@ -9,7 +9,7 @@ Content-Type: application/json
   "password": "phuc2006"
 }
 ### 1. Get course details — course ID 6
-GET {{baseUrl}}/get/6
+GET {{baseUrl}}/get/2
 Authorization: Bearer {{token}}
 
 ### 2. Get chapter details — replace with a real chapter ID
@@ -35,3 +35,7 @@ Authorization: Bearer {{token}}
 ### 6. Get one material — replace with a real material ID
 GET {{baseUrl}}/material/get/MATERIAL_ID
 Authorization: Bearer {{token}}
+
+
+### TEST GET LESSON CONTENT
+GET http://localhost:3000/courses/2/lesson/6/content

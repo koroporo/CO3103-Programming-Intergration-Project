@@ -253,6 +253,35 @@ async function getMaterial(id) {
   return material;
 }
 
+async function getLessonContent(courseId, id) {
+  const validCourseId = positiveId(courseId, "course_id");
+  const lessonId = positiveId(id, "lesson_id");
+
+  const lesson = await courseModel.findLessonByIdAndCourseId(
+    lessonId,
+    validCourseId,
+  );
+
+  if (!lesson) {
+    throw createError(
+      404,
+      "Lesson not found in the specified course",
+    );
+  }
+
+  const [video, materials, writingAssignments] = await Promise.all([
+    courseModel.findVideoByLessonId(lessonId),
+    courseModel.findMaterialsByLessonId(lessonId),
+    courseModel.findWritingAssignmentsByLessonId(lessonId),
+  ]);
+
+  return {
+    ...lesson,
+    video,
+    materials,
+    writingAssignments,
+  };
+}
 module.exports = {
   getCourse,
   getCoursesByUserId,
@@ -267,4 +296,5 @@ module.exports = {
   createChapter,
   createLesson,
   createMaterial,
+  getLessonContent,
 };

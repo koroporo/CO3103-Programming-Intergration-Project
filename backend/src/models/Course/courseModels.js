@@ -60,13 +60,10 @@ async function searchPublishedCourses({
         LIMIT $6
         OFFSET $7
       `,
-      [...filterParams, limit, offset]
+      [...filterParams, limit, offset],
     ),
 
-    pool.query(
-      `SELECT COUNT(*) AS total ${FROM_AND_FILTERS}`,
-      filterParams
-    ),
+    pool.query(`SELECT COUNT(*) AS total ${FROM_AND_FILTERS}`, filterParams),
   ]);
 
   return {
@@ -77,10 +74,9 @@ async function searchPublishedCourses({
 
 // Shared: Find a category by ID.
 async function findCategoryById(id) {
-  const result = await pool.query(
-    "SELECT id FROM categories WHERE id = $1",
-    [id]
-  );
+  const result = await pool.query("SELECT id FROM categories WHERE id = $1", [
+    id,
+  ]);
 
   return result.rows[0];
 }
@@ -330,7 +326,6 @@ async function findLessonById(id) {
   return result.rows[0];
 }
 
-
 // GET: Find materials belonging to a lesson.
 async function findMaterialsByLessonId(lessonId) {
   const sql = `
@@ -366,6 +361,69 @@ async function findMaterialById(id) {
   return result.rows[0];
 }
 
+// GET: Find the video belonging to a lesson.
+async function findVideoByLessonId(lessonId) {
+  const result = await pool.query(
+    `SELECT id, lesson_id, video_url, duration_seconds
+     FROM videos
+     WHERE lesson_id = $1`,
+    [lessonId],
+  );
+
+  return result.rows[0] ?? null;
+}
+// GET: Find a lesson that belongs to a specific course.
+// GET: Find a lesson belonging to a specific course.
+async function findLessonByIdAndCourseId(lessonId, courseId) {
+  const result = await pool.query(
+    `SELECT
+       lessons.*,
+       chapters.id AS chapter_id,
+       chapters.title AS chapter_title,
+       courses.id AS course_id,
+       courses.title AS course_title,
+       courses.thumbnail_url AS thumbnail_url
+     FROM lessons
+     JOIN chapters ON chapters.id = lessons.chapter_id
+     JOIN courses ON courses.id = chapters.course_id
+     WHERE lessons.id = $1
+       AND courses.id = $2`,
+    [lessonId, courseId],
+  );
+
+  return result.rows[0] ?? null;
+}
+// GET: Find published writing assignments and their prompts.
+async function findWritingAssignmentsByLessonId(lessonId) {
+  const result = await pool.query(
+    `SELECT
+       a.id AS assessment_id,
+       a.title AS assessment_title,
+       a.response_mode,
+       a.due_at,
+       a.grading_rubric,
+       q.id AS question_id,
+       q.question_type,
+       q.prompt,
+       aq.max_points,
+       aq.is_required
+     FROM assessments a
+     JOIN assessment_questions aq
+       ON aq.assessment_id = a.id
+     JOIN questions q
+       ON q.id = aq.question_id
+     WHERE a.lesson_id = $1
+       AND a.purpose = 'assignment'
+       AND a.status = 'published'
+       AND q.status = 'active'
+       AND q.question_type = 'essay'
+     ORDER BY a.id, q.id`,
+    [lessonId],
+  );
+
+  return result.rows;
+}
+
 module.exports = {
   // Search and course lookups
   searchPublishedCourses,
@@ -390,8 +448,14 @@ module.exports = {
   // Lesson queries
   findLessonsByChapterId,
   findLessonById,
+  findLessonByIdAndCourseId,
 
   // Material queries
   findMaterialsByLessonId,
   findMaterialById,
+
+  //Video
+  findVideoByLessonId,
+  //Assignment
+  findWritingAssignmentsByLessonId,
 };

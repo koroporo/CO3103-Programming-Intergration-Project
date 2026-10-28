@@ -163,4 +163,11 @@ router.get(
   courseController.getMaterial,
 );
 
+router.get(
+  "/:courseId/lesson/:lessonId/content",
+  authenticate,
+  authorizeRoles("user", "learner", "instructor", "admin"),
+  courseController.getLessonContent,
+);
+
 module.exports = router;

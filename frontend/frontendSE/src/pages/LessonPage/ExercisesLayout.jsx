@@ -1,4 +1,4 @@
-import './ExercisesLayout.css';
+import "./ExercisesLayout.css";
 
 export default function ExercisesLayout({ exercise }) {
   if (!exercise) {
@@ -14,7 +14,11 @@ export default function ExercisesLayout({ exercise }) {
 
   return (
     <div className="exercises-layout">
-      <iframe src={exercise} title="Lesson exercises" allowFullScreen></iframe>
+      <iframe
+        src={exercise}
+        title="Lesson exercises"
+        allowFullScreen
+      />
     </div>
   );
 }
