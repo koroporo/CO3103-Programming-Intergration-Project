@@ -53,6 +53,11 @@ export default function ProfileButton() {
       console.error("Logout error:", error);
     }
   }
+    function handleInstructor()
+    {
+        navigate("/instructor-studio");
+        setIsOpen(false);
+    }
 
   // Avoid rendering the profile menu for an unauthenticated user.
   if (!user) {
@@ -87,6 +92,9 @@ export default function ProfileButton() {
           </div>
 
           <hr className="menu-divider" />
+                        {user.role === "instructor" && (
+                            <button onClick={handleInstructor}>Instructor Studio</button>
+                        )}
 
           <div className="menu-links">
             <button onClick={handleMyAccount}>My Account</button>
