@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { logout } from "../../services/authServices/logout";
 import { useAuth } from "../../hooks/Authentication/useAuth";
 import myAvatar from "../../assets/avt.jpg";
-import "./profilebutton.css";
+import "./ProfileButton.css";
 
 export default function ProfileButton() {
   const [isOpen, setIsOpen] = useState(false);

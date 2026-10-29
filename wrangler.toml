@@ -1,0 +1,9 @@
+name = "ietlstrainer"
+main = "backend/worker.js"
+compatibility_date = "2026-10-29"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./frontend/dist"
+not_found_handling = "single-page-application"
+run_worker_first = ["/api/*"]
