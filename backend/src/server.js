@@ -9,7 +9,7 @@ const app = express();
 
 //COOKIE
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: ["http://localhost:5173", "https://ieltstrainer.menh-hoang.workers.dev/"], 
   credentials: true
 }));
 
@@ -243,4 +243,5 @@ const enrollmentRoutes = require("./routes/Enrollment/enrollmentRoutes");
 const { errorHandler } = require("./middleware/Authentication/errorMiddleware");
 app.use("/enrollment", enrollmentRoutes);
 app.use(errorHandler);
+
 

@@ -56,7 +56,7 @@ Content-Type: application/json
 }
 
 ### Get user_data
-GET http://localhost:3000/api/auth/me
+GET https://ieltstrainer.menh-hoang.workers.dev/api/auth/me
 
 ### Test logout
 POST http://localhost:3000/api/auth/logout

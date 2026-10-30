@@ -1,9 +1,10 @@
-name = "ietlstrainer"
+name = "ieltstrainer"
+account_id = "3db9ec631ecc552814577d0ec8cfe45c"
 main = "backend/worker.js"
 compatibility_date = "2026-10-29"
-compatibility_flags = ["nodejs_compat"]
+compatibility_flags = ["nodejs_compat", "nodejs_compat_populate_process_env"]
 
 [assets]
-directory = "./frontend/dist"
+directory = "./frontend/frontendSE/dist"
 not_found_handling = "single-page-application"
 run_worker_first = ["/api/*"]

@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:3000/courses
+@baseUrl = https://ieltstrainer.menh-hoang.workers.dev/courses
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIzIiwicm9sZSI6ImxlYXJuZXIiLCJpYXQiOjE3OTMwMjIyMDksImV4cCI6MTc5MzAyMzEwOX0.PdlNWmkEHCKkLIX1uj7kuIYJHoWH4NFX7eiEgUGiLd8
 ### Login - Learner
 POST http://localhost:3000/api/auth/login

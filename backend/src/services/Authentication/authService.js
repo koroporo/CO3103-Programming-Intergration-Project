@@ -66,8 +66,34 @@ async function getCurrentUser(accountId) {
   return user;
 }
 
+async function adminRegister({ email, password, fullName }) {
+  if (
+    typeof email !== "string" ||
+    !isValidEmail(email.trim()) ||
+    !isValidPassword(password) ||
+    typeof fullName !== "string" ||
+    !fullName.trim()
+  ) {
+    const error = new Error(
+      "A valid email, name, and password of at least 8 characters are required"
+    );
+    error.code = "VALIDATION_ERROR";
+    throw error;
+  }
+
+  const passwordHash = await hashPassword(password);
+
+  return accountModel.createAccount({
+    email: normalizeEmail(email),
+    passwordHash,
+    fullName: fullName.trim(),
+    role: "admin",
+  });
+}
+
 module.exports = {
   login,
   register,
   getCurrentUser,
+  adminRegister,
 };
