@@ -213,9 +213,20 @@ app.get("/health", async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+/*
+Development 
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+} */
+
+// Deploy
+if (require.main === module) {
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
 
 //LOG IN, REGISTER 
 const authRoutes = require("./routes/Authentication/authRoutes");
@@ -223,11 +234,7 @@ const preferencesRoutes = require("./routes/Authentication/preferencesRoutes");
 
 app.use("/api/auth", authRoutes);
 app.use("/api/preferences", preferencesRoutes);
-if (require.main === module) {
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
-}
+
 // RESET PASSWORD
 const passwordResetRoutes = require("./routes/Authentication/passwordResetRoutes");
 app.use("/auth", passwordResetRoutes);
