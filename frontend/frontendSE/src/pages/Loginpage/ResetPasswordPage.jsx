@@ -36,7 +36,7 @@ export default function ResetPasswordPage() {
             setIsLoading(true);
 
             const response = await fetch(
-                "http://localhost:3000/auth/reset-password",
+                "/api/auth/reset-password",
                 {
                     method: "POST",
                     headers: {

@@ -1,8 +1,7 @@
 
-const API_URL = "http://localhost:3000";
 
 export async function saveLearningPreferences(preferences) {
-  const response = await fetch(`${API_URL}/api/preferences`, {
+  const response = await fetch(`api/preferences`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

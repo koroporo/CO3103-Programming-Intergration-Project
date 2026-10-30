@@ -1,4 +1,3 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:3000";
 export async function getCourses({ search = "", skill = "", band = "", page = 1, limit = 20, signal } = {}) {
   const query = new URLSearchParams();
 
@@ -16,7 +15,7 @@ export async function getCourses({ search = "", skill = "", band = "", page = 1,
 
   const queryString = query.toString();
  const response = await fetch(
-  `${API_BASE_URL}/courses/search${queryString ? `?${queryString}` : ""}`,
+  `/api/courses/search${queryString ? `?${queryString}` : ""}`,
   { signal },
 );
 

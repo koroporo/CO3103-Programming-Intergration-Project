@@ -12,7 +12,7 @@ export default function MyAccount() {
         async function getUser() {
             try {
                 const response = await fetch(
-                    "http://localhost:3000/api/auth/me",
+                    "/api/auth/me",
                     {
                         credentials: "include"
                     }

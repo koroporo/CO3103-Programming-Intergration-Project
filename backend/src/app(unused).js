@@ -1,5 +1,5 @@
 const express = require("express");
-const pool = require("./db");
+const { withDb, config} = require("./db");
 const courseRoutes = require("./routes/courseRoutes");
 const enrollmentRoutes = require("./routes/enrollmentRoutes");
 const { errorHandler } = require("./middleware/errorMiddleware");
@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
 
 app.get("/accounts", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM accounts ORDER BY id");
+    const result = await withDb( (sql) => sql`SELECT * FROM accounts ORDER BY id`);
     res.json(result.rows);
   } catch (error) {
     console.error(error);

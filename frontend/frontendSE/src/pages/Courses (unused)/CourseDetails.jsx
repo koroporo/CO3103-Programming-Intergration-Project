@@ -20,7 +20,7 @@ useEffect(() => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/courses/details/${id}`
+        `/api/courses/details/${id}`
       );
 
       if (!response.ok) {

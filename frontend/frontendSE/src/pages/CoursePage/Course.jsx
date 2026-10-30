@@ -33,7 +33,7 @@ export default function Course() {
         setError("");
 
         const response = await fetch(
-          `http://localhost:3000/courses/details/${courseId}`,
+          `/api/courses/details/${courseId}`,
         );
 
         if (!response.ok) {

@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
     async function restoreSession() {
       try {
         const response = await fetch(
-          "http://localhost:3000/api/auth/me",
+          "/api/auth/me",
           {
             method: "GET",
             credentials: "include",
