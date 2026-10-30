@@ -1,6 +1,6 @@
 export async function sendInstructorApplication(description) {
     const response = await fetch(
-        "http://localhost:3000/role-applications",
+        "/api/role-applications",
         {
             method: "POST",
             headers: {

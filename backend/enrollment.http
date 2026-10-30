@@ -1,4 +1,4 @@
-@baseUrl = https://ieltstrainer.menh-hoang.workers.dev/
+@baseUrl = /api
 @token = REPLACE_WITH_ACTIVE_LEARNER_TOKEN
 # Course và lesson phải published; lesson thuộc đúng course.
 @courseId = 20

@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 
-const API_URL = "http://localhost:3000";
+const API_URL = "/api";
 
 export function useEnrollStatus({ courseId }) {
   const [status, setStatus] = useState("checking");

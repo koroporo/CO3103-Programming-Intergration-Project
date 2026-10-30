@@ -24,7 +24,7 @@ export default function CourseSyllabus({ courseId }) {
 
         // 1. Fetch chapters belonging to this course
         const chapterResponse = await fetch(
-          `http://localhost:3000/courses/${courseId}/chapters`,
+          `/api/courses/${courseId}/chapters`,
           { credentials: "include" }
         );
 
@@ -42,7 +42,7 @@ export default function CourseSyllabus({ courseId }) {
         const chaptersWithLessons = await Promise.all(
           chapterList.map(async (chapter) => {
             const lessonResponse = await fetch(
-              `http://localhost:3000/courses/chapter/${chapter.id}/lessons`,
+              `/api/courses/chapter/${chapter.id}/lessons`,
               { credentials: "include" }
             );
 

@@ -1,4 +1,4 @@
-@baseUrl = https://ieltstrainer.menh-hoang.workers.dev/
+@baseUrl = https://ieltstrainer.menh-hoang.workers.dev
 # Thay bằng token hợp lệ từ phần đăng nhập; account phải active và có role instructor.
 @token = REPLACE_WITH_INSTRUCTOR_TOKEN
 @categoryId = 1
