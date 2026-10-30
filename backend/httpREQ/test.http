@@ -44,6 +44,8 @@ Content-Type: application/json
 
 ### Get all accounts
 GET http://localhost:3000/accounts
+### GET course
+GET http://localhost:3000/courses
 
 ### Get all apllixcations
 GET http://localhost:3000/role-applications
