@@ -17,6 +17,11 @@ export default function Course() {
   const [error, setError] = useState("");
   const [activeTab, setActiveTab] = useState("syllabus");
 
+  // Completion
+  const [completionLoading, setCompletionLoading] = useState(false);
+  const [completionError, setCompletionError] = useState("");
+  const [completionResult, setCompletionResult] = useState(null);
+
   //enrollment
   const enrollment = useEnrollStatus({ courseId: course?.id });
 
@@ -55,6 +60,52 @@ export default function Course() {
 
     fetchCourse();
   }, [courseId]);
+
+  // prevent course recommendation appearing throughout pages
+  useEffect(() => {
+    setCompletionResult(null);
+    setCompletionError("");
+    setCompletionLoading(false);
+  }, [courseId]);
+  // Completion
+ async function handleCompleteCourse() {
+  const requestedCourseId = course.id;
+
+  try {
+    setCompletionLoading(true);
+    setCompletionError("");
+    setCompletionResult(null);
+
+    const response = await fetch(
+      "http://localhost:3000/courses/completion",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          courseId: requestedCourseId,
+          score: 85,
+        }),
+      },
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Failed to complete course.");
+    }
+
+    setCompletionResult((current) =>
+      requestedCourseId === course.id ? data : current
+    );
+  } catch (err) {
+    setCompletionError(err.message || "Failed to complete course.");
+  } finally {
+    setCompletionLoading(false);
+  }
+}
 
   if (loading) {
     return (
@@ -174,6 +225,46 @@ export default function Course() {
           <div className="enroll-button-container">
             <EnrollButton courseId={course.id} enrollment={enrollment} />
           </div>
+          {enrollment.status === "enrolled" && (
+            <div className="course-completion">
+              <button
+                type="button"
+                onClick={handleCompleteCourse}
+                disabled={completionLoading}
+              >
+                {completionLoading ? "Processing..." : "Complete Course (Demo)"}
+              </button>
+
+              {completionError && <p role="alert">{completionError}</p>}
+
+              {completionResult && (
+                <section aria-live="polite">
+                  <h2>Personalized Recommendations</h2>
+                  <p>{completionResult.message}</p>
+
+                  {completionResult.recommendations.length === 0 ? (
+                    <p>No recommendations available.</p>
+                  ) : (
+                    completionResult.recommendations.map((item, index) => (
+                      <article
+                        key={`${item.recommendation_type}-${item.course_id}-${index}`}
+                        className="course-recommendation"
+                      >
+                        <h3>{item.recommendation_type}</h3>
+                        <p>{item.course_title}</p>
+                        <p>
+                          Skill: {item.skill_code} | Band: {item.initial_band}
+                        </p>
+                        <Link to={`/courses/${item.course_id}`}>
+                          View course
+                        </Link>
+                      </article>
+                    ))
+                  )}
+                </section>
+              )}
+            </div>
+          )}
         </div>
       </article>
 

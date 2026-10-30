@@ -28,7 +28,7 @@ export default function ApplyInstructor() {
     return (
         <div className="apply-page-wrapper">
             <div className="apply-card">
-                
+                <a href="/">Back to homepage</a>
                 {/* TIÊU ĐỀ & MÔ TẢ */}
                 <div className="apply-header">
                     <h1>Become an IELTS Instructor</h1>

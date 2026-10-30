@@ -187,6 +187,28 @@
   background: #800600;
   border-radius: 2px;
 }
+.course-completion {
+  margin-top: 16px;
+}
+
+.course-completion > button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.course-completion > button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.course-recommendation {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
 
 @media (max-width: 800px) {
   .course-page {

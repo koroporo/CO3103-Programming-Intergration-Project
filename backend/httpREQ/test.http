@@ -31,6 +31,17 @@ Content-Type: application/json
     "full_name": "Test Administrator"
 }
 
+
+### Register an instructor account
+POST http://localhost:3000/api/auth/instructorRegister
+Content-Type: application/json
+
+{
+    "email": "instructor@example.com",
+    "password": "I_Love_Teaching",
+    "full_name": "Instructor 1"
+}
+
 ### Get all accounts
 GET http://localhost:3000/accounts
 

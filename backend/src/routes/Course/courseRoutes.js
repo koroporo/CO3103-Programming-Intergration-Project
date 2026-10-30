@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../../db"); // Adjust to your PostgreSQL connection file
 const courseController = require("../../controllers/Course/courseControllers");
+const courseCompletionController = require("../../controllers/Course/courseCompletionController");
 
 // Search courses
 router.get("/search", courseController.searchCourses);
@@ -168,6 +169,14 @@ router.get(
   authenticate,
   authorizeRoles("user", "learner", "instructor", "admin"),
   courseController.getLessonContent,
+);
+
+// course completion
+router.post(
+  "/completion",
+  authenticate,
+  authorizeRoles("user", "learner", "instructor", "admin"),
+  courseCompletionController.completeCourse,
 );
 
 module.exports = router;

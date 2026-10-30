@@ -67,6 +67,7 @@ export default function MyAccount() {
 
     return (
         <div className="account-page-wrapper">
+            <a href="/">Back to homepage</a>
             <div className="account-card">
 
                 {/* ---------- LEFT COLUMN: AVATAR & STATUS ---------- */}
