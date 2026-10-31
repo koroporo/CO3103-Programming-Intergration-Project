@@ -14,3 +14,19 @@ run_worker_first = ["/api/*"]
 binding = "HYPERDRIVE"
 id = "6cb7b3f23d9c45a1b66c9d0ec9f3a57c"
 localConnectionString = "postgres://postgres:postgres@localhost:5432/english_platform"
+
+# ...
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+invocation_logs = true
+persist = true
+
+[observability.traces]
+enabled = false
+head_sampling_rate = 1
+persist = true
+
+[observability.issue_detection]
+enabled = false
+# ...
