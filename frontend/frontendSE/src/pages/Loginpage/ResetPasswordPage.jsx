@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import "./ResetPasswordPage.css"
 
 export default function ResetPasswordPage() {
     const [searchParams] = useSearchParams();
@@ -69,47 +70,49 @@ export default function ResetPasswordPage() {
         }
     }
 
-    return (
-        <div className="reset-password-page">
+   return (
+    <div className="reset-password-page">
+        <form className="reset-password-form" onSubmit={handleSubmit}>
             <h1>Reset Your Password</h1>
-            <p>Enter your new password below.</p>
+            <p className="subtitle">
+                Enter and confirm your new password below.
+            </p>
 
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="password">New password</label>
-                    <input
-                        id="password"
-                        type="password"
-                        value={password}
-                        onChange={(event) => setPassword(event.target.value)}
-                        minLength={8}
-                        autoComplete="new-password"
-                        required
-                    />
-                </div>
+            <div className="form-group">
+                <label htmlFor="password">New password</label>
+                <input
+                    id="password"
+                    type="password"
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                    minLength={8}
+                    autoComplete="new-password"
+                    required
+                />
+            </div>
 
-                <div>
-                    <label htmlFor="confirmPassword">
-                        Confirm new password
-                    </label>
-                    <input
-                        id="confirmPassword"
-                        type="password"
-                        value={confirmPassword}
-                        onChange={(event) =>
-                            setConfirmPassword(event.target.value)
-                        }
-                        autoComplete="new-password"
-                        required
-                    />
-                </div>
+            <div className="form-group">
+                <label htmlFor="confirmPassword">
+                    Confirm new password
+                </label>
+                <input
+                    id="confirmPassword"
+                    type="password"
+                    value={confirmPassword}
+                    onChange={(event) =>
+                        setConfirmPassword(event.target.value)
+                    }
+                    autoComplete="new-password"
+                    required
+                />
+            </div>
 
-                <button type="submit" disabled={isLoading}>
-                    {isLoading ? "Resetting..." : "Reset password"}
-                </button>
-            </form>
+            <button type="submit" disabled={isLoading}>
+                {isLoading ? "Resetting..." : "Reset password"}
+            </button>
 
-            {message && <p role="status">{message}</p>}
-        </div>
-    );
+            {message && <p className="status-message" role="status">{message}</p>}
+        </form>
+    </div>
+);
 }

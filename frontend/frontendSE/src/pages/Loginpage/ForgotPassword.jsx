@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { sendResetRequest } from "../../services/authServices/reset";
+import "./ForgotPassword.css"
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -33,26 +34,31 @@ export default function ForgotPassword() {
     }
   }
 
-  return (
-    <div>
-      <h2>Forgot Password</h2>
 
-      <form onSubmit={handleReset}>
-        <input
-          type="email"
-          value={email}
-          placeholder="Enter your email"
-          onChange={(event) => setEmail(event.target.value)}
-          required
-        />
+return (
+    <div className="forgot-password-page">
+        <form className="forgot-password-form" onSubmit={handleReset}>
+            <h1>Forgot Password</h1>
+            <p className="subtitle">
+                Enter your email to receive a password reset link.
+            </p>
 
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? "Sending..." : "Reset password"}
-        </button>
-      </form>
+            <input
+                type="email"
+                value={email}
+                placeholder="Enter your email"
+                onChange={(event) => setEmail(event.target.value)}
+                required
+            />
 
-      {message && <p>{message}</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+            <button type="submit" disabled={isLoading}>
+                {isLoading ? "Sending..." : "Reset password"}
+            </button>
+
+            {message && <p className="success-message">{message}</p>}
+            {error && <p className="error-message">{error}</p>}
+        </form>
     </div>
-  );
+);
+
 }
