@@ -1,0 +1,46 @@
+@baseUrl = http://localhost:3000
+@courseId = 1
+
+### 1. Đăng nhập bằng tài khoản learner của bạn
+# @name login
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "YOUR_EMAIL",
+  "password": "YOUR_PASSWORD"
+}
+
+### 2. Xem các enrollment đang học
+GET {{baseUrl}}/enrollment/get?status=active
+Authorization: Bearer {{login.response.body.$.token}}
+
+### 3. Gửi report
+POST {{baseUrl}}/courses/{{courseId}}/report
+Authorization: Bearer {{login.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "reason": "Bài học có nội dung không phù hợp, cần được kiểm tra."
+}
+
+### 4. Kiểm tra lý do rỗng
+POST {{baseUrl}}/courses/{{courseId}}/report
+Authorization: Bearer {{login.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "reason": "   "
+}
+
+### 5. Lấy report được phép xem
+GET {{baseUrl}}/courses/{{courseId}}/report?limit=20&offset=0
+Authorization: Bearer {{login.response.body.$.token}}
+
+### 6. Lọc report đang chờ xử lý
+GET {{baseUrl}}/courses/{{courseId}}/report?status=pending&limit=20&offset=0
+Authorization: Bearer {{login.response.body.$.token}}
+
+### 7. Kiểm tra limit không hợp lệ (400)
+GET {{baseUrl}}/courses/{{courseId}}/report?limit=0
+Authorization: Bearer {{login.response.body.$.token}}
