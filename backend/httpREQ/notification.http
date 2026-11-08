@@ -1,0 +1,21 @@
+@baseUrl = http://localhost:3000/notification
+@adminToken = paste-admin-token
+@recipientToken = paste-recipient-token
+@recipientId = 1
+
+### Create a notification as an admin. Set recipientId to the recipient's account ID.
+POST {{baseUrl}}/post
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "recipient_id": "{{recipientId}}",
+  "notification_type": "deadline",
+  "title": "Writing assignment due tomorrow",
+  "body": "Submit your essay before 17:00.",
+  "dedupe_key": "writing-deadline-demo-1"
+}
+
+### Read the recipient's inbox
+GET {{baseUrl}}/get
+Authorization: Bearer {{recipientToken}}

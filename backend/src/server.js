@@ -1,8 +1,12 @@
 const express = require("express");
 const pool = require("./db");
+const cookieParser = require("cookie-parser");
+const notificationRoutes = require("./routes/Notification/notificationRoutes");
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
+app.use("/notification", notificationRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "Backend is running" });
