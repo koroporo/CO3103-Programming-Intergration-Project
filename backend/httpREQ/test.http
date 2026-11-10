@@ -130,3 +130,12 @@ GET http://localhost:3000/courses/search?band=6
 
 ### Band filter - error: wrong step
 GET http://localhost:3000/courses/search?skill=listening&band=6.3
+
+### Admin - list pending
+GET http://localhost:3000/role-applications
+
+### Admin - list approved
+GET http://localhost:3000/role-applications?status=approved
+
+### Admin - list wrong status
+GET http://localhost:3000/role-applications?status=foo

@@ -160,35 +160,35 @@ app.post("/courses", async (req, res) => {
   }
 }); */
  // DEBUG: Get all role applications
-app.get("/role-applications", async (req, res) => {
-  try {
-    const result = await pool.query(
-      `SELECT
-        id,
-        applicant_id,
-        requested_role,
-        application_text,
-        evidence_url,
-        status,
-        reviewed_by,
-        review_note,
-        submitted_at,
-        reviewed_at
-      FROM role_applications
-      ORDER BY id`
-    );
+// app.get("/role-applications", async (req, res) => {
+//   try {
+//     const result = await pool.query(
+//       `SELECT
+//         id,
+//         applicant_id,
+//         requested_role,
+//         application_text,
+//         evidence_url,
+//         status,
+//         reviewed_by,
+//         review_note,
+//         submitted_at,
+//         reviewed_at
+//       FROM role_applications
+//       ORDER BY id`
+//     );
 
-    return res.status(200).json({
-      applications: result.rows,
-    });
-  } catch (error) {
-    console.error("Failed to fetch role applications:", error);
+//     return res.status(200).json({
+//       applications: result.rows,
+//     });
+//   } catch (error) {
+//     console.error("Failed to fetch role applications:", error);
 
-    return res.status(500).json({
-      message: "Internal server error",
-    });
-  }
-});
+//     return res.status(500).json({
+//       message: "Internal server error",
+//     });
+//   }
+// });
 // DEBUG
 app.use((req, res, next) => {
   console.log("Incoming request:", req.method, req.originalUrl);
