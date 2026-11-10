@@ -17,8 +17,22 @@ export default function Table({ tableName, data = [] }) {
   const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
   const [goToPage, setGoToPage] = useState('');
   const [selectedRow, setSelectedRow] = useState(null);
+  const [query, setQuery] = useState('');
+  const [searchField, setSearchField] = useState('all');
 
-  const getPageCount = () => (Math.ceil(data.length /pageSize) || 1);
+  const keyword = query.trim().toLowerCase();
+  const filtered = data.filter((row) => {
+    if (keyword === '') return true;
+    if (searchField === 'all') {
+      return Object.values(row).some((value) =>
+        String(value ?? '').toLowerCase().includes(keyword)
+      );
+    }
+    return String(row[searchField] ?? '').toLowerCase().includes(keyword);
+  });
+  const pageRows = filtered.slice((atPage - 1) * pageSize, atPage * pageSize);
+
+  const getPageCount = () => (Math.ceil(filtered.length / pageSize) || 1);
 
   const formatHeader = (key) => {
     return key
@@ -75,14 +89,25 @@ export default function Table({ tableName, data = [] }) {
     <div className="table-container">
       <div className="table-container__header-bar">
         <h2 className="table-container__title">{tableName}</h2>
-        <span className="table-container__count-badge">Displayed records from {(atPage-1)*pageSize+1} to {Math.min((atPage)*pageSize, data.length)} (out of{data.length})</span>
+        <span className="table-container__count-badge">Displayed records from {(atPage-1)*pageSize+1} to {Math.min((atPage)*pageSize, filtered.length)} (out of {filtered.length})</span>
       </div>
       <div  className="table-container__control" >
-        <input id='search' type='search' placeholder='Search...'>
-        </input>
+         <input
+          id="search"
+          type="search"
+          placeholder="Search..."
+          value={query}
+          onChange={(e) => { setQuery(e.target.value); setPage(1); }}
+        />
 
-        <select >
-          {headers.map((element) => <option>{formatHeader(element)}</option>)}
+        <select
+          value={searchField}
+          onChange={(e) => { setSearchField(e.target.value); setPage(1); }}
+        >
+          <option value="all">All columns</option>
+          {headers.map((element) => (
+            <option key={element} value={element}>{formatHeader(element)}</option>
+          ))}
         </select>
 
         <select >
@@ -115,14 +140,14 @@ export default function Table({ tableName, data = [] }) {
             </tr>
           </thead>
           <tbody>
-            {data.length === 0 ? (
+            {filtered.length === 0 ? (
               <tr>
                 <td colSpan={headers.length + 1} className="table-empty">
                   No records found.
                 </td>
               </tr>
             ) : (
-              data.map((element, rowIndex) => (
+              pageRows.map((element, rowIndex) => (
                 <tr key={element.id ?? rowIndex}   className="table-row--clickable"  onClick={() => setSelectedRow(element)}>
                   {headers.map((column) => (
                     <td key={column}>{renderCell(column, element[column])}</td>
