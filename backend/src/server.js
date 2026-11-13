@@ -7,6 +7,9 @@ const cookieParser = require("cookie-parser");
 
 
 const app = express();
+const { authenticate } = require("./middleware/Authentication/authMiddleware");
+const { authorizeRoles } = require("./middleware/Authentication/roleMiddleware");
+const adminRoutes = require("./routes/Admin/adminRoutes");
 
 //COOKIE
 app.use(cors({
@@ -23,7 +26,7 @@ app.use(
 );
 
 // DEBUG
-app.get("/accounts", async (req, res) => {
+app.get("/accounts", authenticate, authorizeRoles("admin"), async (req, res) => {
   try {
     const result = await pool.query(
       `SELECT
@@ -40,6 +43,7 @@ app.get("/accounts", async (req, res) => {
         created_at,
         updated_at
       FROM accounts
+      WHERE status <> 'deleted'
       ORDER BY id`
     );
 
@@ -213,9 +217,6 @@ app.get("/health", async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
 
 //LOG IN, REGISTER 
 const authRoutes = require("./routes/Authentication/authRoutes");
@@ -223,11 +224,6 @@ const preferencesRoutes = require("./routes/Authentication/preferencesRoutes");
 
 app.use("/api/auth", authRoutes);
 app.use("/api/preferences", preferencesRoutes);
-if (require.main === module) {
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
-}
 // RESET PASSWORD
 const passwordResetRoutes = require("./routes/Authentication/passwordResetRoutes");
 app.use("/auth", passwordResetRoutes);
@@ -248,10 +244,20 @@ app.use("/courses", courseRoutes);
 const enrollmentRoutes = require("./routes/Enrollment/enrollmentRoutes");
 const { errorHandler } = require("./middleware/Authentication/errorMiddleware");
 app.use("/enrollment", enrollmentRoutes);
-app.use(errorHandler);
+
 
 //ASSESSMENT
 const assessmentRoutes = require("./routes/Assessment/assessmentRoutes");
 
 app.use("/assessment", assessmentRoutes);
 
+
+// Deletion endpoints match the existing /accounts and /courses resources.
+app.use(adminRoutes);
+app.use(errorHandler);
+
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}

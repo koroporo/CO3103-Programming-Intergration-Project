@@ -17,6 +17,7 @@ router.get("/", async (req, res) => {
         u.full_name AS instructor
       FROM courses c
       JOIN accounts u ON c.instructor_id = u.id
+      WHERE c.status <> 'archived'
       ORDER BY c.created_at DESC;
     `);
 

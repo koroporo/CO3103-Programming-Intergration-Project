@@ -1,5 +1,4 @@
 const authService = require("../../services/Authentication/authService");
-const { verifyToken } = require("../../services/Authentication/tokenService");
 
 async function login(req, res) {
   try {
@@ -92,20 +91,7 @@ async function logout(req, res) {
 
 async function getMe(req, res) {
   try {
-    // 1. Read JWT from the HttpOnly cookie
-    const token = req.cookies?.token;
-
-    if (!token) {
-      return res.status(401).json({
-        message: "Authentication required"
-      });
-    }
-
-    // 2. Verify JWT signature and expiration
-    const payload = verifyToken(token);
-
-    // 3. Get the account ID from the verified JWT
-    const accountId = payload.id;
+    const accountId = req.user.id;
 
     // 4. Fetch account + user_data from PostgreSQL
     const user = await authService.getCurrentUser(accountId);
