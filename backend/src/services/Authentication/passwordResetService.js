@@ -1,4 +1,4 @@
-// services/Authentication/passwordResetService.js
+﻿// services/Authentication/passwordResetService.js
 
 const crypto = require("crypto");
 const pool = require("../../db"); // Adjust to your actual database module.

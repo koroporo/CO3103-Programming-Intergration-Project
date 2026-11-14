@@ -1,0 +1,259 @@
+* {
+    box-sizing: border-box;
+}
+
+.studio-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ================= HEADER BAR ================= */
+.studio-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 32px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
+    height: 64px;
+}
+
+/* Logo "ieltstrainer" */
+.header-left .logo-text {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 26px;
+    font-weight: bold;
+    color: #b84a48; /* Màu đỏ đất đặc trưng */
+    letter-spacing: -0.5px;
+    cursor: pointer;
+}
+
+/* Ô tìm kiếm */
+.header-search {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 20px;
+}
+
+.header-search .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: #64748b;
+}
+
+.header-search input {
+    width: 100%;
+    padding: 8px 16px 8px 38px;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.header-search input:focus {
+    border-color: #b84a48;
+}
+
+/* Góc phải Header */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.new-course-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #b85450;
+    color: #ffffff;
+    border: none;
+    padding: 6px 14px;      
+    border-radius: 20px;
+    font-size: 13.5px;     
+    font-weight: 600;
+    white-space: nowrap;    
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.new-course-btn:hover {
+    background-color: #9f423e;
+}
+
+.new-course-btn svg {
+    width: 14px;             
+    height: 14px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.icon-btn:hover {
+    background-color: #f1f5f9;
+}
+
+.bell-btn svg {
+    width: 22px;
+    height: 22px;
+}
+
+.avatar-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #d1d5db;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.avatar-circle:hover {
+    opacity: 0.85;
+}
+
+/* ================= MAIN BODY ================= */
+.studio-body {
+    display: flex;
+    flex: 1;
+}
+
+/* ---------- SIDEBAR NAVIGATION ---------- */
+.studio-sidebar {
+    width: 230px;
+    padding: 24px 16px;
+    background-color: #ffffff;
+    border-right: 1px solid #f0f0f0;
+}
+
+.nav-title {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #94a3b8;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+    padding-left: 8px;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #334155;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+}
+
+.nav-item svg {
+    width: 18px;
+    height: 18px;
+    color: #64748b;
+}
+
+.nav-item:hover {
+    background-color: #f8fafc;
+    color: #0f172a;
+}
+
+/* Style cho nút active */
+.nav-item.active {
+    background-color: #e0f2fe;
+    color: #0284c7;
+    font-weight: 600;
+}
+
+.nav-item.active svg {
+    color: #0284c7;
+}
+
+/* ---------- MAIN CONTENT AREA ---------- */
+.studio-content {
+    flex: 1;
+    padding: 24px 32px;
+    background-color: #ffffff;
+}
+
+.courses-section {
+    margin-bottom: 36px;
+}
+
+.courses-section h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+.recent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.course-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.course-thumb {
+    width: 120px;
+    height: 75px;
+    border-radius: 4px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.course-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gray-box {
+    background-color: #d1d5db;
+}
+
+.course-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e293b;
+    line-height: 1.4;
+    max-width: 420px;
+    padding-top: 4px;
+}

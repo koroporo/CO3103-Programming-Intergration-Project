@@ -1,0 +1,1064 @@
+* {
+    box-sizing: border-box;
+}
+
+.course-detail-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ================= HEADER BAR ================= */
+.course-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 32px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
+    height: 64px;
+}
+
+.header-left .logo-text {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 26px;
+    font-weight: bold;
+    color: #b84a48;
+    letter-spacing: -0.5px;
+    cursor: pointer;
+}
+
+.header-search {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 20px;
+}
+
+.header-search .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: #64748b;
+}
+
+.header-search input {
+    width: 100%;
+    padding: 8px 16px 8px 38px;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.header-search input:focus {
+    border-color: #b84a48;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.icon-btn:hover {
+    background-color: #f1f5f9;
+}
+
+.bell-btn svg {
+    width: 22px;
+    height: 22px;
+}
+
+.avatar-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #d1d5db;
+    cursor: pointer;
+}
+
+/* ================= MAIN CONTENT ================= */
+.course-detail-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 28px 24px;
+    width: 100%;
+}
+
+.course-main-info {
+    display: flex;
+    gap: 28px;
+    margin-bottom: 28px;
+    align-items: flex-start;
+}
+
+.course-thumb-large {
+    width: 310px;
+    height: 195px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.course-thumb-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.course-summary {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.course-title-text {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 10px 0;
+    line-height: 1.3;
+}
+
+.instructor-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.author-avatar-placeholder {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #cbd5e1;
+}
+
+.author-name {
+    font-size: 14px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.course-description {
+    font-size: 14px;
+    color: #334155;
+    line-height: 1.5;
+    margin: 0 0 18px 0;
+    font-weight: 600;
+}
+
+.course-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.meta-left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.duration-text {
+    font-size: 13px;
+    color: #475569;
+}
+
+.badges-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.badge {
+    padding: 5px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-category {
+    background-color: #f1f5f9;
+    color: #334155;
+}
+
+.badge-rating {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.badge-enrolled {
+    background-color: #f1f5f9;
+    color: #475569;
+}
+
+.edit-course-btn {
+    padding: 8px 32px;
+    border: 1px solid #cbd5e1;
+    background-color: #ffffff;
+    color: #b84a48;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.edit-course-btn:hover {
+    background-color: #fef2f2;
+    border-color: #b84a48;
+}
+
+/* PREREQUISITES */
+.prerequisites-section {
+    margin-bottom: 32px;
+}
+
+.prerequisites-section h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 8px 0;
+}
+
+.prerequisites-section ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.prerequisites-section li {
+    font-size: 14px;
+    color: #334155;
+    line-height: 1.6;
+}
+
+/* TABS */
+.course-tabs-nav {
+    display: flex;
+    gap: 40px;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 24px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 10px 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.tab-btn:hover {
+    color: #0f172a;
+}
+
+.tab-btn.active {
+    color: #b84a48;
+    font-weight: 700;
+}
+
+.tab-btn.active::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #b84a48;
+}
+
+/* REVIEWS */
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.review-card {
+    display: flex;
+    gap: 16px;
+    padding: 18px 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background-color: #ffffff;
+}
+
+.review-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #f1f5f9;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.review-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.reviewer-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.review-sub-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.stars-wrapper {
+    color: #f59e0b;
+    font-size: 13px;
+}
+
+.star-empty {
+    color: #cbd5e1;
+}
+
+.rating-num {
+    font-size: 12px;
+    font-weight: 700;
+    color: #334155;
+}
+
+.dot-separator {
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+.review-time {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.review-text {
+    font-size: 14px;
+    color: #334155;
+    line-height: 1.5;
+    margin: 6px 0 0 0;
+}
+
+/* ================= SYLLABUS SECTION ================= */
+.syllabus-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.syllabus-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.lesson-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+/* Thumbnail đại diện bài học */
+.lesson-thumb-card {
+    width: 140px;
+    height: 85px;
+    background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
+    border-radius: 8px;
+    position: relative;
+    padding: 8px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.duration-badge {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    background-color: #0891b2;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 10px;
+}
+
+.thumb-graphic {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+}
+
+.graphic-title {
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.graphic-sub {
+    font-size: 9px;
+    opacity: 0.9;
+    margin-bottom: 4px;
+}
+
+.graphic-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.graphic-lines .line {
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 1px;
+}
+
+.line-long {
+    width: 60px;
+}
+
+.line-short {
+    width: 35px;
+}
+
+/* Nội dung bài học */
+.lesson-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 2px;
+}
+
+.lesson-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.lesson-desc {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Đẩy cụm nút Modify, Delete, Reorder về sát lề bên phải */
+.lesson-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto; /* <-- Đẩy sát sang phải */
+    flex-shrink: 0;
+}
+
+
+.btn-modify {
+    background-color: #f1f5f9;
+    color: #334155;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-modify:hover {
+    background-color: #e2e8f0;
+}
+
+.btn-delete {
+    background-color: #fce8e6;
+    color: #b84a48;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-delete:hover {
+    background-color: #f8d7d5;
+}
+
+.btn-drag-handle {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    padding: 4px;
+    cursor: grab;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-drag-handle svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Căn giữa nút Add new lesson */
+.add-lesson-wrapper {
+    display: flex;
+    justify-content: center; /* <-- Căn giữa nút */
+    margin-top: 12px;
+}
+
+.add-lesson-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #b84a48;
+    color: #ffffff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.add-lesson-btn:hover {
+    background-color: #9f423e;
+}
+
+.add-lesson-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.placeholder-tab-content {
+    padding: 20px 0;
+    color: #64748b;
+}
+/* ================= MATERIALS / LINKS SECTION ================= */
+.materials-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.materials-list {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.material-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Ô icon vuông bo góc (file / link) */
+.material-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: #f1f5f9;
+    color: #8b1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.material-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Tên file + mô tả */
+.material-info {
+    flex: 1;
+    min-width: 0; /* cho phép tên dài xuống dòng thay vì đẩy nút ra ngoài */
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.material-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e3a8a;
+    text-decoration: underline;
+    word-break: break-all;
+    width: fit-content;
+}
+
+.material-name:hover {
+    color: #b84a48;
+}
+
+.material-desc {
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* Nút "Add new link" */
+.add-material-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.add-material-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: #8b1a1a;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.add-material-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.add-material-btn:hover .add-material-icon {
+    background-color: #6f1414;
+}
+
+/* ================= BACK BUTTON ================= */
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    padding: 6px 10px 6px 4px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.back-btn:hover {
+    color: #b84a48;
+    background-color: #fef2f2;
+}
+
+.back-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* ================= LESSON EDIT MODAL ================= */
+.lesson-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 1000;
+}
+
+.lesson-modal {
+    width: 100%;
+    max-width: 760px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 24px 28px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.lesson-modal-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.lesson-modal-heading {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+}
+
+.lesson-modal-top-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-cancel {
+    background-color: #f1f5f9;
+    color: #334155;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-cancel:hover {
+    background-color: #e2e8f0;
+}
+
+.btn-done {
+    background-color: #b84a48;
+    color: #ffffff;
+    border: none;
+    padding: 8px 22px;
+    border-radius: 18px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-done:hover {
+    background-color: #9f423e;
+}
+
+.lesson-modal-body {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.lesson-modal-cover {
+    width: 170px;
+    height: 110px;
+    border-radius: 8px;
+    background-color: #475569;
+    color: #e2e8f0;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.lesson-modal-cover:hover {
+    background-color: #334155;
+}
+
+.lesson-modal-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cover-change-hint {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 4px;
+    background-color: rgba(15, 23, 42, 0.6);
+    color: #ffffff;
+    font-size: 11px;
+    text-align: center;
+}
+
+.lesson-modal-fields {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lesson-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.lesson-field span {
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.lesson-field input,
+.lesson-field textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #0f172a;
+    outline: none;
+    resize: vertical;
+    transition: border-color 0.2s;
+}
+
+.lesson-field input:focus,
+.lesson-field textarea:focus {
+    border-color: #b84a48;
+}
+
+.lesson-field-short {
+    max-width: 160px;
+}
+
+.lesson-modal-error {
+    margin: 0;
+    font-size: 13px;
+    color: #b84a48;
+}
+
+.lesson-modal-metadata {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lesson-modal-metadata h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 4px 0;
+}
+
+.metadata-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 13px;
+    color: #334155;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.metadata-btn:hover {
+    color: #b84a48;
+}
+
+.metadata-plus {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    background-color: #8b1a1a;
+    color: #ffffff;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .lesson-modal-body {
+        flex-direction: column;
+    }
+
+    .lesson-modal-cover {
+        width: 100%;
+    }
+}
+
+/* ================= MATERIAL EDIT MODAL ================= */
+.material-modal {
+    max-width: 560px;
+}
+
+.material-type-toggle {
+    display: flex;
+    gap: 8px;
+}
+
+.type-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.type-option:hover {
+    border-color: #b84a48;
+}
+
+.type-option.active {
+    border-color: #b84a48;
+    background-color: #fef2f2;
+    color: #8b1a1a;
+}
+
+.lesson-field .type-option-icon {
+    display: flex;
+    color: #8b1a1a;
+}
+
+.type-option-icon svg {
+    width: 14px;
+    height: 14px;
+}
+
+.material-file-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.material-file-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    background-color: #f1f5f9;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background-color 0.2s;
+}
+
+.material-file-btn:hover {
+    background-color: #e2e8f0;
+}
+
+/* Ghi đè style chung của .lesson-field span */
+.lesson-field .material-file-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #1e3a8a;
+    word-break: break-all;
+}
+
+/* ================= LESSON ATTACHMENTS ================= */
+.metadata-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.attachment-list {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.attachment-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    min-width: 0;
+}
+
+.attachment-item a {
+    color: #1e3a8a;
+    text-decoration: underline;
+    word-break: break-all;
+}
+
+.attachment-size {
+    color: #94a3b8;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+.attachment-remove {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 16px;
+    line-height: 1;
+    padding: 0 4px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.attachment-remove:hover {
+    color: #b84a48;
+}
+
+/* Ảnh bìa trên thẻ lesson (khi đã upload cover) */
+.lesson-thumb-card {
+    overflow: hidden;
+}
+
+.lesson-thumb-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.lesson-attachment-count {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 2px;
+}
