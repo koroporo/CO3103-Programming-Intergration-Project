@@ -1,0 +1,642 @@
+* {
+  box-sizing: border-box;
+}
+
+.course-page {
+  min-height: 100vh;
+  background: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #222;
+}
+
+/* ==============================
+   MAIN EDITOR
+================================= */
+
+.course-editor {
+  width: 100%;
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+
+
+/* ==============================
+   MAIN FORM
+================================= */
+
+.course-form {
+  width: 1119px;
+
+  /*
+   * IMPORTANT:
+   * Do not use a fixed height here.
+   * The form must grow when new prerequisite
+   * rows/tags are added.
+   */
+  min-height: 652px;
+  height: auto;
+
+  margin: 0 auto;
+
+  padding: 0 18px 20px;
+
+  background: #ffffff;
+}
+
+
+/* ==============================
+   TOP SECTION
+================================= */
+
+.course-top {
+  display: flex;
+
+  gap: 16px;
+
+  width: 100%;
+
+  margin-top: 0;
+}
+
+
+/* ==============================
+   COVER
+================================= */
+
+.cover-container {
+  position: relative;
+
+  width: 300px;
+  height: 170px;
+
+  flex-shrink: 0;
+
+  overflow: hidden;
+
+  background: #e5e5e5;
+}
+
+.course-cover {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.upload-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.25);
+
+  color: #ffffff;
+
+  font-size: 18px;
+
+  cursor: pointer;
+}
+
+
+/* ==============================
+   BASIC INFORMATION
+================================= */
+
+.basic-info {
+  flex: 1;
+
+  min-width: 0;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 3px;
+
+  font-size: 11px;
+
+  color: #999999;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+
+  padding: 8px;
+
+  border: 1px solid #c8c8c8;
+
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 15px;
+
+  outline: none;
+}
+
+
+/* Course Name */
+
+.form-group input {
+  height: 40px;
+
+  font-weight: 700;
+}
+
+.form-group textarea {
+  height: 65px;
+
+  resize: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #999999;
+}
+
+
+/* ==============================
+   INSTRUCTOR
+================================= */
+
+.instructor {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin: 4px 0 10px;
+
+  color: #999999;
+
+  font-size: 14px;
+}
+
+.instructor-dot {
+  width: 13px;
+  height: 13px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #dddddd;
+}
+
+
+/* ==============================
+   DURATION
+================================= */
+
+.duration-group {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  margin-top: 24px;
+}
+
+.duration-group label {
+  margin: 0;
+
+  color: #222222;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+.duration-group input {
+  width: 300px;
+  height: 32px;
+
+  padding: 7px 9px;
+
+  border: 1px solid #c8c8c8;
+
+  border-radius: 7px;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+}
+
+.duration-group input:focus {
+  border-color: #999999;
+}
+
+
+/* ==============================
+   SECTIONS
+================================= */
+
+.section {
+  margin-top: 24px;
+}
+
+.section h3 {
+  margin: 0 0 10px;
+
+  font-size: 16px;
+
+  color: #222222;
+}
+
+
+/* ==============================
+   TAGS
+================================= */
+
+.tags {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  flex-wrap: wrap;
+}
+
+.tag,
+.rating,
+.add-category {
+  display: inline-flex;
+
+  align-items: center;
+
+  min-height: 28px;
+
+  padding: 6px 12px;
+
+  border: none;
+
+  border-radius: 15px;
+
+  background: #f4f4f8;
+
+  font-size: 12px;
+
+  color: #333333;
+}
+
+.rating {
+  gap: 8px;
+}
+
+.stars {
+  color: #f59b23;
+
+  letter-spacing: 2px;
+
+  font-size: 12px;
+}
+
+.add-category {
+  cursor: pointer;
+
+  font-family: inherit;
+}
+
+.add-category:hover {
+  background: #eeeeF3;
+}
+
+
+/* ==============================
+   PREREQUISITES
+================================= */
+
+.prerequisites {
+  display: block;
+
+  width: 100%;
+  height: 126px;
+
+  padding: 10px;
+
+  border: 1px solid #bdbdbd;
+
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  resize: vertical;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 14px;
+
+  line-height: 1.35;
+
+  outline: none;
+}
+
+.prerequisites:focus {
+  border-color: #999999;
+}
+
+
+/* ==============================
+   PREREQUISITE SKILLS
+================================= */
+
+.prerequisite-skills-section {
+  margin-top: 24px;
+}
+
+
+/* ==============================
+   SAVED PREREQUISITE TAGS
+================================= */
+
+.prerequisite-tags {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  /*
+   * Only add bottom space when there
+   * are saved tags.
+   */
+  margin-bottom: 14px;
+}
+
+.prerequisite-tag {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 8px 14px;
+
+  border-radius: 20px;
+
+  background-color: #f1f3f5;
+
+  color: #333333;
+
+  font-size: 14px;
+}
+
+.remove-prerequisite {
+  border: none;
+
+  background: transparent;
+
+  color: #777777;
+
+  font-size: 18px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  padding: 0;
+}
+
+.remove-prerequisite:hover {
+  color: #d33;
+}
+
+
+/* ==============================
+   TEMPORARY PREREQUISITE ROW
+================================= */
+
+.prerequisite-row {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 10px;
+
+  margin-bottom: 12px;
+
+  /*
+   * This row now takes up real space
+   * in the normal document flow.
+   */
+  width: 100%;
+}
+
+.prerequisite-row select {
+  min-width: 150px;
+
+  height: 38px;
+
+  padding: 9px 12px;
+
+  border: 1px solid #cccccc;
+
+  border-radius: 6px;
+
+  background: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  cursor: pointer;
+}
+
+.prerequisite-row select:focus {
+  outline: none;
+
+  border-color: #666666;
+}
+
+
+/* ==============================
+   SAVE / DELETE
+================================= */
+
+.save-prerequisite,
+.delete-prerequisite {
+  height: 38px;
+
+  padding: 9px 16px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  font-size: 14px;
+}
+
+.save-prerequisite {
+  background-color: #222222;
+
+  color: #ffffff;
+}
+
+.save-prerequisite:hover {
+  background-color: #444444;
+}
+
+.delete-prerequisite {
+  background-color: #eeeeee;
+
+  color: #555555;
+}
+
+.delete-prerequisite:hover {
+  background-color: #dddddd;
+}
+
+
+/* ==============================
+   ADD PREREQUISITE
+================================= */
+
+.add-prerequisite {
+  display: inline-flex;
+
+  align-items: center;
+
+  margin-top: 4px;
+
+  border: none;
+
+  background: transparent;
+
+  color: #333333;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  cursor: pointer;
+
+  padding: 6px 0;
+}
+
+.add-prerequisite:hover {
+  text-decoration: underline;
+}
+
+
+/* ==============================
+   DONE
+================================= */
+
+.done-button {
+  display: block;
+
+  width: 1119px;
+  height: 34px;
+
+  /*
+   * This is now positioned AFTER the form
+   * in the normal document flow.
+   */
+  margin: 24px auto 0;
+
+  border: none;
+
+  border-radius: 17px;
+
+  background: #b5544b;
+
+  color: #ffffff;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background-color 0.2s;
+}
+
+.done-button:hover {
+  background: #9f423e;
+}
+
+
+/* ==============================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 1200px) {
+  .course-form,
+  .done-button {
+    width: calc(100% - 64px);
+  }
+}
+
+@media (max-width: 700px) {
+  .course-form {
+    min-height: 0;
+
+    height: auto;
+
+    padding-bottom: 25px;
+  }
+
+  .course-top {
+    flex-direction: column;
+  }
+
+  .cover-container {
+    width: 100%;
+    height: 200px;
+  }
+
+  .duration-group {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .duration-group input {
+    width: 100%;
+  }
+
+  .prerequisite-row {
+    align-items: stretch;
+
+    flex-direction: column;
+  }
+
+  .prerequisite-row select,
+  .save-prerequisite,
+  .delete-prerequisite {
+    width: 100%;
+  }
+
+  .done-button {
+    width: calc(100% - 64px);
+
+    margin-top: 24px;
+  }
+}

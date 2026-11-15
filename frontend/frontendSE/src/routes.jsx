@@ -24,6 +24,7 @@ import Dashboard from "./pages/Instructor/Dashboard";
 import Course_1 from "./pages/Courses/Course_1";
 import QuizBuilder from "./pages/Quizzes/QuizBuilder/QuizBuilder";
 import QuizEditor from "./pages/Quizzes/QuizEditor/QuizEditor";
+import CourseGeneralInfo from "./pages/Instructor/CourseGeneralInfo";
 
 export default function AppRoutes() {
   return (
@@ -76,6 +77,7 @@ export default function AppRoutes() {
       <Route path="/course-1" element={<Course_1 />} />
       <Route path="/quiz-builder" element={<QuizBuilder />} />
       <Route path="/quiz-editor/:quizId" element={<QuizEditor />} />
+      <Route path="/general-Info" element={<CourseGeneralInfo></CourseGeneralInfo>}></Route>
     </Routes>
     
   );

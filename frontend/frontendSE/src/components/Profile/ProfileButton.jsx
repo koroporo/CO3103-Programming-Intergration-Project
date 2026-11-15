@@ -91,10 +91,10 @@ export default function ProfileButton() {
             </div>
           </div>
 
-          <hr className="menu-divider" />
+          {/* <hr className="menu-divider" />
                         {user.role === "instructor" && (
                             <button onClick={handleInstructor}>Instructor Studio</button>
-                        )}
+                        )} */}
 
           <div className="menu-links">
             <button onClick={handleMyAccount}>My Account</button>
