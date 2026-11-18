@@ -151,7 +151,6 @@ export default function InstructorStudio({ children }) {
                     ) : (
                         <div className="tab-content">
                             <section className="courses-section">
-                                <h2>Recently</h2>
                                 <div className="recent-list">
                                     {/* Khóa học 1 */}
                                         <div 

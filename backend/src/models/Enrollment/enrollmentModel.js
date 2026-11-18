@@ -30,7 +30,9 @@ async function lockLearner(client, learnerId) {
 
 async function findByCourse(client, learnerId, courseId) {
   const sql = `
-    SELECT * FROM enrollments WHERE learner_id = $1 AND course_id = $2 FOR UPDATE
+    SELECT * FROM enrollments
+    WHERE learner_id = $1 AND course_id = $2
+    FOR UPDATE
   `;
   const values = [learnerId, courseId];
 
@@ -40,7 +42,9 @@ async function findByCourse(client, learnerId, courseId) {
 
 async function lockOwnedEnrollment(client, id, learnerId) {
   const sql = `
-    SELECT * FROM enrollments WHERE id = $1 AND learner_id = $2 FOR UPDATE
+    SELECT * FROM enrollments
+    WHERE id = $1 AND learner_id = $2
+    FOR UPDATE
   `;
   const values = [id, learnerId];
 
@@ -58,14 +62,18 @@ async function lockCourse(client, courseId) {
 
 async function findMissingPrerequisites(client, learnerId, courseId) {
   const sql = `
-    SELECT prerequisite_course_id FROM course_prerequisites AS prerequisites
-    WHERE course_id = $1 AND NOT EXISTS (
-      SELECT 1 FROM enrollments
-      WHERE learner_id = $2
-        AND course_id = prerequisites.prerequisite_course_id
-        AND status = 'completed'
-    )
-    ORDER BY prerequisite_course_id
+    SELECT
+      prerequisites.skill_id AS prerequisite_course_id
+    FROM course_prerequisites AS prerequisites
+    LEFT JOIN learner_skill_states AS skill_states
+      ON skill_states.learner_id = $2
+      AND skill_states.skill_id = prerequisites.skill_id
+    WHERE prerequisites.course_id = $1
+      AND (
+        skill_states.estimated_band IS NULL
+        OR skill_states.estimated_band < prerequisites.minimum_band
+      )
+    ORDER BY prerequisites.skill_id
   `;
   const values = [courseId, learnerId];
 
@@ -76,7 +84,8 @@ async function findMissingPrerequisites(client, learnerId, courseId) {
 async function createEnrollment(client, learnerId, courseId) {
   const sql = `
     INSERT INTO enrollments (learner_id, course_id, status, enrolled_at)
-    VALUES ($1, $2, 'active', NOW()) RETURNING *
+    VALUES ($1, $2, 'active', NOW())
+    RETURNING *
   `;
   const values = [learnerId, courseId];
 
@@ -86,8 +95,12 @@ async function createEnrollment(client, learnerId, courseId) {
 
 async function reactivateEnrollment(client, id) {
   const sql = `
-    UPDATE enrollments SET status = 'active', withdrawn_at = NULL, completed_at = NULL
-    WHERE id = $1 RETURNING *
+    UPDATE enrollments
+    SET status = 'active',
+        withdrawn_at = NULL,
+        completed_at = NULL
+    WHERE id = $1
+    RETURNING *
   `;
   const values = [id];
 
@@ -97,8 +110,11 @@ async function reactivateEnrollment(client, id) {
 
 async function withdrawEnrollment(client, id) {
   const sql = `
-    UPDATE enrollments SET status = 'withdrawn', withdrawn_at = NOW()
-    WHERE id = $1 RETURNING *
+    UPDATE enrollments
+    SET status = 'withdrawn',
+        withdrawn_at = NOW()
+    WHERE id = $1
+    RETURNING *
   `;
   const values = [id];
 
@@ -108,9 +124,12 @@ async function withdrawEnrollment(client, id) {
 
 async function findPublishedLesson(client, lessonId, courseId) {
   const sql = `
-    SELECT lessons.id FROM lessons
+    SELECT lessons.id
+    FROM lessons
     JOIN chapters ON chapters.id = lessons.chapter_id
-    WHERE lessons.id = $1 AND chapters.course_id = $2 AND lessons.status = 'published'
+    WHERE lessons.id = $1
+      AND chapters.course_id = $2
+      AND lessons.status = 'published'
     FOR SHARE OF lessons, chapters
   `;
   const values = [lessonId, courseId];
@@ -121,8 +140,11 @@ async function findPublishedLesson(client, lessonId, courseId) {
 
 async function updateResume(client, id, lessonId) {
   const sql = `
-    UPDATE enrollments SET resume_lesson_id = $2, last_accessed_at = NOW()
-    WHERE id = $1 RETURNING *
+    UPDATE enrollments
+    SET resume_lesson_id = $2,
+        last_accessed_at = NOW()
+    WHERE id = $1
+    RETURNING *
   `;
   const values = [id, lessonId];
 
@@ -132,24 +154,43 @@ async function updateResume(client, id, lessonId) {
 
 async function createAudit(client, actor, action, before, after) {
   let beforeData = null;
+
   if (before) {
     beforeData = JSON.stringify(before);
   }
+
   const afterData = JSON.stringify(after);
 
   const sql = `
     INSERT INTO audit_logs (
-      actor_id, actor_role_snapshot, action, entity_type, entity_id,
-      before_data, after_data, created_at
-    ) VALUES ($1, $2, $3, 'enrollment', $4, $5::jsonb, $6::jsonb, NOW())
+      actor_id,
+      actor_role_snapshot,
+      action,
+      entity_type,
+      entity_id,
+      before_data,
+      after_data,
+      created_at
+    )
+    VALUES (
+      $1,
+      $2,
+      $3,
+      'enrollment',
+      $4,
+      $5::jsonb,
+      $6::jsonb,
+      NOW()
+    )
   `;
+
   const values = [
-    actor.id,       // $1: ai thực hiện?
-    actor.role,     // $2: role tại lúc thực hiện
-    action,        // $3: thao tác gì?
-    after.id,      // $4: enrollment nào
-    beforeData,    // $5: dữ liệu trước khi sửa (null nếu tạo mới)
-    afterData      // $6: dữ liệu sau khi sửa
+    actor.id,
+    actor.role,
+    action,
+    after.id,
+    beforeData,
+    afterData
   ];
 
   await client.query(sql, values);
@@ -158,14 +199,26 @@ async function createAudit(client, actor, action, before, after) {
 async function listByLearner(learnerId, filters) {
   const sql = `
     SELECT enrollments.*, json_build_object(
-      'id', courses.id::text, 'title', courses.title, 'slug', courses.slug,
-      'thumbnail_url', courses.thumbnail_url, 'status', courses.status
+      'id', courses.id::text,
+      'title', courses.title,
+      'slug', courses.slug,
+      'thumbnail_url', courses.thumbnail_url,
+      'status', courses.status
     ) AS course
-    FROM enrollments JOIN courses ON courses.id = enrollments.course_id
-    WHERE learner_id = $1 AND ($2::varchar IS NULL OR enrollments.status = $2)
-    ORDER BY enrolled_at DESC, enrollments.id DESC LIMIT $3 OFFSET $4
+    FROM enrollments
+    JOIN courses ON courses.id = enrollments.course_id
+    WHERE learner_id = $1
+      AND ($2::varchar IS NULL OR enrollments.status = $2)
+    ORDER BY enrolled_at DESC, enrollments.id DESC
+    LIMIT $3 OFFSET $4
   `;
-  const values = [learnerId, filters.status, filters.limit + 1, filters.offset];
+
+  const values = [
+    learnerId,
+    filters.status,
+    filters.limit + 1,
+    filters.offset
+  ];
 
   const result = await pool.query(sql, values);
   return result.rows;
@@ -174,12 +227,18 @@ async function listByLearner(learnerId, filters) {
 async function findOwnedById(id, learnerId) {
   const sql = `
     SELECT enrollments.*, json_build_object(
-      'id', courses.id::text, 'title', courses.title, 'slug', courses.slug,
-      'thumbnail_url', courses.thumbnail_url, 'status', courses.status
+      'id', courses.id::text,
+      'title', courses.title,
+      'slug', courses.slug,
+      'thumbnail_url', courses.thumbnail_url,
+      'status', courses.status
     ) AS course
-    FROM enrollments JOIN courses ON courses.id = enrollments.course_id
-    WHERE enrollments.id = $1 AND learner_id = $2
+    FROM enrollments
+    JOIN courses ON courses.id = enrollments.course_id
+    WHERE enrollments.id = $1
+      AND learner_id = $2
   `;
+
   const values = [id, learnerId];
 
   const result = await pool.query(sql, values);

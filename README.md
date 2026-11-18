@@ -29,6 +29,16 @@ $env:DATABASE_URL="postgres://postgres:postgres@localhost:5432/english_platform"
 npx node-pg-migrate up --migrations-dir .\database\seed (dùng để seed data cho database)
 npx node-pg-migrate down --migrations-dir .\database\seed (xóa hết những data đã seed)
 
+## IMPORTANT!!!!
+### CHẠY CÁC LỆNH LIÊN QUAN TỚI MIGRATION DATABASE
+chạy ở folder root
+Get-Content database/migrations/20261015_add_target_skill.sql | docker compose exec -T postgres psql -U postgres -d english_platform
+                                |
+                                |
+                                tên file cần chạy, chỗ này thì type ra hết những file nằm trong database/migrations luôn
+
+
+
 ## migrate database
 Get-Content database/migrations/20261015_add_target_skill.sql | docker compose exec -T postgres psql -U postgres -d english_platform
 ## verify migration

@@ -1,458 +1,624 @@
+/* =========================================================
+   GLOBAL
+========================================================= */
+
 * {
   box-sizing: border-box;
 }
 
-.course-page {
+.course-general-page {
   min-height: 100vh;
+
   background: #ffffff;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #222;
-}
 
-/* ==============================
-   MAIN EDITOR
-================================= */
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 
-.course-editor {
-  width: 100%;
-  padding-top: 45px;
-  padding-bottom: 40px;
+  color: #222222;
 }
 
 
-/* ==============================
-   MAIN FORM
-================================= */
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
 
-.course-form {
+.course-general-container {
   width: 1119px;
 
-  /*
-   * IMPORTANT:
-   * Do not use a fixed height here.
-   * The form must grow when new prerequisite
-   * rows/tags are added.
-   */
-  min-height: 652px;
-  height: auto;
+  min-height: 100vh;
 
   margin: 0 auto;
 
-  padding: 0 18px 20px;
+  padding: 28px 18px 50px;
 
-  background: #ffffff;
+  /*
+   * The JSX order is:
+   *
+   * Course Name
+   * Course Cover
+   * Instructor
+   * Description
+   * Duration
+   * Tags
+   * Prerequisites
+   * Prerequisite Skills
+   * Expected Output
+   * Actions
+   *
+   * Grid is used to visually rearrange these elements.
+   */
+  display: grid;
+
+  grid-template-columns: 300px minmax(0, 1fr);
+
+  column-gap: 16px;
 }
 
 
-/* ==============================
-   TOP SECTION
-================================= */
+/* =========================================================
+   PAGE HEADER
+========================================================= */
 
-.course-top {
-  display: flex;
+.page-header {
+  grid-column: 1 / -1;
 
-  gap: 16px;
+  margin-bottom: 8px;
+}
 
+.page-header > div {
   width: 100%;
-
-  margin-top: 0;
 }
 
-
-/* ==============================
-   COVER
-================================= */
-
-.cover-container {
-  position: relative;
-
-  width: 300px;
-  height: 170px;
-
-  flex-shrink: 0;
-
-  overflow: hidden;
-
-  background: #e5e5e5;
-}
-
-.course-cover {
-  display: block;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-}
-
-.upload-overlay {
-  position: absolute;
-
-  inset: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: rgba(0, 0, 0, 0.25);
-
-  color: #ffffff;
-
-  font-size: 18px;
-
-  cursor: pointer;
-}
-
-
-/* ==============================
-   BASIC INFORMATION
-================================= */
-
-.basic-info {
-  flex: 1;
-
-  min-width: 0;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-
-  margin-bottom: 3px;
-
-  font-size: 11px;
-
-  color: #999999;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-
-  padding: 8px;
-
-  border: 1px solid #c8c8c8;
-
-  border-radius: 7px;
-
-  background: #ffffff;
-
-  font-family: inherit;
-
-  font-size: 15px;
-
-  outline: none;
-}
-
-
-/* Course Name */
-
-.form-group input {
-  height: 40px;
-
-  font-weight: 700;
-}
-
-.form-group textarea {
-  height: 65px;
-
-  resize: none;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: #999999;
-}
-
-
-/* ==============================
-   INSTRUCTOR
-================================= */
-
-.instructor {
-  display: flex;
-
-  align-items: center;
-
-  gap: 7px;
-
-  margin: 4px 0 10px;
-
-  color: #999999;
-
-  font-size: 14px;
-}
-
-.instructor-dot {
-  width: 13px;
-  height: 13px;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-
-  background: #dddddd;
-}
-
-
-/* ==============================
-   DURATION
-================================= */
-
-.duration-group {
-  display: flex;
-
-  align-items: center;
-
-  gap: 6px;
-
-  margin-top: 24px;
-}
-
-.duration-group label {
+.page-header h1 {
   margin: 0;
 
+  font-size: 28px;
+
+  font-weight: 700;
+
   color: #222222;
-
-  font-size: 13px;
-
-  font-weight: 600;
 }
 
-.duration-group input {
-  width: 300px;
-  height: 32px;
+.page-header p {
+  margin: 8px 0 0;
 
-  padding: 7px 9px;
-
-  border: 1px solid #c8c8c8;
-
-  border-radius: 7px;
-
-  font-family: inherit;
   font-size: 14px;
 
-  outline: none;
-}
+  line-height: 1.5;
 
-.duration-group input:focus {
-  border-color: #999999;
-}
-
-
-/* ==============================
-   SECTIONS
-================================= */
-
-.section {
-  margin-top: 24px;
-}
-
-.section h3 {
-  margin: 0 0 10px;
-
-  font-size: 16px;
-
-  color: #222222;
+  color: #777777;
 }
 
 
-/* ==============================
-   TAGS
-================================= */
+/* =========================================================
+   COMMON FORM SECTION
+========================================================= */
 
-.tags {
-  display: flex;
+.form-section {
+  width: 100%;
 
-  align-items: center;
-
-  gap: 12px;
-
-  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
-.tag,
-.rating,
-.add-category {
-  display: inline-flex;
+.form-section > label {
+  display: block;
 
-  align-items: center;
+  margin-bottom: 7px;
 
-  min-height: 28px;
+  font-size: 14px;
 
-  padding: 6px 12px;
-
-  border: none;
-
-  border-radius: 15px;
-
-  background: #f4f4f8;
-
-  font-size: 12px;
+  font-weight: 600;
 
   color: #333333;
 }
 
-.rating {
-  gap: 8px;
-}
 
-.stars {
-  color: #f59b23;
+/* =========================================================
+   TOP SECTION LAYOUT
+========================================================= */
 
-  letter-spacing: 2px;
+/*
+   Course Name
+   -> right side, top
+*/
 
-  font-size: 12px;
-}
+.form-section:nth-child(2) {
+  grid-column: 2;
 
-.add-category {
-  cursor: pointer;
+  grid-row: 2;
 
-  font-family: inherit;
-}
-
-.add-category:hover {
-  background: #eeeeF3;
+  margin-bottom: 6px;
 }
 
 
-/* ==============================
-   PREREQUISITES
-================================= */
+/*
+   Course Cover
+   -> left side
+   -> spans the height of Course Name + Description
+*/
 
-.prerequisites {
-  display: block;
+.form-section:nth-child(3) {
+  grid-column: 1;
 
+  grid-row: 2 / span 2;
+
+  margin-bottom: 0;
+}
+
+
+/*
+   Instructor
+   -> completely removed
+*/
+
+.form-section:nth-child(4) {
+  display: none;
+}
+
+
+/*
+   Course Description
+   -> right side, below Course Name
+*/
+
+.form-section:nth-child(5) {
+  grid-column: 2;
+
+  grid-row: 3;
+
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   COURSE NAME
+========================================================= */
+
+.form-section:nth-child(2) input {
   width: 100%;
-  height: 126px;
 
-  padding: 10px;
+  height: 40px;
 
-  border: 1px solid #bdbdbd;
+  border: 1px solid #cccccc;
 
-  border-radius: 7px;
+  border-radius: 5px;
+
+  padding: 0 10px;
 
   background: #ffffff;
 
-  resize: vertical;
+  font-family: inherit;
 
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #222222;
+
+  outline: none;
+}
+
+.form-section:nth-child(2) input:focus {
+  border-color: #b5544b;
+}
+
+
+/* =========================================================
+   COURSE COVER
+========================================================= */
+
+.cover-box {
+  width: 100%;
+
+  height: 132px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 2px;
+
+  background: #d9d9d9;
+}
+
+
+/*
+   The image/cover area is intentionally darkened
+   so "Change Cover" can sit clearly in the middle.
+*/
+
+.cover-placeholder {
+  width: 100%;
+
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.38),
+      rgba(0, 0, 0, 0.38)
+    );
+
+  color: #ffffff;
+
+  font-size: 15px;
+
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+
+/*
+   Hide the original upload button so the
+   cover behaves like the Figma design.
+*/
+
+.cover-box button {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  border: none;
+
+  background: transparent;
+
+  color: transparent;
+
+  font-size: 0;
+
+  cursor: pointer;
+}
+
+
+/*
+   Put the text above the transparent button.
+*/
+
+.cover-box:hover .cover-placeholder {
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.48),
+      rgba(0, 0, 0, 0.48)
+    );
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.form-section:nth-child(5) textarea {
+  width: 100%;
+
+  height: 62px;
+
+  min-height: 62px;
+
+  resize: none;
+
+  border: 1px solid #cccccc;
+
+  border-radius: 5px;
+
+  padding: 10px;
+
+  background: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  color: #333333;
+
+  outline: none;
+}
+
+.form-section:nth-child(5) textarea:focus {
+  border-color: #b5544b;
+}
+
+
+/* =========================================================
+   DURATION
+========================================================= */
+
+/*
+   Duration comes after the entire top grid.
+*/
+
+.form-section:nth-child(6) {
+  grid-column: 1 / -1;
+
+  grid-row: 4;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 14px;
+
+  margin-bottom: 22px;
+}
+
+.form-section:nth-child(6) > label {
+  margin: 0;
+
+  flex-shrink: 0;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #333333;
+}
+
+.form-section:nth-child(6) input {
+  width: 280px;
+
+  height: 34px;
+
+  border: 1px solid #cccccc;
+
+  border-radius: 6px;
+
+  padding: 0 10px;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  color: #444444;
+
+  outline: none;
+}
+
+.form-section:nth-child(6) input:focus {
+  border-color: #b5544b;
+}
+
+
+/* =========================================================
+   TAGS
+========================================================= */
+
+/*
+   Completely remove Category / Tags.
+*/
+
+.form-section:nth-child(7) {
+  display: none;
+}
+
+
+/* =========================================================
+   PREREQUISITES
+========================================================= */
+
+.form-section:nth-child(8) {
+  grid-column: 1 / -1;
+
+  grid-row: 5;
+
+  margin-bottom: 22px;
+}
+
+.form-section:nth-child(8) textarea {
+  width: 100%;
+
+  height: 135px;
+
+  min-height: 135px;
+
+  resize: none;
+
+  border: 1px solid #cccccc;
+
+  border-radius: 6px;
+
+  padding: 10px;
+
+  background: #ffffff;
+
+  font-family: inherit;
 
   font-size: 14px;
 
   line-height: 1.35;
 
+  color: #444444;
+
   outline: none;
 }
 
-.prerequisites:focus {
-  border-color: #999999;
+.form-section:nth-child(8) textarea:focus {
+  border-color: #b5544b;
 }
 
 
-/* ==============================
+/* =========================================================
+   SECTION DESCRIPTION
+========================================================= */
+
+.section-description {
+  margin: -1px 0 12px;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+
+  color: #777777;
+}
+
+
+/* =========================================================
    PREREQUISITE SKILLS
-================================= */
+========================================================= */
 
-.prerequisite-skills-section {
-  margin-top: 24px;
+.form-section:nth-child(9) {
+  grid-column: 1 / -1;
+
+  grid-row: 6;
+
+  width: 100%;
+
+  margin-bottom: 24px;
 }
 
 
-/* ==============================
-   SAVED PREREQUISITE TAGS
-================================= */
+/* =========================================================
+   EXPECTED OUTPUT
+========================================================= */
 
-.prerequisite-tags {
+.form-section:nth-child(10) {
+  grid-column: 1 / -1;
+
+  grid-row: 7;
+
+  width: 100%;
+
+  margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   SKILL LIST
+========================================================= */
+
+.skill-list {
+  width: 100%;
+
   display: flex;
 
-  flex-wrap: wrap;
+  flex-direction: column;
 
   gap: 10px;
 
-  /*
-   * Only add bottom space when there
-   * are saved tags.
-   */
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
-.prerequisite-tag {
-  display: inline-flex;
+
+/* =========================================================
+   SKILL ROW
+========================================================= */
+
+.skill-row {
+  width: 100%;
+
+  min-height: 48px;
+
+  padding: 10px 14px;
+
+  display: flex;
 
   align-items: center;
 
-  gap: 8px;
+  justify-content: space-between;
 
-  padding: 8px 14px;
+  border: 1px solid #dddddd;
 
-  border-radius: 20px;
+  border-radius: 6px;
 
-  background-color: #f1f3f5;
-
-  color: #333333;
-
-  font-size: 14px;
+  background: #ffffff;
 }
 
-.remove-prerequisite {
+.skill-row > div:first-child {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  min-width: 0;
+}
+
+.skill-name {
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #333333;
+}
+
+.skill-band {
+  font-size: 13px;
+
+  color: #777777;
+}
+
+
+/* =========================================================
+   DELETE BUTTON
+========================================================= */
+
+.delete-button {
+  flex-shrink: 0;
+
   border: none;
+
+  padding: 5px 8px;
 
   background: transparent;
 
   color: #777777;
 
-  font-size: 18px;
+  font-family: inherit;
 
-  line-height: 1;
+  font-size: 13px;
 
   cursor: pointer;
-
-  padding: 0;
 }
 
-.remove-prerequisite:hover {
+.delete-button:hover {
   color: #d33;
+
+  text-decoration: underline;
 }
 
 
-/* ==============================
-   TEMPORARY PREREQUISITE ROW
-================================= */
+/* =========================================================
+   SKILL EDITOR
+========================================================= */
 
-.prerequisite-row {
+.skill-editor {
+  width: 100%;
+
   display: flex;
 
   align-items: center;
-
-  flex-wrap: wrap;
 
   gap: 10px;
 
   margin-top: 10px;
 
   margin-bottom: 12px;
-
-  /*
-   * This row now takes up real space
-   * in the normal document flow.
-   */
-  width: 100%;
 }
 
-.prerequisite-row select {
-  min-width: 150px;
+.skill-editor select {
+  flex: 1;
 
   height: 38px;
 
-  padding: 9px 12px;
+  min-width: 0;
+
+  padding: 0 10px;
 
   border: 1px solid #cccccc;
 
-  border-radius: 6px;
+  border-radius: 5px;
 
   background: #ffffff;
 
@@ -460,70 +626,72 @@
 
   font-size: 14px;
 
-  cursor: pointer;
-}
+  color: #333333;
 
-.prerequisite-row select:focus {
   outline: none;
+}
 
-  border-color: #666666;
+.skill-editor select:focus {
+  border-color: #b5544b;
 }
 
 
-/* ==============================
-   SAVE / DELETE
-================================= */
+/* =========================================================
+   SAVE / CANCEL
+========================================================= */
 
-.save-prerequisite,
-.delete-prerequisite {
+.save-button,
+.cancel-button {
   height: 38px;
 
-  padding: 9px 16px;
+  padding: 0 18px;
 
-  border: none;
-
-  border-radius: 6px;
-
-  cursor: pointer;
+  border-radius: 5px;
 
   font-family: inherit;
 
   font-size: 14px;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
 }
 
-.save-prerequisite {
-  background-color: #222222;
+.save-button {
+  border: none;
+
+  background: #b5544b;
 
   color: #ffffff;
+
+  font-weight: 600;
 }
 
-.save-prerequisite:hover {
-  background-color: #444444;
+.save-button:hover {
+  background: #9f423e;
 }
 
-.delete-prerequisite {
-  background-color: #eeeeee;
+.cancel-button {
+  border: 1px solid #cccccc;
+
+  background: #ffffff;
 
   color: #555555;
 }
 
-.delete-prerequisite:hover {
-  background-color: #dddddd;
+.cancel-button:hover {
+  background: #f5f5f5;
 }
 
 
-/* ==============================
-   ADD PREREQUISITE
-================================= */
+/* =========================================================
+   ADD SKILL
+========================================================= */
 
-.add-prerequisite {
-  display: inline-flex;
-
-  align-items: center;
-
-  margin-top: 4px;
-
+.add-skill-button {
   border: none;
+
+  padding: 6px 0;
 
   background: transparent;
 
@@ -536,30 +704,81 @@
   font-weight: 500;
 
   cursor: pointer;
-
-  padding: 6px 0;
 }
 
-.add-prerequisite:hover {
+.add-skill-button:hover {
   text-decoration: underline;
 }
 
 
-/* ==============================
-   DONE
-================================= */
+/* =========================================================
+   BOTTOM ACTIONS
+========================================================= */
+
+.form-actions {
+  grid-column: 1 / -1;
+
+  grid-row: 8;
+
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  margin-top: 0;
+
+  padding-top: 0;
+
+  border-top: none;
+}
+
+
+/* =========================================================
+   MAIN CANCEL BUTTON
+========================================================= */
+
+.cancel-main-button {
+  height: 38px;
+
+  padding: 0 24px;
+
+  border: 1px solid #cccccc;
+
+  border-radius: 19px;
+
+  background: #ffffff;
+
+  color: #555555;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.cancel-main-button:hover {
+  background: #f5f5f5;
+}
+
+
+/* =========================================================
+   DONE BUTTON
+========================================================= */
 
 .done-button {
-  display: block;
+  width: 100%;
 
-  width: 1119px;
   height: 34px;
 
-  /*
-   * This is now positioned AFTER the form
-   * in the normal document flow.
-   */
-  margin: 24px auto 0;
+  margin-top: 0;
 
   border: none;
 
@@ -568,6 +787,8 @@
   background: #b5544b;
 
   color: #ffffff;
+
+  font-family: inherit;
 
   font-size: 15px;
 
@@ -583,60 +804,147 @@
 }
 
 
-/* ==============================
+/*
+   Make Done occupy the whole row.
+   Since .form-actions contains Cancel + Done,
+   this makes them stack with Done full width.
+*/
+
+.form-actions {
+  display: grid;
+
+  grid-template-columns: 1fr auto;
+
+  align-items: center;
+}
+
+.form-actions .done-button {
+  grid-column: 1 / -1;
+
+  grid-row: 2;
+}
+
+.form-actions .cancel-main-button {
+  grid-column: 2;
+
+  grid-row: 1;
+}
+
+
+/* =========================================================
    RESPONSIVE
-================================= */
+========================================================= */
 
 @media (max-width: 1200px) {
-  .course-form,
-  .done-button {
-    width: calc(100% - 64px);
+  .course-general-container {
+    width: calc(100% - 60px);
   }
 }
 
 @media (max-width: 700px) {
-  .course-form {
-    min-height: 0;
+  .course-general-container {
+    width: calc(100% - 30px);
 
-    height: auto;
+    padding: 25px 15px 40px;
 
-    padding-bottom: 25px;
-  }
+    display: flex;
 
-  .course-top {
     flex-direction: column;
   }
 
-  .cover-container {
-    width: 100%;
-    height: 200px;
+  .page-header {
+    margin-bottom: 20px;
   }
 
-  .duration-group {
+  /*
+     Return the top area to a normal
+     vertical layout on small screens.
+  */
+
+  .form-section:nth-child(2),
+  .form-section:nth-child(3),
+  .form-section:nth-child(5) {
+    width: 100%;
+
+    margin-bottom: 20px;
+  }
+
+  .form-section:nth-child(3) {
+    order: 1;
+  }
+
+  .form-section:nth-child(2) {
+    order: 2;
+  }
+
+  .form-section:nth-child(5) {
+    order: 3;
+  }
+
+  .form-section:nth-child(6) {
+    order: 4;
+
+    display: flex;
+
     flex-direction: column;
 
     align-items: flex-start;
+
+    gap: 8px;
   }
 
-  .duration-group input {
+  .form-section:nth-child(6) input {
     width: 100%;
   }
 
-  .prerequisite-row {
-    align-items: stretch;
-
-    flex-direction: column;
+  .form-section:nth-child(8) {
+    order: 5;
   }
 
-  .prerequisite-row select,
-  .save-prerequisite,
-  .delete-prerequisite {
+  .form-section:nth-child(9) {
+    order: 6;
+  }
+
+  .form-section:nth-child(10) {
+    order: 7;
+  }
+
+  .form-actions {
+    order: 8;
+
+    display: flex;
+
+    flex-direction: column-reverse;
+
     width: 100%;
   }
 
+  .cancel-main-button,
   .done-button {
-    width: calc(100% - 64px);
+    width: 100%;
+  }
 
-    margin-top: 24px;
+  .skill-row {
+    align-items: flex-start;
+  }
+
+  .skill-row > div:first-child {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 4px;
+  }
+
+  .skill-editor {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .skill-editor select,
+  .save-button,
+  .cancel-button {
+    width: 100%;
   }
 }

@@ -130,37 +130,210 @@ async function findCourseByLessonId(id) {
 
 // POST: Create a course.
 async function createCourse(data, instructorId) {
-  const sql = `
-    INSERT INTO courses (
-      instructor_id,
-      category_id,
-      title,
+  const client = await pool.connect();
+
+  try {
+    await client.query("BEGIN");
+
+    // =====================================================
+    // 1. Generate slug from course title
+    // =====================================================
+
+    const slug = data.title
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-");
+
+    // =====================================================
+    // 2. Create course
+    // =====================================================
+
+    const courseSql = `
+      INSERT INTO courses (
+        instructor_id,
+        category_id,
+        title,
+        slug,
+        description,
+        prerequisite_text,
+        thumbnail_url,
+        status,
+        is_featured,
+        created_at,
+        updated_at
+      )
+      VALUES (
+        $1,
+        $2,
+        $3,
+        $4,
+        $5,
+        $6,
+        $7,
+        'draft',
+        FALSE,
+        NOW(),
+        NOW()
+      )
+      RETURNING *
+    `;
+
+    const courseValues = [
+      instructorId,
+      data.category_id,
+      data.title,
       slug,
-      description,
-      prerequisite_text,
-      thumbnail_url,
-      status,
-      is_featured,
-      created_at,
-      updated_at
-    )
-    VALUES ($1, $2, $3, $4, $5, $6, $7, 'draft', FALSE, NOW(), NOW())
-    RETURNING *
-  `;
+      data.description,
+      data.prerequisite_text || null,
+      data.thumbnail_url || null,
+    ];
 
-  const values = [
-    instructorId,
-    data.category_id,
-    data.title,
-    data.slug,
-    data.description,
-    data.prerequisite_text,
-    data.thumbnail_url,
-  ];
+    const courseResult = await client.query(
+      courseSql,
+      courseValues
+    );
 
-  const result = await pool.query(sql, values);
-  return result.rows[0];
+    const course = courseResult.rows[0];
+
+    // =====================================================
+    // 3. Insert prerequisite skills
+    // =====================================================
+
+    if (
+      Array.isArray(data.prerequisite_skills)
+    ) {
+      for (
+        const item of data.prerequisite_skills
+      ) {
+        const skillResult =
+          await client.query(
+            `
+            SELECT id
+            FROM skills
+            WHERE LOWER(name) = LOWER($1)
+            `,
+            [item.skill]
+          );
+
+        if (
+          skillResult.rows.length === 0
+        ) {
+          throw new Error(
+            `Skill not found: ${item.skill}`
+          );
+        }
+
+        const skillId =
+          skillResult.rows[0].id;
+
+        await client.query(
+          `
+          INSERT INTO course_prerequisites (
+            course_id,
+            skill_id,
+            minimum_band
+          )
+          VALUES ($1, $2, $3)
+          `,
+          [
+            course.id,
+            skillId,
+            Number(item.band),
+          ]
+        );
+      }
+    }
+
+    // =====================================================
+    // 4. Insert expected output skills
+    // =====================================================
+
+    if (
+      Array.isArray(
+        data.expected_output_skills
+      )
+    ) {
+      const outputSkills =
+        data.expected_output_skills;
+
+      const weight =
+        outputSkills.length > 0
+          ? 1 / outputSkills.length
+          : 0;
+
+      for (
+        const item of outputSkills
+      ) {
+        const skillResult =
+          await client.query(
+            `
+            SELECT id
+            FROM skills
+            WHERE LOWER(name) = LOWER($1)
+            `,
+            [item.skill]
+          );
+
+        if (
+          skillResult.rows.length === 0
+        ) {
+          throw new Error(
+            `Skill not found: ${item.skill}`
+          );
+        }
+
+        const skillId =
+          skillResult.rows[0].id;
+
+        await client.query(
+          `
+          INSERT INTO course_skills (
+            course_id,
+            skill_id,
+            initial_band,
+            current_difficulty_rating,
+            weight,
+            updated_at
+          )
+          VALUES ($1, $2, $3, $4, $5, NOW())
+          `,
+          [
+            course.id,
+            skillId,
+            Number(item.band),
+
+            // Initial internal difficulty.
+            // Can be calculated by the
+            // recommendation algorithm later.
+            0,
+
+            weight,
+          ]
+        );
+      }
+    }
+
+    // =====================================================
+    // 5. Finish transaction
+    // =====================================================
+
+    await client.query("COMMIT");
+
+    return course;
+
+  } catch (error) {
+    await client.query("ROLLBACK");
+
+    throw error;
+
+  } finally {
+    client.release();
+  }
 }
+
+
 
 // POST: Create a chapter.
 async function createChapter(data) {
