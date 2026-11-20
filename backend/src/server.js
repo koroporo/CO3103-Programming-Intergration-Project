@@ -255,10 +255,18 @@ app.use("/courses", courseRoutes);
 const enrollmentRoutes = require("./routes/Enrollment/enrollmentRoutes");
 const { errorHandler } = require("./middleware/Authentication/errorMiddleware");
 app.use("/enrollment", enrollmentRoutes);
-app.use(errorHandler);
 
 //ASSESSMENT
 const assessmentRoutes = require("./routes/Assessment/assessmentRoutes");
 
 app.use("/assessment", assessmentRoutes);
+
+// Lesson forums and personal notifications share the current login session.
+const discussionRoutes = require("./routes/Discussion/discussionRoutes");
+const notificationRoutes = require("./routes/Notification/notificationRoutes");
+app.use("/lessons/:lessonId/discussions", discussionRoutes);
+app.use("/notification", notificationRoutes);
+
+// Error handlers must follow every route to handle async Express 5 failures.
+app.use(errorHandler);
 

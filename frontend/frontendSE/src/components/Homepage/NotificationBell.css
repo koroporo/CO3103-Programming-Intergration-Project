@@ -1,4 +1,6 @@
 .notification-bell-btn {
+  position: relative;
+  text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -11,6 +13,8 @@
   cursor: pointer;
   transition: all 0.15s ease;
 }
+
+.notification-bell-count { position: absolute; top: -3px; right: -8px; min-width: 18px; padding: 2px 4px; border-radius: 10px; background: #dc2626; color: white; font-size: 10px; text-align: center; }
 
 .notification-bell-btn:hover {
   background: #f2f2f7;

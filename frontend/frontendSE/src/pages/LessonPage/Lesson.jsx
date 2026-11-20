@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { courses, featuredCourse } from "../../data/courses";
 import { useParams } from "react-router-dom";
-import Comments from "./Comments";
+import DiscussionForum from "../../components/Lesson/DiscussionForum";
 import VideoLayout from "./VideoLayout";
 import SlideLayout from "./SlideLayout";
 import ExercisesLayout from "./ExercisesLayout";
@@ -86,7 +86,7 @@ export default function Lesson() {
     return () => {
       cancelled = true;
     };
-  }, [lessonId]);
+  }, [courseId, lessonId]);
 
   const course =
     courses.find((c) => String(c.id) === courseId) ||
@@ -225,10 +225,7 @@ export default function Lesson() {
         )}
       </div>
 
-      <section className="lesson-comments-section" aria-label="Lesson comments">
-        <h2>Comments</h2>
-        <Comments comments={[]} />
-      </section>
+      <DiscussionForum key={lessonId} lessonId={lessonId} />
     </div>
   );
 }

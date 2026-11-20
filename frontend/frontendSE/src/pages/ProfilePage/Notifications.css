@@ -97,6 +97,9 @@
 
 /* Card thông báo riêng lẻ */
 .noti-card {
+    width: 100%;
+    text-align: left;
+    font: inherit;
     background-color: #ffffff;
     border-radius: 12px;
     padding: 20px;
@@ -151,12 +154,18 @@
 }
 
 .noti-text-desc {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
     margin: 0;
     font-size: 15px;
     line-height: 1.45;
     color: #1e293b;
     font-weight: 500;
 }
+
+.noti-pagination { display: flex; justify-content: center; align-items: center; gap: 16px; margin: 24px 0; }
+.noti-card:focus-visible { outline: 3px solid #6366f1; outline-offset: 2px; }
+.noti-card:disabled, .mark-all-btn:disabled { cursor: default; opacity: .6; }
 
 /* Trạng thái chưa đọc chữ đậm hơn tí */
 .unread .noti-text-desc {
