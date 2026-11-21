@@ -244,7 +244,6 @@ app.use("/auth", passwordResetRoutes);
 const applicationRoutes = require("./routes/InstructorApplication/roleApplicationRoutes");
 app.use("/role-applications", applicationRoutes);
 
-module.exports = app;
 
 //COURSES 
 const courseRoutes = require("./routes/Course/courseRoutes");
@@ -253,12 +252,17 @@ app.use("/courses", courseRoutes);
 
 //ENROLLMENT
 const enrollmentRoutes = require("./routes/Enrollment/enrollmentRoutes");
-const { errorHandler } = require("./middleware/Authentication/errorMiddleware");
 app.use("/enrollment", enrollmentRoutes);
-app.use(errorHandler);
 
 //ASSESSMENT
 const assessmentRoutes = require("./routes/Assessment/assessmentRoutes");
 
 app.use("/assessment", assessmentRoutes);
 
+// Lesson quizzes (attempts, auto grading) from feature/assessment-quiz
+const quizAttemptRoutes = require("./routes/Assessment/quizAttemptRoutes");
+app.use("/assessments", quizAttemptRoutes);
+
+const { errorHandler } = require("./middleware/Authentication/errorMiddleware");
+app.use(errorHandler);
+module.exports = app;

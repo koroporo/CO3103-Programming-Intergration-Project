@@ -20,6 +20,7 @@ import Lesson from "./pages/LessonPage/Lesson";
 import AdminLayout from "./pages/Admin/AdminLayout";
 import InstructorStudio from "./pages/Instructor/InstructorStudio";
 import QuizManager from "./pages/Instructor/QuizManager";
+import AssessmentPage from "./pages/AssessmentPage";
 import Dashboard from "./pages/Instructor/Dashboard";
 import Course_1 from "./pages/Courses/Course_1";
 import QuizBuilder from "./pages/Quizzes/QuizBuilder/QuizBuilder";
@@ -73,6 +74,7 @@ export default function AppRoutes() {
       <Route path="/courses/:courseId/:lessonId" element={<><Header></Header><Lesson/></>}></Route>
       <Route path="/instructor-studio" element={<InstructorStudio />} />
       <Route path="/quiz-manager" element={<QuizManager />} />
+      <Route path="/assessments" element={<AssessmentPage />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/course-1" element={<Course_1 />} />
       <Route path="/quiz-builder" element={<QuizBuilder />} />
