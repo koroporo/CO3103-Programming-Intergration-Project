@@ -8,6 +8,7 @@ const passwordResetRoutes = require("./routes/Authentication/passwordResetRoutes
 const applicationRoutes = require("./routes/InstructorApplication/roleApplicationRoutes");
 const courseRoutes = require("./routes/Course/courseRoutes");
 const enrollmentRoutes = require("./routes/Enrollment/enrollmentRoutes");
+const reviewRoutes = require("./routes/Review/reviewRoutes");
 const { errorHandler } = require("./middleware/Authentication/errorMiddleware");
 
 const app = express();
@@ -15,7 +16,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use((req, res, next) => {
-console.log("Incoming request:", req.method, req.originalUrl);
+  console.log("Incoming request:", req.method, req.originalUrl);
   next();
 });
 
@@ -26,7 +27,7 @@ app.get("/", (req, res) => {
 });
 app.get("/health", async (req, res) => {
   try {
-    await withDb( (sql) => sql`SELECT 1`)
+    await withDb((sql) => sql`SELECT 1`);
     res.json({ status: "ok" });
   } catch (error) {
     console.error("Database health check failed", error);
@@ -39,9 +40,18 @@ api.use("/auth", passwordResetRoutes);
 api.use("/preferences", preferencesRoutes);
 api.use("/role-applications", applicationRoutes);
 api.use("/courses", courseRoutes);
+api.use("/courses", reviewRoutes);
 api.use("/enrollment", enrollmentRoutes);
 
 app.use("/api", api);
-app.use(errorHandler); // phải nằm cuối
+app.use(errorHandler);
+
+if (require.main === module) {
+  require("dotenv").config();
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+  });
+}
 
 module.exports = app;
