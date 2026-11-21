@@ -1,7 +1,5 @@
 
-const pool = require("../../db");
-
-async function getRecommendations(userId, courseId) {
+async function getRecommendations(client, userId, courseId) {
   const query = `
     WITH user_context AS (
       SELECT
@@ -105,7 +103,7 @@ async function getRecommendations(userId, courseId) {
       course_id;
   `;
 
-  const result = await pool.query(query, [userId, courseId]);
+  const result = await client.query(query, [userId, courseId]);
 
   return result.rows;
 }

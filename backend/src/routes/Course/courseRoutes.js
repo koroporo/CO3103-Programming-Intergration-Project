@@ -179,4 +179,6 @@ router.post(
   courseCompletionController.completeCourse,
 );
 
+router.get("/completed", authenticate, courseCompletionController.getCompletedCourses);
+
 module.exports = router;

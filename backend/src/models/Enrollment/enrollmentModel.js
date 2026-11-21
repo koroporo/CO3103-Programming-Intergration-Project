@@ -108,6 +108,15 @@ async function reactivateEnrollment(client, id) {
   return result.rows[0];
 }
 
+async function completeEnrollment(client, id) {
+  const result = await client.query(
+    `UPDATE enrollments SET status = 'completed', completed_at = NOW()
+     WHERE id = $1 RETURNING *`,
+    [id],
+  );
+  return result.rows[0];
+}
+
 async function withdrawEnrollment(client, id) {
   const sql = `
     UPDATE enrollments
@@ -254,6 +263,7 @@ module.exports = {
   findMissingPrerequisites,
   createEnrollment,
   reactivateEnrollment,
+  completeEnrollment,
   withdrawEnrollment,
   findPublishedLesson,
   updateResume,
