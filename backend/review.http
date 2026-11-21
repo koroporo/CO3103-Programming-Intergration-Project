@@ -1,0 +1,73 @@
+@baseUrl = http://localhost:3000/api
+@courseId = 1
+@token = PASTE_YOUR_JWT_TOKEN_HERE
+
+GET {{baseUrl}}/courses
+
+###
+
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "testreview@example.com",
+  "password": "Password123!",
+  "full_name": "Nguyen Van Test"
+}
+
+###
+
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "testreview@example.com",
+  "password": "Password123!"
+}
+
+###
+
+POST {{baseUrl}}/enrollment/post
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "course_id": "{{courseId}}"
+}
+
+###
+
+GET {{baseUrl}}/courses/{{courseId}}/reviews
+
+###
+
+POST {{baseUrl}}/courses/{{courseId}}/reviews
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "rating": 5,
+  "perceived_difficulty": "appropriate",
+  "comment": "Clear explanations and very practical IELTS exercises."
+}
+
+###
+
+POST {{baseUrl}}/courses/{{courseId}}/reviews
+Content-Type: application/json
+
+{
+  "rating": 4,
+  "comment": "Should fail with 401 without token."
+}
+
+###
+
+POST {{baseUrl}}/courses/{{courseId}}/reviews
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "rating": 6,
+  "comment": "Should fail with 400 invalid rating."
+}
